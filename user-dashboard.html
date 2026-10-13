@@ -261,32 +261,32 @@
             </thead>
             <tbody>
               <tr>
-                <td><strong>#QRY-9841</strong></td>
-                <td>Lingalamanasa123</td>
-                <td>ARR Cohort Retention & Churn</td>
-                <td>14ms (DuckDB)</td>
-                <td><span class="dash-kpi-badge current">Completed</span></td>
+                <td data-label="QUERY TOKEN"><strong>#QRY-9841</strong></td>
+                <td data-label="OPERATOR / USER">Lingalamanasa123</td>
+                <td data-label="SEMANTIC DATASET">ARR Cohort Retention & Churn</td>
+                <td data-label="EXECUTION TIME">14ms (DuckDB)</td>
+                <td data-label="STATUS"><span class="dash-kpi-badge current">Completed</span></td>
               </tr>
               <tr>
-                <td><strong>#QRY-9842</strong></td>
-                <td>Dr. Evelyn Vance</td>
-                <td>EMEA vs APAC Gross Margin P&L</td>
-                <td>22ms (In-Situ)</td>
-                <td><span class="dash-kpi-badge current">Completed</span></td>
+                <td data-label="QUERY TOKEN"><strong>#QRY-9842</strong></td>
+                <td data-label="OPERATOR / USER">Dr. Evelyn Vance</td>
+                <td data-label="SEMANTIC DATASET">EMEA vs APAC Gross Margin P&L</td>
+                <td data-label="EXECUTION TIME">22ms (In-Situ)</td>
+                <td data-label="STATUS"><span class="dash-kpi-badge current">Completed</span></td>
               </tr>
               <tr>
-                <td><strong>#QRY-9843</strong></td>
-                <td>Autonomous AI Bot #4</td>
-                <td>Gaussian Churn Anomaly Scan</td>
-                <td>38ms (Arrow Pool)</td>
-                <td><span class="dash-kpi-badge yellow">Optimized</span></td>
+                <td data-label="QUERY TOKEN"><strong>#QRY-9843</strong></td>
+                <td data-label="OPERATOR / USER">Autonomous AI Bot #4</td>
+                <td data-label="SEMANTIC DATASET">Gaussian Churn Anomaly Scan</td>
+                <td data-label="EXECUTION TIME">38ms (Arrow Pool)</td>
+                <td data-label="STATUS"><span class="dash-kpi-badge yellow">Optimized</span></td>
               </tr>
               <tr>
-                <td><strong>#QRY-9844</strong></td>
-                <td>Executive Board Portal</td>
-                <td>Consolidated EBITDA Multiple Deck</td>
-                <td>18ms (Cache Hit)</td>
-                <td><span class="dash-kpi-badge current">Completed</span></td>
+                <td data-label="QUERY TOKEN"><strong>#QRY-9844</strong></td>
+                <td data-label="OPERATOR / USER">Executive Board Portal</td>
+                <td data-label="SEMANTIC DATASET">Consolidated EBITDA Multiple Deck</td>
+                <td data-label="EXECUTION TIME">18ms (Cache Hit)</td>
+                <td data-label="STATUS"><span class="dash-kpi-badge current">Completed</span></td>
               </tr>
             </tbody>
           </table>
@@ -417,8 +417,8 @@
               <tr><th>TOPIC</th><th>PARTITIONS</th><th>THROUGHPUT</th><th>LEADER</th><th>STATUS</th></tr>
             </thead>
             <tbody>
-              <tr><td>telemetry.enterprise.subscriptions</td><td>16</td><td>420 MB/s</td><td>Broker-01</td><td><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Synced</a></td></tr>
-              <tr><td>telemetry.regional.pnl</td><td>8</td><td>180 MB/s</td><td>Broker-02</td><td><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Synced</a></td></tr>
+              <tr><td data-label="TOPIC">telemetry.enterprise.subscriptions</td><td data-label="PARTITIONS">16</td><td data-label="THROUGHPUT">420 MB/s</td><td data-label="LEADER">Broker-01</td><td data-label="STATUS"><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Synced</a></td></tr>
+              <tr><td data-label="TOPIC">telemetry.regional.pnl</td><td data-label="PARTITIONS">8</td><td data-label="THROUGHPUT">180 MB/s</td><td data-label="LEADER">Broker-02</td><td data-label="STATUS"><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Synced</a></td></tr>
             </tbody>
           </table>
         </div>
@@ -492,8 +492,8 @@
               <tr><th>PROMPT</th><th>COMPILED SQL</th><th>ACCURACY</th><th>LATENCY</th></tr>
             </thead>
             <tbody>
-              <tr><td>"Show CAC payback by channel"</td><td>SELECT channel, avg(cac_payback_months)...</td><td>100%</td><td>24ms</td></tr>
-              <tr><td>"EBITDA drivers for Q2"</td><td>SELECT variance_driver, sum(amount)...</td><td>100%</td><td>31ms</td></tr>
+              <tr><td data-label="PROMPT">"Show CAC payback by channel"</td><td data-label="COMPILED SQL">SELECT channel, avg(cac_payback_months)...</td><td data-label="ACCURACY">100%</td><td data-label="LATENCY">24ms</td></tr>
+              <tr><td data-label="PROMPT">"EBITDA drivers for Q2"</td><td data-label="COMPILED SQL">SELECT variance_driver, sum(amount)...</td><td data-label="ACCURACY">100%</td><td data-label="LATENCY">31ms</td></tr>
             </tbody>
           </table>
         </div>
@@ -564,9 +564,9 @@
               <tr><th>REGION</th><th>ARR</th><th>EXPANSION</th><th>GROSS MARGIN</th><th>EBITDA STATUS</th></tr>
             </thead>
             <tbody>
-              <tr><td>North America</td><td>$52.8M</td><td>+$4.2M</td><td>84.1%</td><td><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">High Margin</a></td></tr>
-              <tr><td>EMEA Hub</td><td>$22.4M</td><td>+$2.1M</td><td>76.9%</td><td><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Profitable</a></td></tr>
-              <tr><td>APAC Expansion</td><td>$9.0M</td><td>+$0.5M</td><td>71.4%</td><td><a href="404.html" class="dash-kpi-badge yellow" style="text-decoration: none; cursor: pointer;">Scaling</a></td></tr>
+              <tr><td data-label="REGION">North America</td><td data-label="ARR">$52.8M</td><td data-label="EXPANSION">+$4.2M</td><td data-label="GROSS MARGIN">84.1%</td><td data-label="EBITDA STATUS"><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">High Margin</a></td></tr>
+              <tr><td data-label="REGION">EMEA Hub</td><td data-label="ARR">$22.4M</td><td data-label="EXPANSION">+$2.1M</td><td data-label="GROSS MARGIN">76.9%</td><td data-label="EBITDA STATUS"><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Profitable</a></td></tr>
+              <tr><td data-label="REGION">APAC Expansion</td><td data-label="ARR">$9.0M</td><td data-label="EXPANSION">+$0.5M</td><td data-label="GROSS MARGIN">71.4%</td><td data-label="EBITDA STATUS"><a href="404.html" class="dash-kpi-badge yellow" style="text-decoration: none; cursor: pointer;">Scaling</a></td></tr>
             </tbody>
           </table>
         </div>
@@ -637,8 +637,8 @@
               <tr><th>REPORT NAME</th><th>PERIOD</th><th>SIZE</th><th>RECIPIENTS</th><th>DOWNLOAD</th></tr>
             </thead>
             <tbody>
-              <tr><td>Q3 Executive P&L Variance</td><td>Q3 2026</td><td>4.2 MB</td><td>Board of Directors</td><td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-download"></i> PDF</a></td></tr>
-              <tr><td>Kafka CDC Telemetry Benchmark</td><td>Sep 2026</td><td>12.8 MB</td><td>Platform Engineers</td><td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-download"></i> Parquet</a></td></tr>
+              <tr><td data-label="REPORT NAME">Q3 Executive P&L Variance</td><td data-label="PERIOD">Q3 2026</td><td data-label="SIZE">4.2 MB</td><td data-label="RECIPIENTS">Board of Directors</td><td data-label="DOWNLOAD"><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-download"></i> PDF</a></td></tr>
+              <tr><td data-label="REPORT NAME">Kafka CDC Telemetry Benchmark</td><td data-label="PERIOD">Sep 2026</td><td data-label="SIZE">12.8 MB</td><td data-label="RECIPIENTS">Platform Engineers</td><td data-label="DOWNLOAD"><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-download"></i> Parquet</a></td></tr>
             </tbody>
           </table>
         </div>
@@ -706,8 +706,8 @@
           <table class="dash-table">
             <thead><tr><th>WEEK</th><th>EVENTS</th><th>GROSS_VOLUME</th><th>LATENCY</th></tr></thead>
             <tbody>
-              <tr><td>2026-10-05</td><td>142,850,210</td><td>$18,420,100</td><td>8.4ms</td></tr>
-              <tr><td>2026-09-28</td><td>138,420,190</td><td>$17,910,400</td><td>9.1ms</td></tr>
+              <tr><td data-label="WEEK">2026-10-05</td><td data-label="EVENTS">142,850,210</td><td data-label="GROSS_VOLUME">$18,420,100</td><td data-label="LATENCY">8.4ms</td></tr>
+              <tr><td data-label="WEEK">2026-09-28</td><td data-label="EVENTS">138,420,190</td><td data-label="GROSS_VOLUME">$17,910,400</td><td data-label="LATENCY">9.1ms</td></tr>
             </tbody>
           </table>
         </div>
@@ -776,8 +776,8 @@
           <table class="dash-table">
             <thead><tr><th>TIMESTAMP</th><th>USER</th><th>ROLE</th><th>RESOURCE</th><th>ENTITLEMENT</th></tr></thead>
             <tbody>
-              <tr><td>2026-10-09 18:04:12</td><td>Lingalamanasa123</td><td>Executive User</td><td>telemetry.pnl</td><td><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Permitted</a></td></tr>
-              <tr><td>2026-10-09 17:52:08</td><td>Dr. Evelyn Vance</td><td>Admin Architect</td><td>lakehouse.schema</td><td><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Permitted</a></td></tr>
+              <tr><td data-label="TIMESTAMP">2026-10-09 18:04:12</td><td data-label="USER">Lingalamanasa123</td><td data-label="ROLE">Executive User</td><td data-label="RESOURCE">telemetry.pnl</td><td data-label="ENTITLEMENT"><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Permitted</a></td></tr>
+              <tr><td data-label="TIMESTAMP">2026-10-09 17:52:08</td><td data-label="USER">Dr. Evelyn Vance</td><td data-label="ROLE">Admin Architect</td><td data-label="RESOURCE">lakehouse.schema</td><td data-label="ENTITLEMENT"><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Permitted</a></td></tr>
             </tbody>
           </table>
         </div>
@@ -842,9 +842,28 @@
       // Update URL hash without reload
       history.replaceState(null, null, '#' + viewId);
 
+      // Re-initialize responsive table card labels for view
+      initResponsiveTableLabels();
+
       // Close mobile drawer if open
       closeMobileDrawer();
     }
+
+    // Auto-stamp data-label attributes for responsive mobile cards (matching Image 2)
+    function initResponsiveTableLabels() {
+      document.querySelectorAll('.dash-table').forEach(table => {
+        const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+        if (!headers.length) return;
+        table.querySelectorAll('tbody tr').forEach(tr => {
+          Array.from(tr.children).forEach((td, index) => {
+            if (headers[index] && !td.getAttribute('data-label')) {
+              td.setAttribute('data-label', headers[index]);
+            }
+          });
+        });
+      });
+    }
+    initResponsiveTableLabels();
 
     // Mobile Hamburger Drawer Toggle
     function openMobileDrawer() {
@@ -881,6 +900,7 @@
 
     // Load from URL hash or default to dashboard
     window.addEventListener('DOMContentLoaded', () => {
+      initResponsiveTableLabels();
       const hash = window.location.hash.replace('#', '');
       if (hash && document.getElementById('view-' + hash)) {
         const btn = document.querySelector(`[onclick*="'${hash}'"]`);

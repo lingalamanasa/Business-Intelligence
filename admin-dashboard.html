@@ -263,36 +263,36 @@
             </thead>
             <tbody>
               <tr>
-                <td><strong>#T001</strong></td>
-                <td>Ramesh Kumar</td>
-                <td>Cardiology</td>
-                <td>Dr. Rajesh Kumar</td>
-                <td>5 min</td>
-                <td><span class="dash-kpi-badge current">Consulting</span></td>
+                <td data-label="TOKEN"><strong>#T001</strong></td>
+                <td data-label="PATIENT NAME">Ramesh Kumar</td>
+                <td data-label="DEPARTMENT">Cardiology</td>
+                <td data-label="DOCTOR">Dr. Rajesh Kumar</td>
+                <td data-label="WAIT TIME">5 min</td>
+                <td data-label="STATUS"><span class="dash-kpi-badge current">Consulting</span></td>
               </tr>
               <tr>
-                <td><strong>#T002</strong></td>
-                <td>Meena Sharma</td>
-                <td>Gynecology</td>
-                <td>Dr. Sunita Rao</td>
-                <td>12 min</td>
-                <td><span class="dash-kpi-badge pending">Waiting</span></td>
+                <td data-label="TOKEN"><strong>#T002</strong></td>
+                <td data-label="PATIENT NAME">Meena Sharma</td>
+                <td data-label="DEPARTMENT">Gynecology</td>
+                <td data-label="DOCTOR">Dr. Sunita Rao</td>
+                <td data-label="WAIT TIME">12 min</td>
+                <td data-label="STATUS"><span class="dash-kpi-badge pending">Waiting</span></td>
               </tr>
               <tr>
-                <td><strong>#T003</strong></td>
-                <td>Arun Patel</td>
-                <td>Orthopedics</td>
-                <td>Dr. Anand Mehta</td>
-                <td>20 min</td>
-                <td><span class="dash-kpi-badge pending">Waiting</span></td>
+                <td data-label="TOKEN"><strong>#T003</strong></td>
+                <td data-label="PATIENT NAME">Arun Patel</td>
+                <td data-label="DEPARTMENT">Orthopedics</td>
+                <td data-label="DOCTOR">Dr. Anand Mehta</td>
+                <td data-label="WAIT TIME">20 min</td>
+                <td data-label="STATUS"><span class="dash-kpi-badge pending">Waiting</span></td>
               </tr>
               <tr>
-                <td><strong>#T004</strong></td>
-                <td>Kavitha Nair</td>
-                <td>General Medicine</td>
-                <td>Dr. Suresh Babu</td>
-                <td>28 min</td>
-                <td><span class="dash-kpi-badge today">Registered</span></td>
+                <td data-label="TOKEN"><strong>#T004</strong></td>
+                <td data-label="PATIENT NAME">Kavitha Nair</td>
+                <td data-label="DEPARTMENT">General Medicine</td>
+                <td data-label="DOCTOR">Dr. Suresh Babu</td>
+                <td data-label="WAIT TIME">28 min</td>
+                <td data-label="STATUS"><span class="dash-kpi-badge today">Registered</span></td>
               </tr>
             </tbody>
           </table>
@@ -1848,9 +1848,28 @@
       // Update URL hash without reload
       history.replaceState(null, null, '#' + viewId);
 
+      // Re-initialize responsive table card labels for active view
+      initResponsiveTableLabels();
+
       // Close mobile drawer if open
       closeMobileDrawer();
     }
+
+    // Auto-stamp data-label attributes for responsive mobile cards (matching Image 2)
+    function initResponsiveTableLabels() {
+      document.querySelectorAll('.dash-table').forEach(table => {
+        const headers = Array.from(table.querySelectorAll('thead th')).map(th => th.textContent.trim());
+        if (!headers.length) return;
+        table.querySelectorAll('tbody tr').forEach(tr => {
+          Array.from(tr.children).forEach((td, index) => {
+            if (headers[index] && !td.getAttribute('data-label')) {
+              td.setAttribute('data-label', headers[index]);
+            }
+          });
+        });
+      });
+    }
+    initResponsiveTableLabels();
 
     // Mobile Hamburger Drawer Toggle
     function openMobileDrawer() {
@@ -1887,6 +1906,7 @@
 
     // Load from URL hash or default to overview
     window.addEventListener('DOMContentLoaded', () => {
+      initResponsiveTableLabels();
       const hash = window.location.hash.replace('#', '');
       if (hash && document.getElementById('view-' + hash)) {
         const btn = document.querySelector(`[onclick*="'${hash}'"]`);

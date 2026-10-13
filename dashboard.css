@@ -921,6 +921,148 @@ a.dash-kpi-badge:hover {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
+
+  /* ============================================================
+     RESPONSIVE CARD LAYOUT FOR DASHBOARD TABLES (MATCHING IMAGE 2)
+     ============================================================ */
+  .dash-table-box {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-bottom: 1.85rem !important;
+    overflow: visible !important;
+  }
+
+  .dash-table-box .dash-panel-header,
+  .dash-table-box > h3 {
+    margin-bottom: 0.9rem !important;
+    padding: 0 0.2rem !important;
+  }
+
+  .dash-table,
+  .dash-table thead,
+  .dash-table tbody,
+  .dash-table th,
+  .dash-table td,
+  .dash-table tr {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Hide Desktop Table Header on Mobile */
+  .dash-table thead {
+    display: none !important;
+  }
+
+  /* Table Body as Card List */
+  .dash-table tbody {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.95rem !important;
+    width: 100% !important;
+  }
+
+  /* Each Row as a Standalone White Card matching Image 2 */
+  .dash-table tbody tr {
+    background: #ffffff !important;
+    border: 1.5px solid #e2e8f0 !important;
+    border-radius: 14px !important;
+    padding: 0.95rem 1.15rem !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .dash-table tbody tr:hover {
+    transform: translateY(-1px);
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06) !important;
+  }
+
+  .dash-table tbody tr:hover td {
+    background: transparent !important;
+  }
+
+  /* Each Cell as a Card Field Row */
+  .dash-table td {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.65rem 0 !important;
+    border: none !important;
+    border-bottom: 1px solid #f1f5f9 !important;
+    font-size: 0.88rem !important;
+    font-weight: 500 !important;
+    color: #0f172a !important;
+    text-align: right !important;
+    gap: 0.85rem !important;
+    min-height: 38px !important;
+  }
+
+  .dash-table td:first-child {
+    padding-top: 0.15rem !important;
+  }
+
+  .dash-table td:last-child {
+    border-bottom: none !important;
+    padding-bottom: 0.15rem !important;
+  }
+
+  /* Column Label on the Left (from data-label) matching Image 2 */
+  .dash-table td::before {
+    content: attr(data-label);
+    font-size: 0.72rem !important;
+    font-weight: 800 !important;
+    color: #64748b !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    text-align: left !important;
+    flex-shrink: 0 !important;
+    max-width: 48% !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Primary token / ID styling */
+  .dash-table td strong {
+    font-size: 0.92rem !important;
+    font-weight: 700 !important;
+    color: #0f172a !important;
+  }
+
+  /* KPI Badges aligned nicely */
+  .dash-table td .dash-kpi-badge {
+    margin: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 4px 10px !important;
+    font-size: 0.75rem !important;
+    font-weight: 700 !important;
+    border-radius: 20px !important;
+  }
+
+  /* Action links / download buttons in cards */
+  .dash-table td a:not(.dash-kpi-badge) {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+    padding: 0.35rem 0.8rem !important;
+    background: #f8fafc !important;
+    border: 1.5px solid #e2e8f0 !important;
+    border-radius: 8px !important;
+    color: #0f172a !important;
+    font-size: 0.8rem !important;
+    font-weight: 600 !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .dash-table td a:not(.dash-kpi-badge):hover {
+    background: #f1f5f9 !important;
+    border-color: #cbd5e1 !important;
+    color: #a16207 !important;
+  }
 }
 
 @media (max-width: 600px) {
@@ -950,10 +1092,6 @@ a.dash-kpi-badge:hover {
   }
   .dash-quick-card {
     padding: 1.1rem;
-  }
-  .dash-table th, .dash-table td {
-    padding: 0.65rem 0.75rem;
-    font-size: 0.78rem;
   }
 }
 
