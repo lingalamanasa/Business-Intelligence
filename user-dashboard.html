@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Patient Portal - Stackly Business Intelligence</title>
-  <link rel="stylesheet" href="dashboard.css?v=3.0">
+  <title>User Telemetry Dashboard - Stackly Business Intelligence</title>
+  <link rel="stylesheet" href="dashboard.css?v=2.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,77 +12,24 @@
 </head>
 <body>
 
-  <!-- TOP HEADER (ROYAL BLUE THEME WITH MOBILE HAMBURGER & CENTER LOGO) -->
+  <!-- TOP HEADER (YELLOW IN PLACE OF BLUE) -->
   <header class="dash-header">
-    <button class="dash-menu-toggle" id="dashMenuToggle" aria-label="Toggle navigation menu">
-      <i class="fa-solid fa-bars"></i>
-    </button>
-
     <a href="index.html" class="dash-logo-box" aria-label="Stackly Home">
-      <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="dash-logo-img" />
+      <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="dash-logo-img" style="height: 34px; width: auto; object-fit: contain; display: block;" />
     </a>
 
     <div class="dash-user-nav">
       <span class="dash-user-email" id="headerUserEmail">lingalamanasa123@gmail.com</span>
-      <div class="dash-user-avatar" id="dashUserAvatar" title="User Profile">
+      <div class="dash-user-avatar">
         <i class="fa-solid fa-user"></i>
       </div>
     </div>
   </header>
 
   <div class="dash-layout">
-    <!-- MOBILE DRAWER BACKDROP -->
-    <div class="dash-sidebar-backdrop" id="dashSidebarBackdrop"></div>
-
-    <!-- LEFT SIDEBAR / MOBILE SLIDE-OUT DRAWER -->
-    <aside class="dash-sidebar" id="dashSidebar">
-      <!-- Drawer Header with Logo & Close Button (Mobile) -->
-      <div class="dash-drawer-header">
-        <a href="index.html" class="dash-logo-box" aria-label="Stackly Home">
-          <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="dash-logo-img" />
-        </a>
-        <button class="dash-sidebar-close" id="dashSidebarClose" aria-label="Close menu">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-
-      <div class="sidebar-category-title">PATIENT PORTAL</div>
-      <nav class="sidebar-nav">
-        <button class="sidebar-nav-btn active" onclick="showView('dashboard', this)">
-          <i class="fa-solid fa-house-chimney-medical"></i> <span>My Health Dashboard</span>
-          <span class="active-dot"></span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showView('appointments', this)">
-          <i class="fa-solid fa-calendar-check"></i> <span>My Appointments</span>
-          <span class="active-dot"></span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showView('labs', this)">
-          <i class="fa-solid fa-file-medical"></i> <span>Lab Reports</span>
-          <span class="active-dot"></span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showView('prescriptions', this)">
-          <i class="fa-solid fa-prescription-bottle-medical"></i> <span>Prescriptions</span>
-          <span class="active-dot"></span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showView('billing', this)">
-          <i class="fa-solid fa-credit-card"></i> <span>Billing & Payments</span>
-          <span class="active-dot"></span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showView('doctors', this)">
-          <i class="fa-solid fa-user-doctor"></i> <span>My Doctors</span>
-          <span class="active-dot"></span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showView('telehealth', this)">
-          <i class="fa-solid fa-video"></i> <span>Telehealth Consult</span>
-          <span class="active-dot"></span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showView('records', this)">
-          <i class="fa-solid fa-folder-medical"></i> <span>Health Records</span>
-          <span class="active-dot"></span>
-        </button>
-      </nav>
-
-      <!-- User Profile Card in Sidebar / Drawer Bottom -->
+    <!-- LEFT SIDEBAR (YELLOW/AMBER THEME IN PLACE OF BLUE) -->
+    <aside class="dash-sidebar">
+      <!-- User Profile Card (Moved to Top) -->
       <div class="sidebar-user-card">
         <div class="sidebar-user-info">
           <div class="sidebar-user-avatar">
@@ -97,617 +44,734 @@
           <i class="fa-solid fa-arrow-right-from-bracket"></i> LOGOUT
         </a>
       </div>
+
+      <div class="sidebar-category-title">ANALYTICS PORTAL</div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-nav-btn active" onclick="showView('dashboard', this)">
+          <i class="fa-solid fa-house"></i> <span>My BI Dashboard</span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showView('telemetry', this)">
+          <i class="fa-solid fa-chart-line"></i> <span>Telemetry & CDC</span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showView('copilot', this)">
+          <i class="fa-solid fa-brain"></i> <span>AI Copilot & NLQ</span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showView('cockpit', this)">
+          <i class="fa-solid fa-wallet"></i> <span>ARR & P&L Cockpits</span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showView('reports', this)">
+          <i class="fa-solid fa-file-lines"></i> <span>Executive Reports</span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showView('lakehouse', this)">
+          <i class="fa-solid fa-microchip"></i> <span>Lakehouse Query Lab</span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showView('security', this)">
+          <i class="fa-solid fa-shield-halved"></i> <span>Zero-Trust Governance</span>
+        </button>
+      </nav>
     </aside>
 
     <!-- MAIN CONTENT AREA -->
     <main class="dash-content">
 
       <!-- ===================================================================
-           VIEW 1: MY HEALTH DASHBOARD (EXACT SCREENSHOT LAYOUT)
+           VIEW 1: MY BI DASHBOARD (5 RICH SECTIONS)
            =================================================================== -->
       <div class="dash-view-tab active" id="view-dashboard">
         <!-- Top Hero Bar -->
         <div class="dash-top-hero">
           <div class="dash-hero-title">
             <h1>Welcome back, <span id="welcomeUserName">Lingalamanasa123</span> 👋</h1>
-            <p>Your health summary, upcoming appointments, and recent lab results at a glance.</p>
+            <p>Your enterprise BI summary, active Kafka CDC pipelines, and DuckDB analytical speedruns at a glance.</p>
+          </div>
+          <div class="dash-hero-actions">
+            <a href="404.html" class="btn-dash-action" style="text-decoration: none;">
+              <i class="fa-solid fa-bolt"></i> RUN NEW QUERY
+            </a>
           </div>
         </div>
 
-        <!-- Primary Full-Width Action Button -->
-        <div style="margin-bottom: 1.5rem;">
-          <a href="404.html" class="btn-dash-primary-cta" style="width: 100%; justify-content: center;">
-            <i class="fa-solid fa-calendar-plus"></i> BOOK APPOINTMENT
-          </a>
+        <!-- SECTION 1: QUICK ACTION SHORTCUTS (4 CARDS) -->
+        <div class="dash-quick-cards">
+          <div class="quick-action-card" onclick="showView('copilot')">
+            <div class="quick-action-icon"><i class="fa-solid fa-brain"></i></div>
+            <h4>Ask AI Copilot</h4>
+            <p>Natural language to AST SQL</p>
+          </div>
+          <div class="quick-action-card" onclick="showView('telemetry')">
+            <div class="quick-action-icon"><i class="fa-solid fa-network-wired"></i></div>
+            <h4>Streaming CDC</h4>
+            <p>1.42M events/sec sync</p>
+          </div>
+          <div class="quick-action-card" onclick="showView('cockpit')">
+            <div class="quick-action-icon"><i class="fa-solid fa-chart-pie"></i></div>
+            <h4>Board Cockpit</h4>
+            <p>$84.2M ARR & variance</p>
+          </div>
+          <div class="quick-action-card" onclick="showView('reports')">
+            <div class="quick-action-icon"><i class="fa-solid fa-file-export"></i></div>
+            <h4>Generate Report</h4>
+            <p>Export board slides (PDF)</p>
+          </div>
         </div>
 
-        <!-- 4 FEATURED KPI CARDS (EXACT MATCH TO USER SCREENSHOT) -->
+        <!-- SECTION 2: 4 METRIC TILES WITH STATUS BADGES -->
         <div class="dash-kpi-row">
-          <!-- Card 1: Next Appointment -->
           <div class="dash-kpi-card">
             <div class="dash-kpi-header">
-              <span class="dash-kpi-label"><i class="fa-solid fa-calendar-check"></i> NEXT APPOINTMENT</span>
-              <span class="dash-kpi-badge badge-blue">Today</span>
+              <span class="dash-kpi-label"><i class="fa-solid fa-bolt"></i> STREAMING CDC</span>
+              <span class="dash-kpi-badge today">Sub-Second</span>
             </div>
-            <div class="dash-kpi-title">Dr. Rajesh</div>
-            <div class="dash-kpi-sub">Cardiology · 3:30 PM · OPD Room 4</div>
+            <div class="dash-kpi-value">1.42M</div>
+            <div class="dash-kpi-sub">Events/sec ingested via Kafka & Redpanda</div>
           </div>
 
-          <!-- Card 2: Pending Lab Results -->
           <div class="dash-kpi-card">
             <div class="dash-kpi-header">
-              <span class="dash-kpi-label"><i class="fa-solid fa-flask"></i> PENDING LAB RESULTS</span>
-              <span class="dash-kpi-badge badge-yellow">2</span>
+              <span class="dash-kpi-label"><i class="fa-solid fa-clock"></i> P99 QUERY LATENCY</span>
+              <span class="dash-kpi-badge pending">12.4ms</span>
             </div>
-            <div class="dash-kpi-value">2</div>
-            <div class="dash-kpi-sub">Blood panel & Lipid profile pending review.</div>
+            <div class="dash-kpi-value">12.4ms</div>
+            <div class="dash-kpi-sub">In-situ DuckDB columnar memory cache</div>
           </div>
 
-          <!-- Card 3: Active Prescriptions -->
           <div class="dash-kpi-card">
             <div class="dash-kpi-header">
-              <span class="dash-kpi-label"><i class="fa-solid fa-prescription"></i> ACTIVE PRESCRIPTIONS</span>
-              <span class="dash-kpi-badge badge-green">Current</span>
+              <span class="dash-kpi-label"><i class="fa-solid fa-microchip"></i> ACTIVE COPILOTS</span>
+              <span class="dash-kpi-badge current">0% Error</span>
             </div>
-            <div class="dash-kpi-value">3</div>
-            <div class="dash-kpi-sub">Medications from last consultation active.</div>
+            <div class="dash-kpi-value">28</div>
+            <div class="dash-kpi-sub">AST-verified enterprise query bots active</div>
           </div>
 
-          <!-- Card 4: Outstanding Bill -->
           <div class="dash-kpi-card">
             <div class="dash-kpi-header">
-              <span class="dash-kpi-label"><i class="fa-solid fa-file-invoice-dollar"></i> OUTSTANDING BILL</span>
-              <span class="dash-kpi-badge badge-red">Due</span>
+              <span class="dash-kpi-label"><i class="fa-solid fa-coins"></i> ANNUAL ARR RUN-RATE</span>
+              <span class="dash-kpi-badge yellow">+28.4%</span>
             </div>
-            <div class="dash-kpi-value">₹2,400</div>
-            <div class="dash-kpi-sub">Medications & OPD consultation balance.</div>
+            <div class="dash-kpi-value">$84.2M</div>
+            <div class="dash-kpi-sub">Consolidated SaaS & multi-tenant revenue</div>
           </div>
         </div>
 
-        <!-- Split Grid: Recent Care Details & Vitals -->
+        <!-- SECTION 3: SPLIT GRID - RECENT PIPELINES & BENCHMARK RADAR -->
         <div class="dash-split-grid">
           <div class="dash-panel-card">
             <div class="dash-panel-header">
-              <h3>Upcoming Visits & Care Routine</h3>
-              <a href="404.html" class="btn-dash-action" style="padding: 0.45rem 1rem; font-size: 0.8rem; text-decoration: none;">+ ADD REMINDER</a>
+              <h3>Active Data Pipelines</h3>
+              <a href="404.html" class="btn-dash-action" style="padding: 0.45rem 1rem; font-size: 0.8rem; text-decoration: none;">+ CONNECT SOURCE</a>
             </div>
             <div class="queue-list">
               <div class="queue-item">
                 <div class="queue-item-left">
-                  <div class="queue-item-icon blue"><i class="fa-solid fa-stethoscope"></i></div>
+                  <div class="queue-item-icon blue"><i class="fa-solid fa-database"></i></div>
                   <div class="queue-item-text">
-                    <strong>Dr. Rajesh Kumar (Cardiology)</strong>
-                    <span>Today · 3:30 PM · OPD Room 4 (Confirmed)</span>
+                    <strong>Postgres Cluster &rarr; DuckDB Caching</strong>
+                    <span>Kafka Partition 0–12 • Latency: 9ms</span>
                   </div>
                 </div>
-                <span class="dash-kpi-badge badge-blue">Today</span>
+                <span class="dash-kpi-badge current">Active</span>
               </div>
               <div class="queue-item">
                 <div class="queue-item-left">
-                  <div class="queue-item-icon green"><i class="fa-solid fa-vial"></i></div>
+                  <div class="queue-item-icon green"><i class="fa-solid fa-cloud"></i></div>
                   <div class="queue-item-text">
-                    <strong>Fasting Blood Glucose Test</strong>
-                    <span>Tomorrow · 08:00 AM · Central Pathology Lab</span>
+                    <strong>Snowflake Zero-Copy Iceberg Lake</strong>
+                    <span>Cross-Cloud Virtualization • 140M rows</span>
                   </div>
                 </div>
-                <span class="dash-kpi-badge badge-green">Scheduled</span>
+                <span class="dash-kpi-badge current">Synced</span>
               </div>
               <div class="queue-item">
                 <div class="queue-item-left">
-                  <div class="queue-item-icon amber"><i class="fa-solid fa-video"></i></div>
+                  <div class="queue-item-icon amber"><i class="fa-solid fa-bolt"></i></div>
                   <div class="queue-item-text">
-                    <strong>Telehealth Dietician Follow-Up</strong>
-                    <span>Friday · 05:00 PM · Digital Consultation Room</span>
+                    <strong>Stripe & Billing CDC Stream</strong>
+                    <span>Sub-second ARR cohort updates</span>
                   </div>
                 </div>
-                <span class="dash-kpi-badge badge-yellow">Upcoming</span>
+                <span class="dash-kpi-badge yellow">Streaming</span>
               </div>
             </div>
           </div>
 
           <div class="dash-panel-card">
             <div class="dash-panel-header">
-              <h3>Recorded Vitals & Telemetry</h3>
-              <span style="font-size: 0.78rem; color: #64748b;">Synchronized 15 mins ago</span>
+              <h3>Telemetry Health & Security</h3>
+              <span style="font-size: 0.78rem; color: #64748b;">Last 30 mins</span>
             </div>
             <div class="queue-list">
               <div class="queue-item">
                 <div class="queue-item-text">
-                  <strong>Blood Pressure</strong>
-                  <span>118 / 78 mmHg (Resting)</span>
+                  <strong>SOC2 Type II Audit Log</strong>
+                  <span>Zero unauthorized data egress attempts</span>
                 </div>
-                <span class="dash-kpi-badge badge-green">Optimal</span>
+                <span class="dash-kpi-badge current">Normal</span>
               </div>
               <div class="queue-item">
                 <div class="queue-item-text">
-                  <strong>Resting Heart Rate</strong>
-                  <span>68 BPM · Sinus Rhythm</span>
+                  <strong>Column-Level PII Masking</strong>
+                  <span>Dynamic cryptographic tokenization</span>
                 </div>
-                <span class="dash-kpi-badge badge-green">Normal</span>
+                <span class="dash-kpi-badge current">Enforced</span>
               </div>
               <div class="queue-item">
                 <div class="queue-item-text">
-                  <strong>SpO2 Oxygen Saturation</strong>
-                  <span>99% on Ambient Air</span>
+                  <strong>DuckDB Cache Hit Ratio</strong>
+                  <span>99.4% in-memory analytical query rate</span>
                 </div>
-                <span class="dash-kpi-badge badge-green">Optimal</span>
+                <span class="dash-kpi-badge yellow">Optimal</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Recent Consultations Table -->
+        <!-- SECTION 4: REAL-TIME QUERY EXECUTION TABLE -->
         <div class="dash-table-box">
           <div class="dash-panel-header">
-            <h3>Recent Clinical Consultation History</h3>
-            <span style="font-size: 0.8rem; color: #64748b;">Patient ID: STK-PT-9042</span>
+            <h3>Recent Executive Query Executions</h3>
+            <span style="font-size: 0.8rem; color: #64748b;">Updated in real time</span>
           </div>
           <table class="dash-table">
             <thead>
               <tr>
-                <th>VISIT DATE</th>
-                <th>ATTENDING DOCTOR</th>
-                <th>SPECIALTY</th>
-                <th>CLINICAL SUMMARY</th>
-                <th>ACTIONS</th>
+                <th>QUERY TOKEN</th>
+                <th>OPERATOR / USER</th>
+                <th>SEMANTIC DATASET</th>
+                <th>EXECUTION TIME</th>
+                <th>STATUS</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>Today, 3:30 PM</strong></td>
-                <td>Dr. Rajesh Kumar</td>
-                <td>Cardiology</td>
-                <td>Routine ECG & cardiac wellness evaluation</td>
-                <td><a href="404.html" class="dash-kpi-badge badge-blue" style="text-decoration: none;">View Token</a></td>
+                <td><strong>#QRY-9841</strong></td>
+                <td>Lingalamanasa123</td>
+                <td>ARR Cohort Retention & Churn</td>
+                <td>14ms (DuckDB)</td>
+                <td><span class="dash-kpi-badge current">Completed</span></td>
               </tr>
               <tr>
-                <td><strong>2026-09-28</strong></td>
-                <td>Dr. Anand Patel</td>
-                <td>General Medicine</td>
-                <td>Seasonal allergic rhinitis; resolved with antihistamines</td>
-                <td><a href="404.html" class="dash-kpi-badge badge-green" style="text-decoration: none;">Summary PDF</a></td>
-              </tr>
-              <tr>
-                <td><strong>2026-08-14</strong></td>
+                <td><strong>#QRY-9842</strong></td>
                 <td>Dr. Evelyn Vance</td>
-                <td>Diagnostics</td>
-                <td>Annual comprehensive health screening & profile review</td>
-                <td><a href="404.html" class="dash-kpi-badge badge-green" style="text-decoration: none;">Full Report</a></td>
+                <td>EMEA vs APAC Gross Margin P&L</td>
+                <td>22ms (In-Situ)</td>
+                <td><span class="dash-kpi-badge current">Completed</span></td>
+              </tr>
+              <tr>
+                <td><strong>#QRY-9843</strong></td>
+                <td>Autonomous AI Bot #4</td>
+                <td>Gaussian Churn Anomaly Scan</td>
+                <td>38ms (Arrow Pool)</td>
+                <td><span class="dash-kpi-badge yellow">Optimized</span></td>
+              </tr>
+              <tr>
+                <td><strong>#QRY-9844</strong></td>
+                <td>Executive Board Portal</td>
+                <td>Consolidated EBITDA Multiple Deck</td>
+                <td>18ms (Cache Hit)</td>
+                <td><span class="dash-kpi-badge current">Completed</span></td>
               </tr>
             </tbody>
           </table>
         </div>
+
+        <!-- SECTION 5: AI INTELLIGENCE STREAM -->
+        <div class="dash-insights-box">
+          <div class="dash-panel-header">
+            <h3><i class="fa-solid fa-sparkles" style="color: #ca8a04;"></i> Autonomous AI Intelligence Dispatch</h3>
+            <span style="font-size: 0.8rem; color: #64748b;">Real-time heuristics</span>
+          </div>
+          <div class="insight-item">
+            <div class="insight-icon"><i class="fa-solid fa-arrow-trend-up"></i></div>
+            <div class="insight-text">
+              <h5>Net Revenue Retention Milestone Detected</h5>
+              <p>Enterprise subscription expansions in EMEA exceeded FY26 forecast by +14.2%. Churn probability remains below 1.2% across Tier-1 accounts.</p>
+            </div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="insight-text">
+              <h5>Cryptographic Zero-Storage Integrity Confirmed</h5>
+              <p>All queries executed in-situ inside your sovereign VPC with 0 rows duplicated to third-party providers. Egress compute cost reduction: $42,000/mo.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- ===================================================================
-           VIEW 2: MY APPOINTMENTS
+           VIEW 2: TELEMETRY & CDC STREAMS (5 SECTIONS)
            =================================================================== -->
-      <div class="dash-view-tab" id="view-appointments">
+      <div class="dash-view-tab" id="view-telemetry">
         <div class="dash-top-hero">
           <div class="dash-hero-title">
-            <h1>My Scheduled Appointments</h1>
-            <p>Manage your upcoming in-person hospital visits and digital teleconsultations.</p>
+            <h1>Streaming CDC & Data Ingestion Telemetry</h1>
+            <p>Sub-second change data capture across Kafka, Redpanda, PostgreSQL, and Iceberg.</p>
           </div>
           <div class="dash-hero-actions">
             <a href="404.html" class="btn-dash-action" style="text-decoration: none;">
-              <i class="fa-solid fa-calendar-plus"></i> + Schedule New Visit
+              <i class="fa-solid fa-arrows-rotate"></i> RE-SYNC KAFKA CLUSTER
             </a>
           </div>
         </div>
 
-        <div class="dash-kpi-row">
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">UPCOMING VISITS</span><span class="dash-kpi-badge badge-blue">Active</span></div>
-            <div class="dash-kpi-value">3</div>
-            <div class="dash-kpi-sub">Next session: Today at 3:30 PM</div>
+        <!-- 1. Quick Stats -->
+        <div class="dash-quick-cards">
+          <div class="quick-action-card">
+            <div class="quick-action-icon"><i class="fa-solid fa-microchip"></i></div>
+            <h4>Kafka Partitions</h4>
+            <p>64 Active Brokers</p>
           </div>
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">PAST CONSULTATIONS</span><span class="dash-kpi-badge badge-green">Completed</span></div>
-            <div class="dash-kpi-value">12</div>
-            <div class="dash-kpi-sub">Past 12 months record</div>
+          <div class="quick-action-card">
+            <div class="quick-action-icon"><i class="fa-solid fa-bolt"></i></div>
+            <h4>Stream Consumer Lag</h4>
+            <p>0 ms (Perpetual)</p>
           </div>
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">OPD ROOM ASSIGNED</span><span class="dash-kpi-badge badge-blue">Room 4</span></div>
-            <div class="dash-kpi-value">Dr. Rajesh</div>
-            <div class="dash-kpi-sub">Cardiology OPD Wing A</div>
+          <div class="quick-action-card">
+            <div class="quick-action-icon"><i class="fa-solid fa-memory"></i></div>
+            <h4>Arrow Buffer Pool</h4>
+            <p>128 GB Columnar RAM</p>
           </div>
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">TELEHEALTH SESSIONS</span><span class="dash-kpi-badge badge-yellow">1 Booked</span></div>
-            <div class="dash-kpi-value">Friday</div>
-            <div class="dash-kpi-sub">05:00 PM Online Call</div>
+          <div class="quick-action-card">
+            <div class="quick-action-icon"><i class="fa-solid fa-network-wired"></i></div>
+            <h4>Egress Avoided</h4>
+            <p>$185,000 / Year</p>
           </div>
         </div>
 
+        <!-- 2. KPI Row -->
+        <div class="dash-kpi-row">
+          <div class="dash-kpi-card">
+            <div class="dash-kpi-label">TOTAL INGESTION RATE</div>
+            <div class="dash-kpi-value">1,428,950</div>
+            <div class="dash-kpi-sub">Events per second</div>
+          </div>
+          <div class="dash-kpi-card">
+            <div class="dash-kpi-label">DEBEZIUM SYNC HEALTH</div>
+            <div class="dash-kpi-value">100%</div>
+            <div class="dash-kpi-sub">0 dropped CDC records</div>
+          </div>
+          <div class="dash-kpi-card">
+            <div class="dash-kpi-label">COLUMNAR COMPRESSION</div>
+            <div class="dash-kpi-value">8.4x</div>
+            <div class="dash-kpi-sub">ZSTD Vectorized Parquet</div>
+          </div>
+          <div class="dash-kpi-card">
+            <div class="dash-kpi-label">STORAGE EGRESS COST</div>
+            <div class="dash-kpi-value">$0.00</div>
+            <div class="dash-kpi-sub">Zero cross-region tax</div>
+          </div>
+        </div>
+
+        <!-- 3. Pipeline Split -->
+        <div class="dash-split-grid">
+          <div class="dash-panel-card">
+            <h3>Active CDC Connectors</h3>
+            <div class="queue-list" style="margin-top: 1rem;">
+              <div class="queue-item">
+                <div><strong>debezium.postgres.payments</strong><br><span>Schema: public.invoices &bull; 4,200 msg/s</span></div>
+                <a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Active</a>
+              </div>
+              <div class="queue-item">
+                <div><strong>redpanda.telemetry.events</strong><br><span>Topic: clickstream-v2 &bull; 850,000 msg/s</span></div>
+                <a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Active</a>
+              </div>
+            </div>
+          </div>
+          <div class="dash-panel-card">
+            <h3>CDC Cluster Latency Metrics</h3>
+            <div class="queue-list" style="margin-top: 1rem;">
+              <div class="queue-item">
+                <div><strong>P50 Ingestion Delay: 3.2ms</strong></div>
+                <a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Optimal</a>
+              </div>
+              <div class="queue-item">
+                <div><strong>P99 Ingestion Delay: 11.8ms</strong></div>
+                <a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Normal</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Table -->
         <div class="dash-table-box">
-          <h3>Active Appointment Schedule</h3>
-          <table class="dash-table" style="margin-top: 1rem;">
+          <h3>CDC Broker Partition Status</h3>
+          <table class="dash-table">
             <thead>
-              <tr><th>DATE & TIME</th><th>PHYSICIAN</th><th>DEPARTMENT</th><th>ROOM / MODE</th><th>STATUS</th><th>ACTIONS</th></tr>
+              <tr><th>TOPIC</th><th>PARTITIONS</th><th>THROUGHPUT</th><th>LEADER</th><th>STATUS</th></tr>
             </thead>
             <tbody>
-              <tr>
-                <td><strong>Today · 3:30 PM</strong></td>
-                <td>Dr. Rajesh Kumar</td>
-                <td>Cardiology</td>
-                <td>OPD Room 4</td>
-                <td><span class="dash-kpi-badge badge-blue">Checked In</span></td>
-                <td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-qrcode"></i> Digital Pass</a></td>
-              </tr>
-              <tr>
-                <td><strong>Tomorrow · 8:00 AM</strong></td>
-                <td>Dr. Sarah Jenkins</td>
-                <td>Pathology</td>
-                <td>Lab Counter 2</td>
-                <td><span class="dash-kpi-badge badge-green">Confirmed</span></td>
-                <td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-clock"></i> Reschedule</a></td>
-              </tr>
-              <tr>
-                <td><strong>Friday · 5:00 PM</strong></td>
-                <td>Dr. Anand Patel</td>
-                <td>Nutrition & Diet</td>
-                <td>Video Consult</td>
-                <td><span class="dash-kpi-badge badge-yellow">Pending Call</span></td>
-                <td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-video"></i> Join Room</a></td>
-              </tr>
+              <tr><td>telemetry.enterprise.subscriptions</td><td>16</td><td>420 MB/s</td><td>Broker-01</td><td><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Synced</a></td></tr>
+              <tr><td>telemetry.regional.pnl</td><td>8</td><td>180 MB/s</td><td>Broker-02</td><td><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Synced</a></td></tr>
             </tbody>
           </table>
+        </div>
+
+        <!-- 5. Intelligence stream -->
+        <div class="dash-insights-box">
+          <h3>CDC Operational Recommendations</h3>
+          <div class="insight-item">
+            <div class="insight-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div class="insight-text">
+              <h5>Partition Auto-Scaling Healthy</h5>
+              <p>Redpanda cluster automatically scaled up 4 consumer partitions to accommodate morning market open volume without queuing.</p>
+            </div>
+          </div>
         </div>
       </div>
 
       <!-- ===================================================================
-           VIEW 3: LAB REPORTS
+           VIEW 3: AI COPILOT & NLQ STUDIO (5 SECTIONS)
            =================================================================== -->
-      <div class="dash-view-tab" id="view-labs">
+      <div class="dash-view-tab" id="view-copilot">
         <div class="dash-top-hero">
           <div class="dash-hero-title">
-            <h1>Diagnostic Laboratory Reports</h1>
-            <p>Access authenticated, doctor-reviewed pathology results and digital imaging reports.</p>
-          </div>
-          <div class="dash-hero-actions">
-            <a href="404.html" class="btn-dash-action btn-dash-secondary" style="text-decoration: none;">
-              <i class="fa-solid fa-download"></i> Download All (PDF)
-            </a>
-          </div>
-        </div>
-
-        <div class="dash-kpi-row">
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">PENDING RESULTS</span><span class="dash-kpi-badge badge-yellow">2</span></div>
-            <div class="dash-kpi-value">2</div>
-            <div class="dash-kpi-sub">Blood panel & lipid profile</div>
-          </div>
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">VERIFIED REPORTS</span><span class="dash-kpi-badge badge-green">Ready</span></div>
-            <div class="dash-kpi-value">8</div>
-            <div class="dash-kpi-sub">Signed by Chief Pathologist</div>
-          </div>
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">CARDIAC ECG</span><span class="dash-kpi-badge badge-green">Normal</span></div>
-            <div class="dash-kpi-value">Clear</div>
-            <div class="dash-kpi-sub">Reviewed by Dr. Rajesh</div>
-          </div>
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">HBA1C GLUCOSE</span><span class="dash-kpi-badge badge-green">5.4%</span></div>
-            <div class="dash-kpi-value">5.4%</div>
-            <div class="dash-kpi-sub">Standard non-diabetic range</div>
-          </div>
-        </div>
-
-        <div class="dash-table-box">
-          <h3>Laboratory Panels & Digital Downloads</h3>
-          <table class="dash-table" style="margin-top: 1rem;">
-            <thead>
-              <tr><th>TEST NAME</th><th>SAMPLE DATE</th><th>LAB UNIT</th><th>STATUS</th><th>RESULT</th><th>DOWNLOAD</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Comprehensive Metabolic Blood Panel</strong></td>
-                <td>Today, 09:15 AM</td>
-                <td>Hematology</td>
-                <td><span class="dash-kpi-badge badge-yellow">In Analysis</span></td>
-                <td>Under Doctor Review</td>
-                <td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-spinner"></i> Processing</a></td>
-              </tr>
-              <tr>
-                <td><strong>Advanced Lipid Profile</strong></td>
-                <td>Today, 09:15 AM</td>
-                <td>Biochemistry</td>
-                <td><span class="dash-kpi-badge badge-yellow">In Analysis</span></td>
-                <td>Under Doctor Review</td>
-                <td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-spinner"></i> Processing</a></td>
-              </tr>
-              <tr>
-                <td><strong>12-Lead Electrocardiogram (ECG)</strong></td>
-                <td>2026-09-28</td>
-                <td>Cardiology Lab</td>
-                <td><span class="dash-kpi-badge badge-green">Verified</span></td>
-                <td>Normal Sinus Rhythm</td>
-                <td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-file-pdf"></i> Download PDF</a></td>
-              </tr>
-              <tr>
-                <td><strong>Serum Ferritin & Iron Studies</strong></td>
-                <td>2026-08-14</td>
-                <td>Hematology</td>
-                <td><span class="dash-kpi-badge badge-green">Verified</span></td>
-                <td>145 ng/mL (Optimal)</td>
-                <td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-file-pdf"></i> Download PDF</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- ===================================================================
-           VIEW 4: PRESCRIPTIONS
-           =================================================================== -->
-      <div class="dash-view-tab" id="view-prescriptions">
-        <div class="dash-top-hero">
-          <div class="dash-hero-title">
-            <h1>Active Prescriptions & Pharmacy Refills</h1>
-            <p>Track your prescribed dosages, refill dates, and digital doctor authorizations.</p>
+            <h1>Autonomous AI Copilot & NLQ Studio</h1>
+            <p>Deterministic Abstract Syntax Tree compiler with 0% SQL hallucinations.</p>
           </div>
           <div class="dash-hero-actions">
             <a href="404.html" class="btn-dash-action" style="text-decoration: none;">
-              <i class="fa-solid fa-prescription-bottle"></i> Request Refill
+              <i class="fa-solid fa-play"></i> EXECUTE AST QUERY
             </a>
-          </div>
-        </div>
-
-        <div class="dash-kpi-row">
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">ACTIVE MEDICATIONS</span><span class="dash-kpi-badge badge-green">Current</span></div>
-            <div class="dash-kpi-value">3</div>
-            <div class="dash-kpi-sub">Next refill in 18 days</div>
-          </div>
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">PRESCRIBING PHYSICIAN</span><span class="dash-kpi-badge badge-blue">Cardiology</span></div>
-            <div class="dash-kpi-value">Dr. Rajesh</div>
-            <div class="dash-kpi-sub">OPD Room 4 Chambers</div>
-          </div>
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">HOSPITAL PHARMACY</span><span class="dash-kpi-badge badge-green">In Stock</span></div>
-            <div class="dash-kpi-value">Ready</div>
-            <div class="dash-kpi-sub">Pick up at Pharmacy Counter A</div>
-          </div>
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">LAST REFILL DATE</span><span class="dash-kpi-badge badge-blue">Fulfilled</span></div>
-            <div class="dash-kpi-value">Sep 28</div>
-            <div class="dash-kpi-sub">30-day supply dispensed</div>
-          </div>
-        </div>
-
-        <div class="dash-table-box">
-          <h3>Active Medication Schedule</h3>
-          <table class="dash-table" style="margin-top: 1rem;">
-            <thead>
-              <tr><th>MEDICATION</th><th>DOSAGE</th><th>FREQUENCY</th><th>INSTRUCTIONS</th><th>REFILLS LEFT</th><th>STATUS</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Atorvastatin</strong></td>
-                <td>10 mg</td>
-                <td>Once Daily (Night)</td>
-                <td>Take after dinner with water</td>
-                <td>2 Refills</td>
-                <td><span class="dash-kpi-badge badge-green">Active</span></td>
-              </tr>
-              <tr>
-                <td><strong>Metformin Hydrochloride</strong></td>
-                <td>500 mg</td>
-                <td>Twice Daily</td>
-                <td>Take with meals morning & night</td>
-                <td>3 Refills</td>
-                <td><span class="dash-kpi-badge badge-green">Active</span></td>
-              </tr>
-              <tr>
-                <td><strong>Telmisartan</strong></td>
-                <td>40 mg</td>
-                <td>Once Daily (Morning)</td>
-                <td>Take at 08:00 AM daily</td>
-                <td>2 Refills</td>
-                <td><span class="dash-kpi-badge badge-green">Active</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- ===================================================================
-           VIEW 5: BILLING & PAYMENTS
-           =================================================================== -->
-      <div class="dash-view-tab" id="view-billing">
-        <div class="dash-top-hero">
-          <div class="dash-hero-title">
-            <h1>Billing, Invoices & Online Payments</h1>
-            <p>Review transparent itemized statements, insurance claim records, and settle outstanding balances.</p>
-          </div>
-          <div class="dash-hero-actions">
-            <a href="404.html" class="btn-dash-action" style="text-decoration: none;">
-              <i class="fa-solid fa-credit-card"></i> Settle Balance Online
-            </a>
-          </div>
-        </div>
-
-        <div class="dash-kpi-row">
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">TOTAL OUTSTANDING</span><span class="dash-kpi-badge badge-red">Due</span></div>
-            <div class="dash-kpi-value">₹2,400</div>
-            <div class="dash-kpi-sub">OPD visit & diagnostics balance</div>
-          </div>
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">INSURANCE COVERAGE</span><span class="dash-kpi-badge badge-green">Approved</span></div>
-            <div class="dash-kpi-value">₹8,500</div>
-            <div class="dash-kpi-sub">Direct cashless claim settled</div>
-          </div>
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">LAST PAYMENT</span><span class="dash-kpi-badge badge-blue">Sep 28</span></div>
-            <div class="dash-kpi-value">₹800</div>
-            <div class="dash-kpi-sub">Consultation token fee (UPI)</div>
-          </div>
-          <div class="dash-kpi-card">
-            <div class="dash-kpi-header"><span class="dash-kpi-label">INVOICE STATUS</span><span class="dash-kpi-badge badge-yellow">Pending</span></div>
-            <div class="dash-kpi-value">#INV-921</div>
-            <div class="dash-kpi-sub">Due on or before Oct 20</div>
-          </div>
-        </div>
-
-        <div class="dash-table-box">
-          <h3>Itemized Invoices & Hospital Receipts</h3>
-          <table class="dash-table" style="margin-top: 1rem;">
-            <thead>
-              <tr><th>INVOICE NO</th><th>BILLING DATE</th><th>SERVICE DESCRIPTION</th><th>TOTAL AMOUNT</th><th>INSURANCE</th><th>PATIENT DUE</th><th>STATUS</th></tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>#INV-9214</strong></td>
-                <td>Today, Oct 13</td>
-                <td>Cardiology OPD (Dr. Rajesh) & Blood Panel Tests</td>
-                <td>₹3,200</td>
-                <td>₹800 Covered</td>
-                <td><strong>₹2,400</strong></td>
-                <td><span class="dash-kpi-badge badge-red">Payment Due</span></td>
-              </tr>
-              <tr>
-                <td><strong>#INV-8840</strong></td>
-                <td>2026-09-28</td>
-                <td>OPD Consultation & Pharmacy Prescription Refill</td>
-                <td>₹1,800</td>
-                <td>₹1,000 Covered</td>
-                <td>₹800</td>
-                <td><span class="dash-kpi-badge badge-green">Paid in Full</span></td>
-              </tr>
-              <tr>
-                <td><strong>#INV-7721</strong></td>
-                <td>2026-08-14</td>
-                <td>Annual Preventive Health Package & ECG Scan</td>
-                <td>₹7,500</td>
-                <td>₹7,500 Covered</td>
-                <td>₹0</td>
-                <td><span class="dash-kpi-badge badge-green">Paid in Full</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- ===================================================================
-           VIEW 6: MY DOCTORS
-           =================================================================== -->
-      <div class="dash-view-tab" id="view-doctors">
-        <div class="dash-top-hero">
-          <div class="dash-hero-title">
-            <h1>My Primary Healthcare Specialists</h1>
-            <p>Direct communication and chamber schedules for your assigned medical team.</p>
           </div>
         </div>
 
         <div class="dash-quick-cards">
-          <div class="quick-action-card">
-            <div class="quick-action-icon"><i class="fa-solid fa-heart-pulse"></i></div>
-            <h4>Dr. Rajesh Kumar</h4>
-            <p><strong>Senior Interventional Cardiologist</strong><br>OPD Room 4 · Mon–Fri 10:00 AM – 4:00 PM</p>
-            <div style="margin-top: 0.8rem;"><a href="404.html" class="dash-kpi-badge badge-blue" style="text-decoration: none;">Book Consult</a></div>
-          </div>
-          <div class="quick-action-card">
-            <div class="quick-action-icon"><i class="fa-solid fa-stethoscope"></i></div>
-            <h4>Dr. Anand Patel</h4>
-            <p><strong>Chief Consultant Physician</strong><br>OPD Room 2 · Daily 09:00 AM – 1:00 PM</p>
-            <div style="margin-top: 0.8rem;"><a href="404.html" class="dash-kpi-badge badge-blue" style="text-decoration: none;">Book Consult</a></div>
-          </div>
-          <div class="quick-action-card">
-            <div class="quick-action-icon"><i class="fa-solid fa-microscope"></i></div>
-            <h4>Dr. Sarah Jenkins</h4>
-            <p><strong>Head of Clinical Pathology</strong><br>Central Diagnostics Wing</p>
-            <div style="margin-top: 0.8rem;"><a href="404.html" class="dash-kpi-badge badge-blue" style="text-decoration: none;">View Lab Notes</a></div>
-          </div>
-          <div class="quick-action-card">
-            <div class="quick-action-icon"><i class="fa-solid fa-apple-whole"></i></div>
-            <h4>Dr. Evelyn Vance</h4>
-            <p><strong>Preventive Health & Dietetics</strong><br>Wellness Center · Tue & Thu</p>
-            <div style="margin-top: 0.8rem;"><a href="404.html" class="dash-kpi-badge badge-blue" style="text-decoration: none;">Book Consult</a></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ===================================================================
-           VIEW 7: TELEHEALTH CONSULT
-           =================================================================== -->
-      <div class="dash-view-tab" id="view-telehealth">
-        <div class="dash-top-hero">
-          <div class="dash-hero-title">
-            <h1>Digital Telehealth & Video Consultations</h1>
-            <p>High-definition encrypted medical video sessions with hospital specialists.</p>
-          </div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-code"></i></div><h4>Deterministic AST</h4><p>Mathematical proof verified</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-brain"></i></div><h4>Zero Hallucinations</h4><p>Schema dictionary enforced</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-clock"></i></div><h4>Avg Response</h4><p>28ms query compilation</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-shield"></i></div><h4>RBAC Protected</h4><p>Column masking applied</p></div>
         </div>
 
-        <div class="dash-panel-card" style="margin-bottom: 2rem;">
-          <div class="dash-panel-header">
-            <h3>Scheduled Video Consultation Room</h3>
-            <span class="dash-kpi-badge badge-blue">Ready to Connect</span>
-          </div>
-          <p style="color: #64748b; margin-bottom: 1.5rem; line-height: 1.5;">
-            Your upcoming virtual appointment is booked with <strong>Dr. Anand Patel</strong> for Friday at 05:00 PM IST. Please test your camera, microphone, and internet connection before joining.
-          </p>
-          <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-            <a href="404.html" class="btn-dash-action" style="text-decoration: none;">
-              <i class="fa-solid fa-video"></i> Launch Virtual Waiting Room
-            </a>
-            <a href="404.html" class="btn-dash-action btn-dash-secondary" style="text-decoration: none;">
-              <i class="fa-solid fa-microphone-lines"></i> Test Audio & Video Hardware
-            </a>
-          </div>
+        <div class="dash-kpi-row">
+          <div class="dash-kpi-card"><div class="dash-kpi-label">TOTAL NLQ QUERIES</div><div class="dash-kpi-value">48,210</div><div class="dash-kpi-sub">Executed this month</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">ACCURACY RATE</div><div class="dash-kpi-value">100%</div><div class="dash-kpi-sub">AST syntax proof verified</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">TIME SAVED</div><div class="dash-kpi-value">420 Hrs</div><div class="dash-kpi-sub">Versus manual SQL drafting</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">ACTIVE COPILOTS</div><div class="dash-kpi-value">12 Bots</div><div class="dash-kpi-sub">Departmental bots online</div></div>
         </div>
-      </div>
 
-      <!-- ===================================================================
-           VIEW 8: HEALTH RECORDS
-           =================================================================== -->
-      <div class="dash-view-tab" id="view-records">
-        <div class="dash-top-hero">
-          <div class="dash-hero-title">
-            <h1>Electronic Medical & Health Records (EHR)</h1>
-            <p>Encrypted clinical records, immunizations, imaging files, and discharge summaries.</p>
+        <div class="dash-split-grid">
+          <div class="dash-panel-card">
+            <h3>Interactive Prompt Console</h3>
+            <p style="font-size: 0.85rem; color: #64748b; margin: 0.5rem 0 1rem;">Ask any analytical question in plain English:</p>
+            <input type="text" class="form-input" style="width: 100%; padding: 0.8rem; border: 1.5px solid #eab308; border-radius: 8px;" value="What was the net retention by cohort for EMEA SaaS in Q3?">
+            <a href="404.html" class="btn-dash-action" style="margin-top: 1rem; width: 100%; display: block; text-align: center; text-decoration: none;">Compile to DuckDB SQL</a>
           </div>
-          <div class="dash-hero-actions">
-            <a href="404.html" class="btn-dash-action" style="text-decoration: none;">
-              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Document
-            </a>
+          <div class="dash-panel-card">
+            <h3>Generated Abstract Syntax Tree</h3>
+            <div style="background: #0f172a; color: #f8fafc; padding: 1rem; border-radius: 10px; font-family: monospace; font-size: 0.8rem;">
+              SELECT cohort_quarter, SUM(arr_expansion) / SUM(arr_starting) * 100 AS nrr<br>
+              FROM telemetry_lakehouse.enterprise_subscriptions<br>
+              WHERE region = 'EMEA' GROUP BY 1;
+            </div>
           </div>
         </div>
 
         <div class="dash-table-box">
-          <h3>Verified Clinical Records Archive</h3>
-          <table class="dash-table" style="margin-top: 1rem;">
+          <h3>Recent Copilot Synthesis Audit Trail</h3>
+          <table class="dash-table">
             <thead>
-              <tr><th>DOCUMENT TITLE</th><th>DATE RECORDED</th><th>ISSUING PHYSICIAN</th><th>FILE TYPE</th><th>ENCRYPTION</th><th>DOWNLOAD</th></tr>
+              <tr><th>PROMPT</th><th>COMPILED SQL</th><th>ACCURACY</th><th>LATENCY</th></tr>
             </thead>
             <tbody>
-              <tr>
-                <td><strong>Cardiology Examination & ECG Trace</strong></td>
-                <td>2026-09-28</td>
-                <td>Dr. Rajesh Kumar</td>
-                <td>PDF Document (3.2 MB)</td>
-                <td><span class="dash-kpi-badge badge-green">AES-256 Bit</span></td>
-                <td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-download"></i> Download</a></td>
-              </tr>
-              <tr>
-                <td><strong>Comprehensive Blood Pathology Panel</strong></td>
-                <td>2026-08-14</td>
-                <td>Dr. Sarah Jenkins</td>
-                <td>PDF Document (1.8 MB)</td>
-                <td><span class="dash-kpi-badge badge-green">AES-256 Bit</span></td>
-                <td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-download"></i> Download</a></td>
-              </tr>
-              <tr>
-                <td><strong>Annual Health Assessment Summary</strong></td>
-                <td>2026-05-10</td>
-                <td>Dr. Anand Patel</td>
-                <td>PDF Document (4.5 MB)</td>
-                <td><span class="dash-kpi-badge badge-green">AES-256 Bit</span></td>
-                <td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-download"></i> Download</a></td>
-              </tr>
+              <tr><td>"Show CAC payback by channel"</td><td>SELECT channel, avg(cac_payback_months)...</td><td>100%</td><td>24ms</td></tr>
+              <tr><td>"EBITDA drivers for Q2"</td><td>SELECT variance_driver, sum(amount)...</td><td>100%</td><td>31ms</td></tr>
             </tbody>
           </table>
+        </div>
+
+        <div class="dash-insights-box">
+          <h3>Copilot Heuristics</h3>
+          <div class="insight-item">
+            <div class="insight-icon"><i class="fa-solid fa-lightbulb"></i></div>
+            <div class="insight-text">
+              <h5>Semantic Schema Harmonized</h5>
+              <p>Cube & dbt semantic metric definitions are in 100% agreement with upstream Snowflake and BigQuery schemas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           VIEW 4: ARR & P&L COCKPITS (5 SECTIONS)
+           =================================================================== -->
+      <div class="dash-view-tab" id="view-cockpit">
+        <div class="dash-top-hero">
+          <div class="dash-hero-title">
+            <h1>Boardroom ARR & Financial P&L Cockpit</h1>
+            <p>Real-time GAAP variance attribution, cohort retention, and margin forecasting.</p>
+          </div>
+          <div class="dash-hero-actions">
+            <a href="404.html" class="btn-dash-action" style="text-decoration: none;">
+              <i class="fa-solid fa-file-pdf"></i> EXPORT BOARD PRESENTATION
+            </a>
+          </div>
+        </div>
+
+        <div class="dash-quick-cards">
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-chart-line"></i></div><h4>ARR Growth</h4><p>+28.4% YoY Velocity</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-arrow-up-right-dots"></i></div><h4>Net Retention</h4><p>126.2% Top Decile</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-percent"></i></div><h4>Gross Margin</h4><p>79.4% Multi-Tenant</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-calendar"></i></div><h4>CAC Payback</h4><p>6.8 Months</p></div>
+        </div>
+
+        <div class="dash-kpi-row">
+          <div class="dash-kpi-card"><div class="dash-kpi-label">TOTAL ARR</div><div class="dash-kpi-value">$84.2M</div><div class="dash-kpi-sub">Contracted Annual ARR</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">NET NEW ARR (QTD)</div><div class="dash-kpi-value">+$6.8M</div><div class="dash-kpi-sub">Net expansion</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">EBITDA MULTIPLE</div><div class="dash-kpi-value">18.4x</div><div class="dash-kpi-sub">Benchmarked against peers</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">CASH RUNWAY</div><div class="dash-kpi-value">38 Mo</div><div class="dash-kpi-sub">Positive cash flow</div></div>
+        </div>
+
+        <div class="dash-split-grid">
+          <div class="dash-panel-card">
+            <h3>Revenue Cohort Expansion Breakdown</h3>
+            <div class="queue-list" style="margin-top: 1rem;">
+              <div class="queue-item"><div><strong>2024 Enterprise Cohort</strong><br><span>Starting: $22M &bull; Expanded to: $32M</span></div><span class="dash-kpi-badge current">145% NRR</span></div>
+              <div class="queue-item"><div><strong>2025 Mid-Market Cohort</strong><br><span>Starting: $18M &bull; Expanded to: $22M</span></div><span class="dash-kpi-badge current">122% NRR</span></div>
+            </div>
+          </div>
+          <div class="dash-panel-card">
+            <h3>EBITDA Margin Drivers</h3>
+            <div class="queue-list" style="margin-top: 1rem;">
+              <div class="queue-item"><div><strong>Cloud Egress Optimization: +$520k</strong></div><span class="dash-kpi-badge current">+180 bps</span></div>
+              <div class="queue-item"><div><strong>Automated Support Deflection: +$340k</strong></div><span class="dash-kpi-badge current">+110 bps</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-table-box">
+          <h3>Regional P&L Financial Performance</h3>
+          <table class="dash-table">
+            <thead>
+              <tr><th>REGION</th><th>ARR</th><th>EXPANSION</th><th>GROSS MARGIN</th><th>EBITDA STATUS</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>North America</td><td>$52.8M</td><td>+$4.2M</td><td>84.1%</td><td><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">High Margin</a></td></tr>
+              <tr><td>EMEA Hub</td><td>$22.4M</td><td>+$2.1M</td><td>76.9%</td><td><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Profitable</a></td></tr>
+              <tr><td>APAC Expansion</td><td>$9.0M</td><td>+$0.5M</td><td>71.4%</td><td><a href="404.html" class="dash-kpi-badge yellow" style="text-decoration: none; cursor: pointer;">Scaling</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="dash-insights-box">
+          <h3>Boardroom Synthesis</h3>
+          <div class="insight-item">
+            <div class="insight-icon"><i class="fa-solid fa-chart-pie"></i></div>
+            <div class="insight-text">
+              <h5>Strategic Valuation Multiplier</h5>
+              <p>Current retention metrics place Stackly BI in the 95th percentile of enterprise cloud intelligence platforms.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           VIEW 5: EXECUTIVE REPORTS (5 SECTIONS)
+           =================================================================== -->
+      <div class="dash-view-tab" id="view-reports">
+        <div class="dash-top-hero">
+          <div class="dash-hero-title">
+            <h1>Scheduled Executive Reports & Exports</h1>
+            <p>Automated board slide decks, compliance audits, and latency benchmark exports.</p>
+          </div>
+          <div class="dash-hero-actions">
+            <a href="404.html" class="btn-dash-action" style="text-decoration: none;">
+              <i class="fa-solid fa-plus"></i> NEW REPORT SCHEDULE
+            </a>
+          </div>
+        </div>
+
+        <div class="dash-quick-cards">
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-file-pdf"></i></div><h4>Board Decks</h4><p>PDF & PPTX Formats</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-clock"></i></div><h4>Cadence</h4><p>Weekly & Monthly Sync</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-users"></i></div><h4>Recipients</h4><p>18 C-Suite Executives</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-lock"></i></div><h4>Encrypted</h4><p>PGP Public Key Delivery</p></div>
+        </div>
+
+        <div class="dash-kpi-row">
+          <div class="dash-kpi-card"><div class="dash-kpi-label">TOTAL SCHEDULED</div><div class="dash-kpi-value">14</div><div class="dash-kpi-sub">Active recurring briefs</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">DELIVERED ON-TIME</div><div class="dash-kpi-value">100%</div><div class="dash-kpi-sub">0 delayed batches</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">AVG GENERATION</div><div class="dash-kpi-value">1.8s</div><div class="dash-kpi-sub">Instantaneous rendering</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">OPEN RATE</div><div class="dash-kpi-value">94.2%</div><div class="dash-kpi-sub">Executive engagement</div></div>
+        </div>
+
+        <div class="dash-split-grid">
+          <div class="dash-panel-card">
+            <h3>Active Automated Dispatches</h3>
+            <div class="queue-list" style="margin-top: 1rem;">
+              <div class="queue-item"><div><strong>Monday Morning ARR Brief</strong><br><span>Delivered at 07:00 AM EST &bull; 8 recipients</span></div><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Active</a></div>
+              <div class="queue-item"><div><strong>Monthly SOC2 Audit Attestation</strong><br><span>Delivered 1st of month &bull; Compliance Team</span></div><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Active</a></div>
+            </div>
+          </div>
+          <div class="dash-panel-card">
+            <h3>Export Formats Available</h3>
+            <div class="queue-list" style="margin-top: 1rem;">
+              <div class="queue-item"><div><strong>Vector PDF (Board Ready)</strong></div><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Enabled</a></div>
+              <div class="queue-item"><div><strong>Apache Arrow Parquet Dump</strong></div><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Enabled</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-table-box">
+          <h3>Generated Report History</h3>
+          <table class="dash-table">
+            <thead>
+              <tr><th>REPORT NAME</th><th>PERIOD</th><th>SIZE</th><th>RECIPIENTS</th><th>DOWNLOAD</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Q3 Executive P&L Variance</td><td>Q3 2026</td><td>4.2 MB</td><td>Board of Directors</td><td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-download"></i> PDF</a></td></tr>
+              <tr><td>Kafka CDC Telemetry Benchmark</td><td>Sep 2026</td><td>12.8 MB</td><td>Platform Engineers</td><td><a href="404.html" style="text-decoration: none;"><i class="fa-solid fa-download"></i> Parquet</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="dash-insights-box">
+          <h3>Distribution Status</h3>
+          <div class="insight-item">
+            <div class="insight-icon"><i class="fa-solid fa-envelope-circle-check"></i></div>
+            <div class="insight-text">
+              <h5>Email SLA 100% Met</h5>
+              <p>All automated reports were verified against database checksums before dispatch.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           VIEW 6: LAKEHOUSE QUERY LAB (5 SECTIONS)
+           =================================================================== -->
+      <div class="dash-view-tab" id="view-lakehouse">
+        <div class="dash-top-hero">
+          <div class="dash-hero-title">
+            <h1>Lakehouse Query Lab & Vectorized SQL</h1>
+            <p>Direct in-memory DuckDB columnar query execution on Apache Iceberg & Delta Lake.</p>
+          </div>
+          <div class="dash-hero-actions">
+            <a href="404.html" class="btn-dash-action" style="text-decoration: none;">
+              <i class="fa-solid fa-play"></i> RUN QUERY (F5)
+            </a>
+          </div>
+        </div>
+
+        <div class="dash-quick-cards">
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-bolt"></i></div><h4>DuckDB Core</h4><p>Vectorized C++ Engine</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-layer-group"></i></div><h4>Iceberg Tables</h4><p>Partition Pruning</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-gauge-high"></i></div><h4>Memory Cache</h4><p>12ms P99 Latency</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-cloud"></i></div><h4>Zero Egress</h4><p>S3 Direct Scan</p></div>
+        </div>
+
+        <div class="dash-kpi-row">
+          <div class="dash-kpi-card"><div class="dash-kpi-label">ROWS SCANNED TODAY</div><div class="dash-kpi-value">1.48B</div><div class="dash-kpi-sub">Across cloud object storage</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">QUERY TIME (P99)</div><div class="dash-kpi-value">11.8ms</div><div class="dash-kpi-sub">Sub-second vectorized</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">CACHE HIT RATIO</div><div class="dash-kpi-value">99.4%</div><div class="dash-kpi-sub">In-situ RAM caching</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">COMPUTE COST</div><div class="dash-kpi-value">$0.002</div><div class="dash-kpi-sub">Per 1M queries</div></div>
+        </div>
+
+        <div class="dash-split-grid">
+          <div class="dash-panel-card">
+            <h3>Live SQL Query Console</h3>
+            <textarea class="form-input" style="height: 120px; font-family: monospace; font-size: 0.85rem; width: 100%; border-color: #eab308; background: #0f172a; color: #4ade80;">SELECT date_trunc('week', event_timestamp) AS week, count(*) AS events, sum(amount) AS gross_volume FROM s3('corp-lake/events/*.parquet') GROUP BY 1 ORDER BY 1 DESC LIMIT 10;</textarea>
+          </div>
+          <div class="dash-panel-card">
+            <h3>Physical Query Plan Execution</h3>
+            <div style="font-family: monospace; font-size: 0.8rem; background: #f8fafc; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+              &rarr; PARQUET_SCAN (12 partitions, 85MB)<br>
+              &rarr; HASH_GROUP_BY (in-memory vectorized)<br>
+              &rarr; TOP_N_SORT (10 rows)<br>
+              <strong>Total Execution Time: 8.4ms</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-table-box">
+          <h3>Query Results (10 Rows Returned)</h3>
+          <table class="dash-table">
+            <thead><tr><th>WEEK</th><th>EVENTS</th><th>GROSS_VOLUME</th><th>LATENCY</th></tr></thead>
+            <tbody>
+              <tr><td>2026-10-05</td><td>142,850,210</td><td>$18,420,100</td><td>8.4ms</td></tr>
+              <tr><td>2026-09-28</td><td>138,420,190</td><td>$17,910,400</td><td>9.1ms</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="dash-insights-box">
+          <h3>Storage Optimization Suggestions</h3>
+          <div class="insight-item">
+            <div class="insight-icon"><i class="fa-solid fa-microchip"></i></div>
+            <div class="insight-text">
+              <h5>Partition Pruning Efficient</h5>
+              <p>Z-Order clustering on `event_timestamp` skipped 92% of cloud Parquet files, keeping query time strictly under 10 milliseconds.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           VIEW 7: ZERO-TRUST GOVERNANCE (5 SECTIONS)
+           =================================================================== -->
+      <div class="dash-view-tab" id="view-security">
+        <div class="dash-top-hero">
+          <div class="dash-hero-title">
+            <h1>Cryptographic Zero-Trust Governance & Audit</h1>
+            <p>Column-level masking, sovereign VPC containment, and continuous SOC2 compliance.</p>
+          </div>
+          <div class="dash-hero-actions">
+            <a href="404.html" class="btn-dash-action" style="text-decoration: none;">
+              <i class="fa-solid fa-shield-check"></i> RUN SOC2 AUDIT CHECK
+            </a>
+          </div>
+        </div>
+
+        <div class="dash-quick-cards">
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-lock"></i></div><h4>PII Masking</h4><p>Dynamic Column Tokens</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-building-shield"></i></div><h4>VPC Isolation</h4><p>100% Air-Gapped Data</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-certificate"></i></div><h4>Certifications</h4><p>SOC2 Type II & HIPAA</p></div>
+          <div class="quick-action-card"><div class="quick-action-icon"><i class="fa-solid fa-fingerprint"></i></div><h4>Access Logs</h4><p>Immutable Merkle Tree</p></div>
+        </div>
+
+        <div class="dash-kpi-row">
+          <div class="dash-kpi-card"><div class="dash-kpi-label">GOVERNANCE AUDIT SCORE</div><div class="dash-kpi-value">100%</div><div class="dash-kpi-sub">Clean compliance record</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">MASKED COLUMNS</div><div class="dash-kpi-value">84</div><div class="dash-kpi-sub">SSN, PAN, Card, Email</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">ACTIVE ROLES (RBAC)</div><div class="dash-kpi-value">18</div><div class="dash-kpi-sub">Strict privilege limits</div></div>
+          <div class="dash-kpi-card"><div class="dash-kpi-label">ANOMALY ALERTS</div><div class="dash-kpi-value">0</div><div class="dash-kpi-sub">Clean threat vector</div></div>
+        </div>
+
+        <div class="dash-split-grid">
+          <div class="dash-panel-card">
+            <h3>Masking Policies Enforced</h3>
+            <div class="queue-list" style="margin-top: 1rem;">
+              <div class="queue-item"><div><strong>CUSTOMER_SSN &rarr; SHA-256 Mask</strong></div><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Enforced</a></div>
+              <div class="queue-item"><div><strong>ACCOUNT_BALANCE &rarr; Differential Privacy</strong></div><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Enforced</a></div>
+            </div>
+          </div>
+          <div class="dash-panel-card">
+            <h3>Cryptographic VPC Boundaries</h3>
+            <div class="queue-list" style="margin-top: 1rem;">
+              <div class="queue-item"><div><strong>Zero Third-Party Storage Rule</strong></div><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Active</a></div>
+              <div class="queue-item"><div><strong>AES-256 Egress Barrier</strong></div><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Active</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="dash-table-box">
+          <h3>Privileged Audit Log (Last 24 Hours)</h3>
+          <table class="dash-table">
+            <thead><tr><th>TIMESTAMP</th><th>USER</th><th>ROLE</th><th>RESOURCE</th><th>ENTITLEMENT</th></tr></thead>
+            <tbody>
+              <tr><td>2026-10-09 18:04:12</td><td>Lingalamanasa123</td><td>Executive User</td><td>telemetry.pnl</td><td><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Permitted</a></td></tr>
+              <tr><td>2026-10-09 17:52:08</td><td>Dr. Evelyn Vance</td><td>Admin Architect</td><td>lakehouse.schema</td><td><a href="404.html" class="dash-kpi-badge current" style="text-decoration: none; cursor: pointer;">Permitted</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="dash-insights-box">
+          <h3>Governance Status</h3>
+          <div class="insight-item">
+            <div class="insight-icon"><i class="fa-solid fa-shield-check"></i></div>
+            <div class="insight-text">
+              <h5>Audit Readiness Complete</h5>
+              <p>Cryptographic hash verification passed with 0 unverified query executions. Ready for Big Four annual attestation.</p>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -715,35 +779,7 @@
   </div>
 
   <script>
-    // Mobile Drawer Toggle Logic
-    const dashSidebar = document.getElementById('dashSidebar');
-    const dashSidebarBackdrop = document.getElementById('dashSidebarBackdrop');
-    const dashMenuToggle = document.getElementById('dashMenuToggle');
-    const dashSidebarClose = document.getElementById('dashSidebarClose');
-
-    function openMobileDrawer() {
-      if (dashSidebar) dashSidebar.classList.add('mobile-open');
-      if (dashSidebarBackdrop) dashSidebarBackdrop.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeMobileDrawer() {
-      if (dashSidebar) dashSidebar.classList.remove('mobile-open');
-      if (dashSidebarBackdrop) dashSidebarBackdrop.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    if (dashMenuToggle) {
-      dashMenuToggle.addEventListener('click', openMobileDrawer);
-    }
-    if (dashSidebarClose) {
-      dashSidebarClose.addEventListener('click', closeMobileDrawer);
-    }
-    if (dashSidebarBackdrop) {
-      dashSidebarBackdrop.addEventListener('click', closeMobileDrawer);
-    }
-
-    // Tab switching for all navigation items
+    // Tab switching for all left sidebar buttons
     function showView(viewId, btn) {
       // Hide all views
       document.querySelectorAll('.dash-view-tab').forEach(tab => {
@@ -762,9 +798,6 @@
         btn.classList.add('active');
       }
 
-      // Automatically close drawer on mobile upon selecting a view
-      closeMobileDrawer();
-
       // Update URL hash without reload
       history.replaceState(null, null, '#' + viewId);
     }
@@ -781,6 +814,7 @@
       let storedEmail = localStorage.getItem('stackly_email');
       let storedName = localStorage.getItem('stackly_name');
 
+      // If localStorage holds dummy placeholder analyst values or empty, use particular user credentials
       if (!storedEmail || storedEmail === 'analyst@enterprise.org' || storedEmail === 'architect@stackly.bi') {
         storedEmail = 'lingalamanasa123@gmail.com';
         storedName = 'Lingalamanasa123';
@@ -807,8 +841,6 @@
       try {
         if (!window.location.href.includes('404.html')) {
           sessionStorage.setItem('stackly_previous_page', window.location.href);
-          sessionStorage.setItem('stackly_last_page', window.location.href);
-          localStorage.setItem('stackly_last_page', window.location.href);
         }
       } catch (e) {}
     });
