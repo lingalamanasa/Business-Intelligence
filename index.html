@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Stackly - Business Intelligence</title>
+
+  <link rel="stylesheet" href="style.css?v=7.1">
+
+  <!-- FontAwesome for icons -->
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- STACKLY ENTERPRISE PRELOADER - HOME -->
+  <div class="stackly-preloader" id="stacklyPreloader">
+    <div class="preloader-backdrop-glow"></div>
+    <div class="preloader-content">
+      <div class="preloader-logo-ring">
+        <div class="preloader-orbit-ring"></div>
+        <div class="preloader-orbit-ring-reverse"></div>
+        <div class="preloader-icon-core">
+          <img src="images/stackly-icon.webp?v=3.0" alt="Stackly" />
+        </div>
+      </div>
+      <div class="preloader-brand-title">
+        <span class="preloader-brand-main">STACKLY</span>
+      </div>
+      <div class="preloader-status-text">
+        <span class="status-pulse-dot"></span>
+        <span id="preloaderStatus">INITIALIZING TELEMETRY...</span>
+      </div>
+      <div class="preloader-progress-wrap">
+        <div class="preloader-progress-bar">
+          <div class="preloader-progress-fill" id="preloaderProgress"></div>
+        </div>
+        <div class="preloader-counter" id="preloaderCounter">0%</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var p = document.getElementById('stacklyPreloader');
+      if (!p || p.dataset.inited) return;
+      p.dataset.inited = 'true';
+      var bar = document.getElementById('preloaderProgress');
+      var ctr = document.getElementById('preloaderCounter');
+      var st = document.getElementById('preloaderStatus');
+      var msgs = [
+        { at: 0, text: 'INITIALIZING TELEMETRY...' },
+        { at: 30, text: 'SYNCHRONIZING CDC MESH...' },
+        { at: 65, text: 'CALIBRATING LAKEHOUSE CACHE...' },
+        { at: 90, text: 'SYSTEM ONLINE' }
+      ];
+      var start = Date.now();
+      var dur = 600;
+      function tick() {
+        var elapsed = Date.now() - start;
+        var pct = Math.min(Math.round((elapsed / dur) * 100), 100);
+        if (bar) bar.style.width = pct + '%';
+        if (ctr) ctr.textContent = pct + '%';
+        if (st) {
+          for (var i = msgs.length - 1; i >= 0; i--) {
+            if (pct >= msgs[i].at) { st.textContent = msgs[i].text; break; }
+          }
+        }
+        if (pct < 100) {
+          requestAnimationFrame(tick);
+        } else {
+          setTimeout(function() {
+            p.classList.add('preloader-hidden');
+            setTimeout(function() { p.style.display = 'none'; }, 550);
+          }, 100);
+        }
+      }
+      requestAnimationFrame(tick);
+      setTimeout(function() {
+        if (p && !p.classList.contains('preloader-hidden')) {
+          p.classList.add('preloader-hidden');
+          setTimeout(function() { p.style.display = 'none'; }, 550);
+        }
+      }, 1200);
+    })();
+  </script>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <a href="index.html" class="nav-logo"><img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="nav-logo-img" /></a>
+
+    
+
+    <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation">
+
+      <i class="fa-solid fa-bars"></i>
+
+    </div>
+
+
+
+    <!-- Mobile Drawer Backdrop Overlay -->
+
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+
+
+    <nav id="nav-links">
+
+      <div class="drawer-top">
+
+        <a href="index.html" class="drawer-logo" aria-label="Stackly Home">
+
+          <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="drawer-logo-img" />
+
+        </a>
+
+        <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close menu">
+
+          <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+      </div>
+
+      <ul>
+
+        <li><a href="index.html" class="active"><span>Home</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+
+        <li><a href="about.html"><span>About</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+
+        <li><a href="service.html"><span>Service</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+
+        <li><a href="blog.html"><span>Blog</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+
+        <li><a href="contact.html"><span>Contact</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+
+      </ul>
+
+      <div class="auth-mobile">
+
+        <a href="login.html" class="btn-login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+
+        <a href="register.html" class="btn-signup"><i class="fa-solid fa-user-plus"></i> Signup</a>
+
+      </div>
+
+    </nav>
+
+    <div class="auth-desktop">
+
+      <a href="login.html" class="btn-login"><i class="fa-regular fa-user"></i> Login</a>
+
+      <a href="register.html" class="btn-signup"><i class="fa-solid fa-user-plus"></i> Signup</a>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- 1. HERO SECTION -->
+
+  <section class="hero">
+
+    <!-- Hero Background Image Slideshow -->
+
+    <div class="hero-slider">
+
+      <div class="hero-slide active" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.92) 0%, rgba(10, 10, 10, 0.78) 50%, rgba(0, 0, 0, 0.42) 100%), url('images/img_css_1.webp');"></div>
+
+      <div class="hero-slide" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.92) 0%, rgba(10, 10, 10, 0.78) 50%, rgba(0, 0, 0, 0.42) 100%), url('images/img_css_2.webp');"></div>
+
+      <div class="hero-slide" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.92) 0%, rgba(10, 10, 10, 0.78) 50%, rgba(0, 0, 0, 0.42) 100%), url('images/img_104.webp');"></div>
+
+      <div class="hero-slide" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.92) 0%, rgba(10, 10, 10, 0.78) 50%, rgba(0, 0, 0, 0.42) 100%), url('images/img_106.webp');"></div>
+
+      <div class="hero-slide" style="background-image: linear-gradient(to right, rgba(0, 0, 0, 0.92) 0%, rgba(10, 10, 10, 0.78) 50%, rgba(0, 0, 0, 0.42) 100%), url('images/img_120.webp');"></div>
+
+    </div>
+
+
+
+    <!-- Slide Indicators -->
+
+    <div class="hero-slider-dots">
+
+      <span class="slider-dot active" data-slide="0" title="Slide 1"></span>
+
+      <span class="slider-dot" data-slide="1" title="Slide 2"></span>
+
+      <span class="slider-dot" data-slide="2" title="Slide 3"></span>
+
+      <span class="slider-dot" data-slide="3" title="Slide 4"></span>
+
+      <span class="slider-dot" data-slide="4" title="Slide 5"></span>
+
+    </div>
+
+
+
+    <div class="hero-content" data-aos="fade-up">
+
+      <p class="subtitle">BUSINESS INTELLIGENCE,</p>
+
+      <h1>Stacked for<br>Business Intelligence<span class="dot">.</span></h1>
+
+      <p class="description">Your premier partner for enterprise analytics, autonomous AI copilots, streaming data pipelines, and executive decision intelligence. Transforming raw data lakes into generational market value.</p>
+
+      
+
+      <div class="cta-buttons">
+
+        <a href="404.html" class="btn btn-primary"><i class="fa-solid fa-chart-line"></i> Our Analytics Services</a>
+
+        <a href="404.html" class="btn btn-outline"><i class="fa-solid fa-calendar-check"></i> Book BI Consultation</a>
+
+      </div>
+
+
+
+      <div class="features">
+
+        <div class="feature">
+
+          <div class="icon-circle"><i class="fa-solid fa-chess-knight"></i></div>
+
+          <div class="feature-text">
+
+            <h4>Strategic Clarity</h4>
+
+            <p>Proven C-suite roadmap</p>
+
+          </div>
+
+        </div>
+
+        <div class="feature">
+
+          <div class="icon-circle"><i class="fa-solid fa-arrow-trend-up"></i></div>
+
+          <div class="feature-text">
+
+            <h4>Capital Growth</h4>
+
+            <p>M&A and valuation scaling</p>
+
+          </div>
+
+        </div>
+
+        <div class="feature">
+
+          <div class="icon-circle"><i class="fa-solid fa-shield-halved"></i></div>
+
+          <div class="feature-text">
+
+            <h4>Risk Governance</h4>
+
+            <p>Board-level compliance</p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+    <!-- 2. PRACTICE AREAS / CATEGORIES SECTION - DYNAMIC BI MATRIX -->
+  <section class="categories container section-padding">
+    <div class="section-header text-center">
+      <span class="subtitle" style="color: var(--primary-green); font-weight: 700; text-transform: uppercase;"><i class="fa-solid fa-cubes"></i> Core Engine Matrix</span>
+      <h2>Business Intelligence Capabilities</h2>
+      <p>Unified full-stack telemetry engine engineered for instantaneous enterprise decision velocity</p>
+    </div>
+
+    <div class="category-grid">
+      <div class="category-card" onclick="window.location.href='service.html'" style="cursor: pointer;">
+        <i class="fa-solid fa-chart-line"></i>
+        <h3>Enterprise Analytics</h3>
+        <p style="font-size: 0.8rem; color: #71717a; margin-top: 0.4rem;">Multi-currency ARR & GAAP attribution</p>
+        <span class="ux-badge-pill" style="margin-top: 0.8rem; font-size: 0.7rem; padding: 2px 8px;"><span class="ux-live-dot"></span> P99: 14ms</span>
+      </div>
+
+      <div class="category-card" onclick="window.location.href='service.html'" style="cursor: pointer;">
+        <i class="fa-solid fa-brain"></i>
+        <h3>AI Copilot & NLQ</h3>
+        <p style="font-size: 0.8rem; color: #71717a; margin-top: 0.4rem;">AST-verified query synthesis with 0% hallucinations</p>
+        <span class="ux-badge-pill" style="margin-top: 0.8rem; font-size: 0.7rem; padding: 2px 8px;"><span class="ux-live-dot"></span> AST Verified</span>
+      </div>
+
+      <div class="category-card" onclick="window.location.href='service.html'" style="cursor: pointer;">
+        <i class="fa-solid fa-bolt"></i>
+        <h3>Streaming CDC</h3>
+        <p style="font-size: 0.8rem; color: #71717a; margin-top: 0.4rem;">Kafka & Redpanda sub-second capture</p>
+        <span class="ux-badge-pill" style="margin-top: 0.8rem; font-size: 0.7rem; padding: 2px 8px;"><span class="ux-live-dot"></span> 1.4M Ev/s</span>
+      </div>
+
+      <div class="category-card" onclick="window.location.href='service.html'" style="cursor: pointer;">
+        <i class="fa-solid fa-microchip"></i>
+        <h3>In-Situ Lakehouse</h3>
+        <p style="font-size: 0.8rem; color: #71717a; margin-top: 0.4rem;">DuckDB columnar vectorized queries</p>
+        <span class="ux-badge-pill" style="margin-top: 0.8rem; font-size: 0.7rem; padding: 2px 8px;"><span class="ux-live-dot"></span> Zero-Egress</span>
+      </div>
+
+      <div class="category-card" onclick="window.location.href='service.html'" style="cursor: pointer;">
+        <i class="fa-solid fa-chart-pie"></i>
+        <h3>Executive Cockpit</h3>
+        <p style="font-size: 0.8rem; color: #71717a; margin-top: 0.4rem;">Boardroom drill-downs & EBITDA driver radars</p>
+        <span class="ux-badge-pill" style="margin-top: 0.8rem; font-size: 0.7rem; padding: 2px 8px;"><span class="ux-live-dot"></span> Live Cockpit</span>
+      </div>
+
+      <div class="category-card" onclick="window.location.href='service.html'" style="cursor: pointer;">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3>Zero-Trust Security</h3>
+        <p style="font-size: 0.8rem; color: #71717a; margin-top: 0.4rem;">SOC2 Type II & column-level masking</p>
+        <span class="ux-badge-pill" style="margin-top: 0.8rem; font-size: 0.7rem; padding: 2px 8px;"><span class="ux-live-dot"></span> Air-Gapped</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. INTERACTIVE ENTERPRISE STAGE BLUEPRINT -->
+  <section class="container section-padding" style="padding-top: 0;">
+    <div class="section-header text-center">
+      <span class="subtitle" style="color: var(--primary-green); font-weight: 700; text-transform: uppercase;"><i class="fa-solid fa-layer-group"></i> Architecture Blueprints</span>
+      <h2>Tailored by Enterprise Scale</h2>
+      <p>Click each organizational tier to inspect custom CDC throughput, query caching topology, and ROI projections</p>
+    </div>
+
+    <script>
+      function switchStageTab(stageId, btnElement) {
+        var tabs = document.querySelectorAll('.ux-stage-nav .ux-stage-tab');
+        var panels = document.querySelectorAll('.ux-stage-panel');
+        tabs.forEach(function(tab) { tab.classList.remove('active'); });
+        panels.forEach(function(panel) { panel.classList.remove('active'); });
+        var targetPanel = document.getElementById('stagePanel-' + stageId);
+        if (targetPanel) {
+          targetPanel.classList.add('active');
+        }
+        if (btnElement && btnElement.classList) {
+          btnElement.classList.add('active');
+        } else {
+          var matchingTab = Array.from(tabs).find(function(t) {
+            return (t.getAttribute('onclick') || '').indexOf(stageId) !== -1;
+          });
+          if (matchingTab) matchingTab.classList.add('active');
+        }
+      }
+    </script>
+
+    <!-- Interactive Navigation Tabs -->
+    <div class="ux-stage-nav">
+      <button class="ux-stage-tab active" onclick="switchStageTab('scaleup', this)"><i class="fa-solid fa-rocket"></i> High-Growth Scaleups</button>
+      <button class="ux-stage-tab" onclick="switchStageTab('midmarket', this)"><i class="fa-solid fa-building"></i> Mid-Market Corporates</button>
+      <button class="ux-stage-tab" onclick="switchStageTab('pe', this)"><i class="fa-solid fa-chart-pie"></i> Private Equity Portfolio</button>
+      <button class="ux-stage-tab" onclick="switchStageTab('global', this)"><i class="fa-solid fa-globe"></i> Global Conglomerates</button>
+    </div>
+
+    <!-- Stage Panel 1: Scaleups -->
+    <div class="ux-stage-panel active" id="stagePanel-scaleup">
+      <div>
+        <span class="ux-badge-pill" style="margin-bottom: 0.8rem;">$10M–$50M ARR • Rapid Velocity</span>
+        <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.8rem; color: var(--dark-text);">Turnkey Cloud-Native Analytics Stack</h3>
+        <p style="color: #64748b; line-height: 1.6; margin-bottom: 1.2rem;">Eliminate dedicated data engineering hires. Ingest directly from Stripe, Postgres, and Segment into our in-situ DuckDB acceleration layer with instantaneous Natural Language Query copilots.</p>
+        <ul class="ux-features-list">
+          <li><i class="fa-solid fa-circle-check"></i> Sub-day deployment with zero database maintenance</li>
+          <li><i class="fa-solid fa-circle-check"></i> Real-time cohort churn and CAC payback attribution</li>
+          <li><i class="fa-solid fa-circle-check"></i> Unlimited seats for product, sales, and executive teams</li>
+        </ul>
+        <a href="404.html" class="btn btn-primary" style="margin-top: 0.8rem;"><i class="fa-solid fa-arrow-right"></i> View Scaleup Blueprint</a>
+      </div>
+      <div class="ux-stage-visual">
+        <div class="ux-stage-image-wrap">
+          <img src="images/customer-case-saas.webp" alt="High-Growth Scaleup Dashboard & Cohort Heatmap" class="ux-stage-img">
+          <div class="ux-image-badge"><i class="fa-solid fa-rocket"></i> Rapid Velocity Blueprint</div>
+        </div>
+        <div class="ux-simulator-box" style="margin: 0; display: flex; flex-direction: column; justify-content: center;">
+          <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em; display:flex; justify-content:space-between; align-items:center;">
+            <span>BENCHMARK TELEMETRY</span>
+            <span style="color:#4ade80; font-size:0.7rem;"><i class="fa-solid fa-circle-dot"></i> Live Telemetry</span>
+          </div>
+          <div class="ux-kpi-grid">
+            <div class="ux-kpi-tile"><span>Deployment Time</span><strong>48 Hours</strong><small>Turnkey</small></div>
+            <div class="ux-kpi-tile"><span>Query P99</span><strong>18ms</strong><small>Vectorized</small></div>
+            <div class="ux-kpi-tile"><span>Monthly Savings</span><strong>$14,200</strong><small>Warehouse Costs</small></div>
+          </div>
+          <div class="ux-code-terminal" style="margin-top: 0.8rem;">
+            <span class="keyword">stackly</span> connect --source=postgres --cdc=subsecond --copilot=enabled
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage Panel 2: Mid-Market -->
+    <div class="ux-stage-panel" id="stagePanel-midmarket">
+      <div>
+        <span class="ux-badge-pill" style="margin-bottom: 0.8rem;">$50M–$250M ARR • Multi-Entity</span>
+        <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.8rem; color: var(--dark-text);">Unified Semantic Lakehouse Virtualization</h3>
+        <p style="color: #64748b; line-height: 1.6; margin-bottom: 1.2rem;">Harmonize fragmented Snowflake, BigQuery, and transactional data lakes into a single zero-copy semantic tier. Empower business unit leaders with verified natural language reporting without warehouse lock-in.</p>
+        <ul class="ux-features-list">
+          <li><i class="fa-solid fa-circle-check"></i> Cross-database zero-copy joins over Apache Iceberg</li>
+          <li><i class="fa-solid fa-circle-check"></i> 82% reduction in Snowflake/BigQuery query compute fees</li>
+          <li><i class="fa-solid fa-circle-check"></i> Role-based column masking across departments</li>
+        </ul>
+        <a href="404.html" class="btn btn-primary" style="margin-top: 0.8rem;"><i class="fa-solid fa-arrow-right"></i> View Mid-Market Blueprint</a>
+      </div>
+      <div class="ux-stage-visual">
+        <div class="ux-stage-image-wrap">
+          <img src="images/home-connectors-ecosystem.webp" alt="Mid-Market Lakehouse Virtualization & Connectors" class="ux-stage-img">
+          <div class="ux-image-badge"><i class="fa-solid fa-database"></i> Multi-Cloud Lakehouse</div>
+        </div>
+        <div class="ux-simulator-box" style="margin: 0; display: flex; flex-direction: column; justify-content: center;">
+          <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em; display:flex; justify-content:space-between; align-items:center;">
+            <span>BENCHMARK TELEMETRY</span>
+            <span style="color:#4ade80; font-size:0.7rem;"><i class="fa-solid fa-circle-dot"></i> Live Telemetry</span>
+          </div>
+          <div class="ux-kpi-grid">
+            <div class="ux-kpi-tile"><span>Query Speedup</span><strong>64x</strong><small>DuckDB Cache</small></div>
+            <div class="ux-kpi-tile"><span>Warehouses Unified</span><strong>4 Sources</strong><small>Cross-Cloud</small></div>
+            <div class="ux-kpi-tile"><span>Annual ROI</span><strong>$185,000</strong><small>Egress Avoidance</small></div>
+          </div>
+          <div class="ux-code-terminal" style="margin-top: 0.8rem;">
+            <span class="keyword">stackly</span> lakehouse virtualize --iceberg=s3://corp-lake --engine=in-situ
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage Panel 3: Private Equity -->
+    <div class="ux-stage-panel" id="stagePanel-pe">
+      <div>
+        <span class="ux-badge-pill" style="margin-bottom: 0.8rem;">Portfolio Operations • Value Creation</span>
+        <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.8rem; color: var(--dark-text);">Cross-Portfolio ARR & EBITDA Diagnostics</h3>
+        <p style="color: #64748b; line-height: 1.6; margin-bottom: 1.2rem;">Standardized financial metrics and cohort telemetry across 15+ portfolio investments. Compare CAC efficiency, net dollar expansion, and gross margin variance across the fund in one boardroom cockpit.</p>
+        <ul class="ux-features-list">
+          <li><i class="fa-solid fa-circle-check"></i> 100-Day value creation playbook deployment</li>
+          <li><i class="fa-solid fa-circle-check"></i> Automated LP board presentation deck generation</li>
+          <li><i class="fa-solid fa-circle-check"></i> Diligence data room telemetry for add-on M&A</li>
+        </ul>
+        <a href="404.html" class="btn btn-primary" style="margin-top: 0.8rem;"><i class="fa-solid fa-arrow-right"></i> View PE Portfolio Blueprint</a>
+      </div>
+      <div class="ux-stage-visual">
+        <div class="ux-stage-image-wrap">
+          <img src="images/customer-case-fintech.webp" alt="Private Equity Cross-Portfolio Financial Cockpit" class="ux-stage-img">
+          <div class="ux-image-badge"><i class="fa-solid fa-chart-pie"></i> PE Boardroom Cockpit</div>
+        </div>
+        <div class="ux-simulator-box" style="margin: 0; display: flex; flex-direction: column; justify-content: center;">
+          <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em; display:flex; justify-content:space-between; align-items:center;">
+            <span>BENCHMARK TELEMETRY</span>
+            <span style="color:#4ade80; font-size:0.7rem;"><i class="fa-solid fa-circle-dot"></i> Live Telemetry</span>
+          </div>
+          <div class="ux-kpi-grid">
+            <div class="ux-kpi-tile"><span>Companies Governed</span><strong>32 Assets</strong><small>Single Cockpit</small></div>
+            <div class="ux-kpi-tile"><span>EBITDA Uplift</span><strong>+420 bps</strong><small>Average Cohort</small></div>
+            <div class="ux-kpi-tile"><span>Report Time</span><strong>1 Click</strong><small>Board Decks</small></div>
+          </div>
+          <div class="ux-code-terminal" style="margin-top: 0.8rem;">
+            <span class="keyword">stackly</span> portfolio audit --fund=IV --benchmark=saas-top-decile
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stage Panel 4: Global Conglomerate -->
+    <div class="ux-stage-panel" id="stagePanel-global">
+      <div>
+        <span class="ux-badge-pill" style="margin-bottom: 0.8rem;">$1B+ Revenue • Multi-Cloud & Sovereign</span>
+        <h3 style="font-size: 1.6rem; font-weight: 800; margin-bottom: 0.8rem; color: var(--dark-text);">Enterprise Zero-Trust Autonomous Grid</h3>
+        <p style="color: #64748b; line-height: 1.6; margin-bottom: 1.2rem;">Deploy across distributed sovereign cloud enclaves with air-gapped cryptographic governance. Multi-petabyte columnar query processing with strict row/column entitlements and continuous SOC2 Type II compliance.</p>
+        <ul class="ux-features-list">
+          <li><i class="fa-solid fa-circle-check"></i> Kubernetes Helm deployment inside sovereign VPC boundaries</li>
+          <li><i class="fa-solid fa-circle-check"></i> Sub-second Kafka streaming across 50+ global divisions</li>
+          <li><i class="fa-solid fa-circle-check"></i> Guaranteed 99.999% high-availability SLA</li>
+        </ul>
+        <a href="404.html" class="btn btn-primary" style="margin-top: 0.8rem;"><i class="fa-solid fa-arrow-right"></i> View Conglomerate Blueprint</a>
+      </div>
+      <div class="ux-stage-visual">
+        <div class="ux-stage-image-wrap">
+          <img src="images/hero-bi-dashboard.webp" alt="Global Conglomerate Zero-Trust Autonomous Grid" class="ux-stage-img">
+          <div class="ux-image-badge"><i class="fa-solid fa-shield-halved"></i> Sovereign Grid 99.999%</div>
+        </div>
+        <div class="ux-simulator-box" style="margin: 0; display: flex; flex-direction: column; justify-content: center;">
+          <div style="font-size: 0.75rem; color: #94a3b8; text-transform: uppercase; margin-bottom: 0.5rem; letter-spacing: 0.05em; display:flex; justify-content:space-between; align-items:center;">
+            <span>BENCHMARK TELEMETRY</span>
+            <span style="color:#4ade80; font-size:0.7rem;"><i class="fa-solid fa-circle-dot"></i> Live Telemetry</span>
+          </div>
+          <div class="ux-kpi-grid">
+            <div class="ux-kpi-tile"><span>Daily Events</span><strong>10B+</strong><small>Zero Lag</small></div>
+            <div class="ux-kpi-tile"><span>Availability</span><strong>99.999%</strong><small>Global NOC</small></div>
+            <div class="ux-kpi-tile"><span>Security</span><strong>SOC2 Type II</strong><small>ISO 27001</small></div>
+          </div>
+          <div class="ux-code-terminal" style="margin-top: 0.8rem;">
+            <span class="keyword">helm</span> install stackly-bi-mesh ./charts/enterprise --vpc=airgapped
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. FLAGSHIP M&A & DEALS (BEST DEALS & OFFERS) -->
+
+  <section class="best-deals container section-padding" style="padding-top: 0;">
+
+    <div class="section-header">
+
+      <h2>Audited Enterprise Speedruns & Benchmarks</h2>
+
+      <p>Recent enterprise deployments delivering 100x query acceleration and cloud cost reduction</p>
+
+    </div>
+
+    <div class="deals-grid">
+
+      <a href="404.html" class="deal-card">
+
+        <img src="images/img_118.webp" alt="Cross-Border Tech M&A">
+
+        <div class="deal-overlay">
+
+          <span class="deal-badge" style="background: #eab308; color: #000; font-weight: 700; cursor: pointer;">12ms P99</span>
+
+          <div class="deal-text">
+
+            <h3>Sub-Second Streaming CDC<br>Kafka & Redpanda Cluster</h3>
+
+            <span class="deal-btn" style="cursor: pointer;">Case Summary <i class="fa-solid fa-arrow-right"></i></span>
+
+          </div>
+
+        </div>
+
+      </a>
+
+      <a href="404.html" class="deal-card">
+
+        <img src="images/img_119.webp" alt="Corporate Turnaround Sprint">
+
+        <div class="deal-overlay">
+
+          <span class="deal-badge" style="background: #000000; color: #eab308; border: 1px solid #eab308; font-weight: 700; cursor: pointer;">148x Faster</span>
+
+          <div class="deal-text">
+
+            <h3>In-Situ Semantic Virtualization<br>Snowflake & BigQuery Lake</h3>
+
+            <span class="deal-btn" style="cursor: pointer;">Case Summary <i class="fa-solid fa-arrow-right"></i></span>
+
+          </div>
+
+        </div>
+
+      </a>
+
+      <a href="404.html" class="deal-card">
+
+        <img src="images/local_img_4.webp" alt="PE Portfolio Carve-Out">
+
+        <div class="deal-overlay">
+
+          <span class="deal-badge" style="background: #eab308; color: #000; font-weight: 700; cursor: pointer;">$420k Saved</span>
+
+          <div class="deal-text">
+
+            <h3>Zero-Copy Virtualization<br>& Cloud Egress Elimination</h3>
+
+            <span class="deal-btn" style="cursor: pointer;">Case Summary <i class="fa-solid fa-arrow-right"></i></span>
+
+          </div>
+
+        </div>
+
+      </a>
+
+      <a href="404.html" class="deal-card">
+
+        <img src="images/local_img_6.webp" alt="Debt Capital Syndication">
+
+        <div class="deal-overlay">
+
+          <span class="deal-badge" style="background: #000000; color: #eab308; border: 1px solid #eab308; font-weight: 700; cursor: pointer;">99.98% Accuracy</span>
+
+          <div class="deal-text">
+
+            <h3>Autonomous Anomaly Radar<br>Gaussian Process ML Models</h3>
+
+            <span class="deal-btn" style="cursor: pointer;">Case Summary <i class="fa-solid fa-arrow-right"></i></span>
+
+          </div>
+
+        </div>
+
+      </a>
+
+    </div>
+
+  </section>
+
+
+
+    <!-- 5. ADVANCED UI/UX BUSINESS INTELLIGENCE SUITE -->
+  <section class="container section-padding">
+    <div class="section-header text-center">
+      <span class="subtitle" style="color: var(--primary-green); font-weight: 700; text-transform: uppercase;"><i class="fa-solid fa-microchip"></i> Next-Gen BI Engine</span>
+      <h2>Interactive Decision Intelligence Studio</h2>
+      <p>Explore real-time query compilation, sub-second streaming pipelines, and live boardroom telemetry</p>
+    </div>
+
+    <div class="ux-bento-grid">
+      <!-- UX Card 1: Autonomous NLQ & Copilot Studio -->
+      <div class="ux-card" data-aos="fade-up">
+        <div class="ux-card-header">
+          <div class="ux-card-title-group">
+            <h3><i class="fa-solid fa-brain" style="color: var(--primary-green);"></i> Autonomous AI Copilot</h3>
+            <p>Deterministic Abstract Syntax Tree (AST) validation with 0% hallucinations</p>
+          </div>
+          <span class="ux-badge-pill"><span class="ux-live-dot"></span> AST Verified</span>
+        </div>
+
+        <!-- Live Copilot Simulator UI -->
+        <div class="ux-simulator-box">
+          <div class="ux-prompt-bar">
+            <i class="fa-solid fa-terminal"></i>
+            <input type="text" id="copilotPromptInput" value="What was net cohort ARR retention for enterprise accounts in Q3?" readonly>
+          </div>
+          <div class="ux-chips-row">
+            <span class="ux-chip active" onclick="selectPrompt(0)">Net Retention Q3</span>
+            <span class="ux-chip" onclick="selectPrompt(1)">EMEA Gross Margin</span>
+            <span class="ux-chip" onclick="selectPrompt(2)">Detect P&L Anomaly</span>
+          </div>
+          <div class="ux-code-terminal" id="copilotCodeView">
+            <span class="keyword">SELECT</span> cohort_quarter, <span class="func">SUM</span>(arr_expansion) / <span class="func">SUM</span>(arr_starting) * <span class="num">100</span> AS nrr_pct<br>
+            <span class="keyword">FROM</span> telemetry_lakehouse.enterprise_subscriptions<br>
+            <span class="keyword">WHERE</span> fiscal_year = <span class="num">2026</span> <span class="keyword">GROUP BY</span> <span class="num">1</span>;
+          </div>
+          <div class="ux-stats-ticker">
+            <span>Compiled: <strong id="copilotLatency">28ms</strong> (DuckDB Arrow)</span>
+            <span style="color: #22c55e;"><i class="fa-solid fa-shield-check"></i> Schema Proof Validated</span>
+          </div>
+        </div>
+
+        <ul class="ux-features-list">
+          <li><i class="fa-solid fa-circle-check"></i> Semantic Layer Harmonization (dbt & Cube-compatible)</li>
+          <li><i class="fa-solid fa-circle-check"></i> Dynamic C-Suite P&L and Multi-Currency Attribution</li>
+        </ul>
+
+        <div class="ux-card-action">
+          <span style="font-size: 0.82rem; color: #64748b;">In-Situ Vectorized Execution</span>
+          <a href="404.html">Test Copilot Studio <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- UX Card 2: Sub-Second Streaming CDC Node -->
+      <div class="ux-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="ux-card-header">
+          <div class="ux-card-title-group">
+            <h3><i class="fa-solid fa-bolt" style="color: var(--primary-green);"></i> Sub-Second Streaming CDC</h3>
+            <p>Real-time transactional change data capture directly to memory</p>
+          </div>
+          <span class="ux-badge-pill"><span class="ux-live-dot"></span> 1.42M Ev/Sec</span>
+        </div>
+
+        <!-- Live CDC Pipeline Flow Simulator UI -->
+        <div class="ux-simulator-box">
+          <div class="ux-pipeline-flow">
+            <div class="ux-pipe-node">
+              <i class="fa-solid fa-database"></i>
+              <span>Postgres / OLTP</span>
+            </div>
+            <i class="fa-solid fa-angles-right ux-pipe-arrow"></i>
+            <div class="ux-pipe-node">
+              <i class="fa-solid fa-network-wired"></i>
+              <span>Redpanda CDC</span>
+            </div>
+            <i class="fa-solid fa-angles-right ux-pipe-arrow"></i>
+            <div class="ux-pipe-node">
+              <i class="fa-solid fa-microchip"></i>
+              <span>DuckDB Memory</span>
+            </div>
+          </div>
+          <div class="ux-stats-ticker">
+            <span>Pipeline Status: <strong style="color: #22c55e;">Active (0ms Lag)</strong></span>
+            <span>P99 Query: <strong style="color: #eab308;">12.4ms</strong></span>
+          </div>
+          <div style="margin-top: 0.6rem; display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.72rem; color: #94a3b8;">Throughput: <strong id="liveEvCount" style="color: #f8fafc;">1,428,950</strong> events/sec</span>
+            <button class="ux-toggle-btn" id="streamToggleBtn" onclick="toggleStreamSimulator()" style="padding: 3px 10px;">Simulate Surge</button>
+          </div>
+        </div>
+
+        <ul class="ux-features-list">
+          <li><i class="fa-solid fa-circle-check"></i> Zero-ETL batch delays — instantaneous dashboard sync</li>
+          <li><i class="fa-solid fa-circle-check"></i> Eliminates expensive cloud warehouse write-lock queues</li>
+        </ul>
+
+        <div class="ux-card-action">
+          <span style="font-size: 0.82rem; color: #64748b;">Zero-Copy Memory Bus</span>
+          <a href="404.html">Explore CDC Engines <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- UX Card 3: Real-Time Executive ARR Cockpit -->
+      <div class="ux-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="ux-card-header">
+          <div class="ux-card-title-group">
+            <h3><i class="fa-solid fa-chart-line" style="color: var(--primary-green);"></i> Boardroom Executive Cockpit</h3>
+            <p>Live ARR tracking, automated variance drivers, and cohort attribution</p>
+          </div>
+          <span class="ux-badge-pill"><span class="ux-live-dot"></span> Live Board Feed</span>
+        </div>
+
+        <!-- Live Executive KPI Cockpit UI -->
+        <div class="ux-simulator-box">
+          <div class="ux-kpi-grid">
+            <div class="ux-kpi-tile">
+              <span>Current ARR</span>
+              <strong id="cockpitArr">$84.2M</strong>
+              <small><i class="fa-solid fa-arrow-trend-up"></i> +28.4% YoY</small>
+            </div>
+            <div class="ux-kpi-tile">
+              <span>Net Retention</span>
+              <strong id="cockpitNrr">126.2%</strong>
+              <small style="color: #38bdf8;">Top Decile</small>
+            </div>
+            <div class="ux-kpi-tile">
+              <span>Gross Margin</span>
+              <strong id="cockpitMargin">79.4%</strong>
+              <small><i class="fa-solid fa-arrow-trend-up"></i> +3.1% MoM</small>
+            </div>
+          </div>
+          <div class="ux-chips-row" style="margin-top: 0.6rem;">
+            <span class="ux-chip active" onclick="switchCockpitCohort('global')">Global Consolidated</span>
+            <span class="ux-chip" onclick="switchCockpitCohort('enterprise')">Enterprise Tier</span>
+            <span class="ux-chip" onclick="switchCockpitCohort('emea')">EMEA Hub</span>
+          </div>
+          <div class="ux-stats-ticker">
+            <span>EBITDA Uplift Driver: <strong id="cockpitDriver" style="color: #eab308;">Automated SQL Attribution</strong></span>
+            <span>Refreshed: <strong>Just Now</strong></span>
+          </div>
+        </div>
+
+        <ul class="ux-features-list">
+          <li><i class="fa-solid fa-circle-check"></i> Multi-entity GAAP & non-GAAP reporting automation</li>
+          <li><i class="fa-solid fa-circle-check"></i> Interactive boardroom drill-down slides with one click</li>
+        </ul>
+
+        <div class="ux-card-action">
+          <span style="font-size: 0.82rem; color: #64748b;">Board-Ready Governance</span>
+          <a href="404.html">View Cockpit Demos <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- UX Card 4: Cryptographic Zero-Trust & SOC2 Shield -->
+      <div class="ux-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="ux-card-header">
+          <div class="ux-card-title-group">
+            <h3><i class="fa-solid fa-shield-halved" style="color: var(--primary-green);"></i> Cryptographic Zero-Trust</h3>
+            <p>Dynamic column-level masking and verifiable SOC2 Type II audit trail</p>
+          </div>
+          <span class="ux-badge-pill"><span class="ux-live-dot"></span> Enforced</span>
+        </div>
+
+        <!-- Live Data Masking Simulator UI -->
+        <div class="ux-simulator-box">
+          <div class="ux-mask-toggle-bar">
+            <span>Row-Level Entitlement Policy:</span>
+            <button class="ux-toggle-btn" id="maskToggleBtn" onclick="toggleDataMasking()">
+              <i class="fa-solid fa-lock"></i> Masking: ACTIVE
+            </button>
+          </div>
+          <table class="ux-data-table">
+            <thead>
+              <tr>
+                <th>CLIENT_ID</th>
+                <th>ACCOUNT_ENTITY</th>
+                <th>SENSITIVE_PII</th>
+                <th>LATENCY</th>
+              </tr>
+            </thead>
+            <tbody id="maskTableBody">
+              <tr>
+                <td>#4892</td>
+                <td>Apex Global</td>
+                <td><span class="masked">••••-••-8419</span></td>
+                <td>14ms</td>
+              </tr>
+              <tr>
+                <td>#6104</td>
+                <td>Vanguard Fin</td>
+                <td><span class="masked">••••-••-2231</span></td>
+                <td>18ms</td>
+              </tr>
+              <tr>
+                <td>#9281</td>
+                <td>CloudScale</td>
+                <td><span class="masked">••••-••-7094</span></td>
+                <td>11ms</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="ux-stats-ticker">
+            <span>Zero-Storage Rule: <strong style="color: #22c55e;">Data Remains in Your VPC</strong></span>
+            <span>Audit Hash: <strong style="color: #94a3b8;">0x8f2a...c4e1</strong></span>
+          </div>
+        </div>
+
+        <ul class="ux-features-list">
+          <li><i class="fa-solid fa-circle-check"></i> HIPAA, GDPR & ISO 27001 Cryptographic isolation</li>
+          <li><i class="fa-solid fa-circle-check"></i> Zero third-party storage or database replication liabilities</li>
+        </ul>
+
+        <div class="ux-card-action">
+          <span style="font-size: 0.82rem; color: #64748b;">Sovereign Cloud Deployment</span>
+          <a href="404.html">Security Architecture <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. BUSINESS INTELLIGENCE METHODOLOGY (6-STEP TIMELINE) -->
+
+  <section class="how-it-works container section-padding" style="padding-top: 0;">
+
+    <div class="section-header">
+
+      <h2>The Stackly BI Deployment Architecture</h2>
+
+      <p>Proven six-stage roadmap from raw data diagnostic to sub-second executive intelligence</p>
+
+    </div>
+
+    <div class="steps-grid">
+
+      <div class="step-card" data-aos="fade-up">
+
+        <div class="step-num">01</div>
+
+        <div class="step-icon"><i class="fa-solid fa-microscope"></i></div>
+
+        <h3>Data Diagnostic & Profiling</h3>
+
+        <p>Deep-dive audit of enterprise warehouse schemas, ingestion lag, and query cost bottlenecks.</p>
+
+      </div>
+
+      <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="step-num">02</div>
+
+        <div class="step-icon"><i class="fa-solid fa-chess-board"></i></div>
+
+        <h3>Semantic Lake Architecture</h3>
+
+        <p>Constructing unified metric definitions, dimension catalogs, and DuckDB virtualization layers.</p>
+
+      </div>
+
+      <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+
+        <div class="step-num">03</div>
+
+        <div class="step-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+
+        <h3>Sub-Second Streaming Ingestion</h3>
+
+        <p>Deploying real-time change data capture pipelines across Postgres, Snowflake, and Kafka.</p>
+
+      </div>
+
+      <div class="step-card" data-aos="fade-up" data-aos-delay="300">
+
+        <div class="step-num">04</div>
+
+        <div class="step-icon"><i class="fa-solid fa-chart-line"></i></div>
+
+        <h3>Autonomous AI Copilot Synthesis</h3>
+
+        <p>Empowering executive teams with natural language querying backed by deterministic AST validation.</p>
+
+      </div>
+
+      <div class="step-card" data-aos="fade-up" data-aos-delay="400">
+
+        <div class="step-num">05</div>
+
+        <div class="step-icon"><i class="fa-solid fa-shield-halved"></i></div>
+
+        <h3>Enterprise Governance & RBAC</h3>
+
+        <p>Enforcing cryptographic tenancy, dynamic column masking, and automated SOC2 audit trails.</p>
+
+      </div>
+
+      <div class="step-card" data-aos="fade-up" data-aos-delay="500">
+
+        <div class="step-num">06</div>
+
+        <div class="step-icon"><i class="fa-solid fa-trophy"></i></div>
+
+        <h3>Continuous Telemetry & ML Radars</h3>
+
+        <p>Automated anomaly alerts, Gaussian predictive forecasting, and autonomous query caching.</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- 7. SECTOR EXPERTISE (CATEGORIES EXPANDED) -->
+
+  <section class="container section-padding" style="padding-top: 0;">
+
+    <div class="section-header">
+
+      <h2>Industry Domain Analytics</h2>
+
+      <p>Pre-configured semantic schemas and metric models for top enterprise verticals</p>
+
+    </div>
+
+    <div class="category-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+
+      <div class="category-card" onclick="window.location.href='404.html'">
+
+        <i class="fa-solid fa-hospital"></i>
+
+        <h3>Healthcare & Biotech</h3>
+
+      </div>
+
+      <div class="category-card" onclick="window.location.href='404.html'">
+
+        <i class="fa-solid fa-building-columns"></i>
+
+        <h3>Financial Services</h3>
+
+      </div>
+
+      <div class="category-card" onclick="window.location.href='404.html'">
+
+        <i class="fa-solid fa-industry"></i>
+
+        <h3>Industrial & Energy</h3>
+
+      </div>
+
+      <div class="category-card" onclick="window.location.href='404.html'">
+
+        <i class="fa-solid fa-plane-departure"></i>
+
+        <h3>Aviation & Logistics</h3>
+
+      </div>
+
+      <div class="category-card" onclick="window.location.href='404.html'">
+
+        <i class="fa-solid fa-cloud"></i>
+
+        <h3>SaaS & Enterprise Tech</h3>
+
+      </div>
+
+      <div class="category-card" onclick="window.location.href='404.html'">
+
+        <i class="fa-solid fa-cart-shopping"></i>
+
+        <h3>Consumer & Retail</h3>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- 8. CASE STUDY SPOTLIGHT (RECIPE INSPIRATION) -->
+
+  <section class="recipes-section container section-padding" style="padding-top: 0;">
+
+    <div class="section-header">
+
+      <h2>Case Study Spotlights</h2>
+
+      <p>Transformative outcomes achieved alongside our executive partners</p>
+
+    </div>
+
+    <div class="recipe-grid">
+
+      <!-- Study 1 -->
+
+      <div class="recipe-card" data-aos="fade-up">
+
+        <div class="recipe-image">
+
+          <img src="images/img_126.webp" alt="Global Media Consolidation">
+
+          <span class="recipe-tag"><i class="fa-solid fa-trophy"></i> 2.8x Value</span>
+
+        </div>
+
+        <div class="recipe-content">
+
+          <span class="recipe-meta"><i class="fa-solid fa-building"></i> Media & Entertainment</span>
+
+          <h3>Global SaaS Enterprise: Cohort Heatmaps & Board ARR Acceleration</h3>
+
+          <p>Unified 18 disjointed analytics dashboards into a single sub-second semantic lake with zero query lag.</p>
+
+          <a href="404.html" class="recipe-link">Read Full Case Study <i class="fa-solid fa-arrow-right"></i></a>
+
+        </div>
+
+      </div>
+
+      <!-- Study 2 -->
+
+      <div class="recipe-card" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="recipe-image">
+
+          <img src="images/img_127.webp" alt="Supply Chain Resilience">
+
+          <span class="recipe-tag"><i class="fa-solid fa-chart-line"></i> +35% ROIC</span>
+
+        </div>
+
+        <div class="recipe-content">
+
+          <span class="recipe-meta"><i class="fa-solid fa-truck-fast"></i> Industrial Manufacturing</span>
+
+          <h3>Fintech Platform: 12ms High-Frequency Algo Analytics & Risk Radar</h3>
+
+          <p>Accelerated 4.8M msg/s trading telemetry with zero dropped packets and cryptographic audit trails.</p>
+
+          <a href="404.html" class="recipe-link">Read Full Case Study <i class="fa-solid fa-arrow-right"></i></a>
+
+        </div>
+
+      </div>
+
+      <!-- Study 3 -->
+
+      <div class="recipe-card" data-aos="fade-up" data-aos-delay="200">
+
+        <div class="recipe-image">
+
+          <img src="images/img_128.webp" alt="Fintech Turnaround">
+
+          <span class="recipe-tag"><i class="fa-solid fa-seedling"></i> Series C to IPO</span>
+
+        </div>
+
+        <div class="recipe-content">
+
+          <span class="recipe-meta"><i class="fa-solid fa-vault"></i> FinTech & Banking</span>
+
+          <h3>Cloud Scale: Zero-Copy Virtualization Eliminating $420k Annual Egress</h3>
+
+          <p>Direct in-situ warehouse queries with DuckDB memory cache cut Snowflake egress duplication by 100%.</p>
+
+          <a href="404.html" class="recipe-link">Read Full Case Study <i class="fa-solid fa-arrow-right"></i></a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- 9. WHY CHOOSE US (VALUES SECTION) -->
+
+  <section class="why-choose-us container section-padding" style="padding-top: 0;">
+
+    <div class="section-header">
+
+      <h2>The Stackly Advantage</h2>
+
+      <p>Why top chief data officers and analytics executives rely on Stackly BI</p>
+
+    </div>
+
+    <div class="why-grid">
+
+      <div class="why-item" data-aos="fade-up">
+
+        <div class="why-icon"><i class="fa-solid fa-user-tie"></i></div>
+
+        <h3>Principal Architect Delivery</h3>
+
+        <p>Every deployment is led by veteran distributed systems architects and senior data engineers.</p>
+
+      </div>
+
+      <div class="why-item" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="why-icon"><i class="fa-solid fa-lock"></i></div>
+
+        <h3>Zero-Storage Security Shield</h3>
+
+        <p>Customer data stays in your VPC. Stackly never extracts, duplicates, or stores proprietary rows.</p>
+
+      </div>
+
+      <div class="why-item" data-aos="fade-up" data-aos-delay="200">
+
+        <div class="why-icon"><i class="fa-solid fa-calculator"></i></div>
+
+        <h3>100% Deterministic AI</h3>
+
+        <p>Abstract Syntax Tree (AST) validation guarantees zero SQL hallucinations and mathematical precision.</p>
+
+      </div>
+
+      <div class="why-item" data-aos="fade-up" data-aos-delay="300">
+
+        <div class="why-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+
+        <h3>Sub-Second SLA Guarantee</h3>
+
+        <p>Contractually backed 99.98% query availability and sub-100ms P99 latency thresholds.</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- 10. STATS COUNTER -->
+
+  <section class="stats-counter section-padding">
+
+    <div class="stats-grid container">
+
+      <div class="stat-item" data-aos="zoom-in">
+
+        <h3 class="counter">10B+</h3>
+
+        <p>Analytical Rows Processed</p>
+
+      </div>
+
+      <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+
+        <h3 class="counter">12ms0+</h3>
+
+        <p>Enterprise Deployments</p>
+
+      </div>
+
+      <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+
+        <h3 class="counter">99.98%</h3>
+
+        <p>Query SLA Availability</p>
+
+      </div>
+
+      <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+
+        <h3 class="counter">12ms</h3>
+
+        <p>Global P99 Latency</p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+    <!-- 11. ENTERPRISE TELEMETRY & PLATFORM GALLERY -->
+  <section class="gallery-showcase container section-padding">
+    <div class="section-header text-center">
+      <span class="subtitle" style="color: var(--primary-green); font-weight: 700; text-transform: uppercase;"><i class="fa-solid fa-images"></i> Visual Architecture Showcase</span>
+      <h2>Enterprise Business Intelligence in Action</h2>
+      <p>High-resolution views of our autonomous copilots, real-time streaming pipelines, and boardroom cockpits</p>
+    </div>
+
+    <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem;">
+      <!-- Image 1: Boardroom KPI Cockpit -->
+      <div class="gallery-item" data-aos="fade-up" style="border-radius: 16px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1.5px solid rgba(234, 179, 8, 0.2); transition: all 0.35s ease; background: #fff;">
+        <div style="height: 240px; overflow: hidden; position: relative;">
+          <img src="images/hero-bi-dashboard.webp" alt="Executive Boardroom Cockpit" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.85) 100%);"></div>
+          <span style="position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); color: #eab308; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; border: 1px solid rgba(234,179,8,0.3); text-transform: uppercase;">
+            <i class="fa-solid fa-chart-line"></i> Executive KPI
+          </span>
+          <div style="position: absolute; bottom: 12px; left: 14px; right: 14px; color: #fff;">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 2px; color: #fff;">Boardroom ARR Cockpit</h4>
+            <p style="font-size: 0.78rem; color: #cbd5e1; margin: 0;">Multi-currency GAAP variance & cohort retention</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image 2: Streaming CDC Telemetry -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="100" style="border-radius: 16px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1.5px solid rgba(234, 179, 8, 0.2); transition: all 0.35s ease; background: #fff;">
+        <div style="height: 240px; overflow: hidden; position: relative;">
+          <img src="images/bi-telemetry-stream.webp" alt="Sub-Second Streaming CDC Telemetry" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.85) 100%);"></div>
+          <span style="position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); color: #22c55e; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; border: 1px solid rgba(34,197,94,0.3); text-transform: uppercase;">
+            <i class="fa-solid fa-bolt"></i> Live Stream
+          </span>
+          <div style="position: absolute; bottom: 12px; left: 14px; right: 14px; color: #fff;">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 2px; color: #fff;">Sub-Second Streaming CDC</h4>
+            <p style="font-size: 0.78rem; color: #cbd5e1; margin: 0;">1.4M events/sec Kafka & Redpanda in-memory sync</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image 3: Columnar Lakehouse Engine -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="200" style="border-radius: 16px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1.5px solid rgba(234, 179, 8, 0.2); transition: all 0.35s ease; background: #fff;">
+        <div style="height: 240px; overflow: hidden; position: relative;">
+          <img src="images/blog-data-pipeline.webp" alt="Zero-Copy Columnar Virtualization" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.85) 100%);"></div>
+          <span style="position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); color: #38bdf8; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; border: 1px solid rgba(56,189,248,0.3); text-transform: uppercase;">
+            <i class="fa-solid fa-microchip"></i> Zero-Copy
+          </span>
+          <div style="position: absolute; bottom: 12px; left: 14px; right: 14px; color: #fff;">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 2px; color: #fff;">In-Situ Columnar Lakehouse</h4>
+            <p style="font-size: 0.78rem; color: #cbd5e1; margin: 0;">DuckDB vectorized execution over S3 Apache Iceberg</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image 4: Autonomous Copilot & NLQ -->
+      <div class="gallery-item" data-aos="fade-up" style="border-radius: 16px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1.5px solid rgba(234, 179, 8, 0.2); transition: all 0.35s ease; background: #fff;">
+        <div style="height: 240px; overflow: hidden; position: relative;">
+          <img src="images/blog-ai-future.webp" alt="Autonomous AI Copilot Engine" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.85) 100%);"></div>
+          <span style="position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); color: #a855f7; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; border: 1px solid rgba(168,85,247,0.3); text-transform: uppercase;">
+            <i class="fa-solid fa-brain"></i> AI Reasoning
+          </span>
+          <div style="position: absolute; bottom: 12px; left: 14px; right: 14px; color: #fff;">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 2px; color: #fff;">Autonomous AI Copilot</h4>
+            <p style="font-size: 0.78rem; color: #cbd5e1; margin: 0;">Deterministic AST-verified SQL compilation</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image 5: Fintech & SaaS Customer Portal -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="100" style="border-radius: 16px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1.5px solid rgba(234, 179, 8, 0.2); transition: all 0.35s ease; background: #fff;">
+        <div style="height: 240px; overflow: hidden; position: relative;">
+          <img src="images/customer-case-fintech.webp" alt="Embedded Analytics SDK" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.85) 100%);"></div>
+          <span style="position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); color: #f59e0b; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; border: 1px solid rgba(245,158,11,0.3); text-transform: uppercase;">
+            <i class="fa-solid fa-cubes"></i> Embedded SDK
+          </span>
+          <div style="position: absolute; bottom: 12px; left: 14px; right: 14px; color: #fff;">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 2px; color: #fff;">Embedded White-Label Analytics</h4>
+            <p style="font-size: 0.78rem; color: #cbd5e1; margin: 0;">Turnkey multi-tenant analytics for B2B SaaS and fintech</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image 6: Security & Zero-Trust Governance -->
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="200" style="border-radius: 16px; overflow: hidden; position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.06); border: 1.5px solid rgba(234, 179, 8, 0.2); transition: all 0.35s ease; background: #fff;">
+        <div style="height: 240px; overflow: hidden; position: relative;">
+          <img src="images/services-security-shield.webp" alt="Cryptographic Zero-Trust Security" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block;">
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.85) 100%);"></div>
+          <span style="position: absolute; top: 12px; left: 12px; background: rgba(0,0,0,0.7); backdrop-filter: blur(8px); color: #eab308; padding: 4px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 700; border: 1px solid rgba(234,179,8,0.3); text-transform: uppercase;">
+            <i class="fa-solid fa-shield-halved"></i> SOC2 Type II
+          </span>
+          <div style="position: absolute; bottom: 12px; left: 14px; right: 14px; color: #fff;">
+            <h4 style="font-size: 1.05rem; font-weight: 800; margin: 0 0 2px; color: #fff;">Cryptographic Zero-Trust Mesh</h4>
+            <p style="font-size: 0.78rem; color: #cbd5e1; margin: 0;">Row-level RBAC & dynamic column masking in your VPC</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. CLIENT PORTAL ACCESS BANNER (APP DOWNLOAD SECTION) -->
+
+  <section class="app-download-section section-padding">
+
+    <div class="app-download-container container">
+
+      <div class="app-download-content" data-aos="fade-right">
+
+        <span class="badge" style="background: rgba(255,255,255,0.2); color: #fff;">Confidential Client Portal</span>
+
+        <h2>Access Live BI Telemetry in Real-Time</h2>
+
+        <p>Monitor live stream ingestion throughput, query the AI Copilot sandbox, and inspect real-time executive KPI metrics via our encrypted portal.</p>
+
+        <div class="download-buttons">
+
+          <a href="404.html" class="btn btn-primary" style="background: #eab308; color: #000000; font-weight: 700;"><i class="fa-solid fa-arrow-right-to-bracket"></i> Live BI Portal Login</a>
+
+          <a href="404.html" class="btn btn-outline" style="border-color: #fff; color: #fff;"><i class="fa-solid fa-envelope"></i> Request Live Sandbox Access</a>
+
+        </div>
+
+      </div>
+
+      <div class="app-download-image" data-aos="fade-left">
+
+        <img src="images/img_104.webp" alt="Stackly Executive Portal">
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- 13. THOUGHT LEADERSHIP (BLOG HIGHLIGHTS) -->
+
+  <section class="blog-preview container section-padding">
+
+    <div class="section-header">
+
+      <h2>Business Intelligence Dispatch & Research</h2>
+
+      <p>Authoritative research papers, warehouse latency benchmarks, and autonomous AI query architectures</p>
+
+    </div>
+
+    <div class="blog-grid">
+
+      <div class="blog-card" data-aos="fade-up">
+
+        <div class="blog-img">
+
+          <img src="images/local_img_7.webp" alt="M&A Deal Dynamics">
+
+          <span class="blog-date">Oct 12, 2026</span>
+
+        </div>
+
+        <div class="blog-content">
+
+          <span class="blog-category">Enterprise Architecture</span>
+
+          <h3>The Death of Static Dashboards: Why Autonomous Copilots Are Replacing Manual BI</h3>
+
+          <p>Discover how deterministic Abstract Syntax Trees (ASTs) coupled with vectorized semantics allow executives to interrogate live cloud warehouses with 100% fidelity.</p>
+
+          <a href="404.html" class="read-more">Read Full Analysis <i class="fa-solid fa-arrow-right"></i></a>
+
+        </div>
+
+      </div>
+
+      <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="blog-img">
+
+          <img src="images/local_img_1.webp" alt="Board Governance">
+
+          <span class="blog-date">Oct 08, 2026</span>
+
+        </div>
+
+        <div class="blog-content">
+
+          <span class="blog-category">Corporate Governance</span>
+
+          <h3>Benchmarking 4.8M Msg/s CDC Streaming with Redpanda and DuckDB</h3>
+
+          <p>An empirical deep-dive analysis into sub-second replication latency from transactional Postgres to columnar in-memory analytical layers.</p>
+
+          <a href="404.html" class="read-more">Read Full Analysis <i class="fa-solid fa-arrow-right"></i></a>
+
+        </div>
+
+      </div>
+
+      <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+
+        <div class="blog-img">
+
+          <img src="images/local_img_2.webp" alt="Capital Allocation">
+
+          <span class="blog-date">Oct 01, 2026</span>
+
+        </div>
+
+        <div class="blog-content">
+
+          <span class="blog-category">Strategic Finance</span>
+
+          <h3>The Only 5 SaaS Metrics Your Board of Directors Truly Cares About</h3>
+
+          <p>Why Net Retention Velocity and Blended Payback outrank raw top-line volume in current enterprise evaluations.</p>
+
+          <a href="404.html" class="read-more">Read Full Analysis <i class="fa-solid fa-arrow-right"></i></a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- 14. BUSINESS INTELLIGENCE FAQ SECTION -->
+
+  <section class="faq-section container section-padding" style="padding-top: 0;">
+
+    <div class="section-header">
+
+      <h2>Frequently Asked Questions</h2>
+
+      <p>Key information regarding our modern data stack architecture, zero-storage model, and onboarding</p>
+
+    </div>
+
+    <div class="faq-accordion" style="max-width: 800px; margin: 0 auto;">
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What is the standard deployment timeline for Stackly Business Intelligence?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Stackly connects natively to 500+ cloud sources (Snowflake, BigQuery, Postgres, Kafka). Standard deployment takes less than 48 hours with zero data extraction or downtime.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>How does Stackly BI safeguard client data privacy with zero-storage?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>With Stackly's Zero-Storage Architecture, all query processing executes in-situ or in your private VPC. We never extract, duplicate, or store proprietary rows on third-party servers.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">
+          <span>What is the structure of your Business Intelligence licensing and compute pricing?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <div class="faq-answer">
+          <p>Stackly pricing scales predictably with query compute nodes and tenant seats, featuring unlimited data source connectors, continuous CDC updates, and no egress markup fees.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- 15. EXECUTIVE BRIEFING SUBSCRIPTION -->
+
+  <section class="newsletter container section-padding">
+
+    <div class="news-content" data-aos="fade-up">
+
+      <h2>Subscribe to Stackly Intelligence Briefing</h2>
+
+      <p>Receive weekly architectural teardowns of modern data stacks, AI analytics advances, and executive KPI breakdowns.</p>
+
+      <form class="news-form" action="404.html">
+
+        <input type="email" placeholder="Enter your corporate email address" required>
+
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid container">
+      <div class="footer-col">
+        <a href="index.html" class="nav-logo"><img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="nav-logo-img" /></a>
+        <p style="margin-top: 1rem; color: #aaa;">Premier strategic business intelligence platform empowering enterprise leaders with actionable telemetry and sustainable scale.</p>
+        <div class="socials" style="margin-top: 1rem; display: flex; gap: 1rem;">
+          <a href="404.html" style="color: #fff;"><i class="fa-brands fa-facebook"></i></a>
+          <a href="404.html" style="color: #fff;"><i class="fa-brands fa-twitter"></i></a>
+          <a href="404.html" style="color: #fff;"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="service.html">Services</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>BI Practices</h4>
+        <ul>
+          <li><a href="404.html">Enterprise Analytics</a></li>
+          <li><a href="404.html">Autonomous AI Copilots</a></li>
+          <li><a href="404.html">Streaming CDC Lakehouse</a></li>
+          <li><a href="404.html">Zero-Trust Telemetry</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Stackly Salem Headquarters</h4>
+        <ul>
+          <li><i class="fa-solid fa-location-dot"></i> MMR Complex, Periyakollappatty, Chinna Thirupathi (near Chinna Muniyappan Kovil), Salem, TN 636008</li>
+          <li><a href="404.html"><i class="fa-solid fa-phone"></i> +91 70107 92745</a></li>
+          <li><a href="404.html"><i class="fa-solid fa-envelope"></i> info@thestackly.com</a></li>
+          <li><a href="404.html"><i class="fa-solid fa-clock"></i> Mon–Fri: 9:30 AM – 6:30 PM (Sat–Sun Closed)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly Business Intelligence. All rights reserved. SOC2 Type II Certified & ISO 27001 Compliant.</p>
+    </div>
+  </footer>
+
+
+
+  <script src="script.js?v=7.1"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        if(typeof AOS !== 'undefined') {
+
+            AOS.init({ duration: 800, once: true, offset: 100 });
+
+        }
+
+    });
+
+  </script>
+
+</body>
+
+</html>
+

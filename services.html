@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services & Solutions - Stackly Business Intelligence</title>
+  <link rel="stylesheet" href="style.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+</head>
+<body class="page-service">
+
+  <!-- STACKLY ENTERPRISE PRELOADER - SERVICES -->
+  <div class="stackly-preloader" id="stacklyPreloader">
+    <div class="preloader-backdrop-glow"></div>
+    <div class="preloader-content">
+      <div class="preloader-logo-ring">
+        <div class="preloader-orbit-ring"></div>
+        <div class="preloader-orbit-ring-reverse"></div>
+        <div class="preloader-icon-core">
+          <img src="images/stackly-icon.webp?v=3.0" alt="Stackly" />
+        </div>
+      </div>
+      <div class="preloader-brand-title">
+        <span class="preloader-brand-main">STACKLY</span>
+        <span class="preloader-brand-page">SERVICES</span>
+      </div>
+      <div class="preloader-status-text">
+        <span class="status-pulse-dot"></span>
+        <span id="preloaderStatus">INITIALIZING TELEMETRY...</span>
+      </div>
+      <div class="preloader-progress-wrap">
+        <div class="preloader-progress-bar">
+          <div class="preloader-progress-fill" id="preloaderProgress"></div>
+        </div>
+        <div class="preloader-counter" id="preloaderCounter">0%</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var p = document.getElementById('stacklyPreloader');
+      if (!p || p.dataset.inited) return;
+      p.dataset.inited = 'true';
+      var bar = document.getElementById('preloaderProgress');
+      var ctr = document.getElementById('preloaderCounter');
+      var st = document.getElementById('preloaderStatus');
+      var msgs = [
+        { at: 0, text: 'INITIALIZING TELEMETRY...' },
+        { at: 30, text: 'SYNCHRONIZING CDC MESH...' },
+        { at: 65, text: 'CALIBRATING LAKEHOUSE CACHE...' },
+        { at: 90, text: 'SYSTEM ONLINE' }
+      ];
+      var start = Date.now();
+      var dur = 600;
+      function tick() {
+        var elapsed = Date.now() - start;
+        var pct = Math.min(Math.round((elapsed / dur) * 100), 100);
+        if (bar) bar.style.width = pct + '%';
+        if (ctr) ctr.textContent = pct + '%';
+        if (st) {
+          for (var i = msgs.length - 1; i >= 0; i--) {
+            if (pct >= msgs[i].at) { st.textContent = msgs[i].text; break; }
+          }
+        }
+        if (pct < 100) {
+          requestAnimationFrame(tick);
+        } else {
+          setTimeout(function() {
+            p.classList.add('preloader-hidden');
+            setTimeout(function() { p.style.display = 'none'; }, 550);
+          }, 100);
+        }
+      }
+      requestAnimationFrame(tick);
+      setTimeout(function() {
+        if (p && !p.classList.contains('preloader-hidden')) {
+          p.classList.add('preloader-hidden');
+          setTimeout(function() { p.style.display = 'none'; }, 550);
+        }
+      }, 1200);
+    })();
+  </script>
+
+  <!-- HEADER -->
+  <header class="header-static">
+    <a href="index.html" class="nav-logo"><img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="nav-logo-img" /></a>
+    
+    <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation">
+      <i class="fa-solid fa-bars"></i>
+    </div>
+
+    <!-- Mobile Drawer Backdrop Overlay -->
+    <div class="nav-overlay" id="nav-overlay"></div>
+
+    <nav id="nav-links">
+      <div class="drawer-top">
+        <a href="index.html" class="drawer-logo" aria-label="Stackly Home">
+          <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="drawer-logo-img" />
+        </a>
+        <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <ul>
+        <li><a href="index.html"><span>Home</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+        <li><a href="about.html"><span>About</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+        <li><a href="service.html" class="active"><span>Service</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+        <li><a href="blog.html"><span>Blog</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+        <li><a href="contact.html"><span>Contact</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+      </ul>
+      <div class="auth-mobile">
+        <a href="login.html" class="btn-login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+        <a href="register.html" class="btn-signup"><i class="fa-solid fa-user-plus"></i> Signup</a>
+      </div>
+    </nav>
+    <div class="auth-desktop">
+      <a href="login.html" class="btn-login"><i class="fa-regular fa-user"></i> Login</a>
+      <a href="register.html" class="btn-signup"><i class="fa-solid fa-user-plus"></i> Signup</a>
+    </div>
+  </header>
+
+  <main style="padding-top: 90px;">
+    <!-- 1. SERVICE HERO -->
+    <section class="container section-padding">
+      <div class="service-hero-v2">
+        <div class="service-hero-content" data-aos="fade-up">
+          <span class="subtitle"><i class="fa-solid fa-bolt"></i> BUSINESS INTELLIGENCE PLATFORM & SERVICES</span>
+          <h1>Accelerating Enterprise<br><span class="highlight" style="color: var(--primary-green);">Decision Intelligence</span></h1>
+          <p>From petabyte-scale lakehouse virtualization and sub-second streaming CDC to autonomous natural language AI copilots and boardroom dashboards, Stackly BI delivers turnkey analytics infrastructure for forward-looking leadership.</p>
+          
+          <div class="hero-badges">
+            <div class="service-badge"><i class="fa-solid fa-microchip"></i> Autonomous AI Copilots</div>
+            <div class="service-badge"><i class="fa-solid fa-gauge-high"></i> Sub-Second CDC Streaming</div>
+            <div class="service-badge"><i class="fa-solid fa-shield-halved"></i> SOC2 & Zero-Trust Governance</div>
+          </div>
+        </div>
+        <div class="service-hero-image-wrapper">
+          <img src="images/hero-bi-dashboard.webp" alt="Enterprise Business Intelligence Dashboard" style="border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.12);">
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. CORE BI PRACTICES -->
+    <section class="container section-padding text-center">
+      <div class="section-header" style="margin-bottom: 3rem;">
+        <span class="subtitle" style="color: var(--primary-green); font-weight: 700; text-transform: uppercase;">SPECIALIZED CAPABILITIES</span>
+        <h2>Core Business Intelligence Practices</h2>
+        <p>End-to-end data pipelines, real-time analytics engines, and board-level telemetry</p>
+      </div>
+
+      <div class="service-cards-grid">
+        <!-- Card 1 -->
+        <div class="service-card-clean" data-aos="fade-up">
+          <div class="service-card-icon"><i class="fa-solid fa-chart-line"></i></div>
+          <h3>Enterprise Analytics & Executive KPIs</h3>
+          <p>Unified boardroom cockpits with automated variance attribution, dynamic P&L drill-downs, and real-time revenue cohort tracking across distributed business units.</p>
+          <ul class="service-feature-list">
+            <li><i class="fa-solid fa-circle-check"></i> Real-Time Multi-Currency ARR Tracking</li>
+            <li><i class="fa-solid fa-circle-check"></i> Automated EBITDA Variance Drivers</li>
+            <li><i class="fa-solid fa-circle-check"></i> Dynamic Executive Drill-Down Modals</li>
+          </ul>
+        </div>
+        <!-- Card 2 -->
+        <div class="service-card-clean" data-aos="fade-up" data-aos-delay="100">
+          <div class="service-card-icon"><i class="fa-solid fa-brain"></i></div>
+          <h3>Autonomous NLQ & AI Copilots</h3>
+          <p>Natural language querying verified against database ASTs. Zero hallucinations, instantaneous SQL compilation, and enterprise semantic layer harmonization.</p>
+          <ul class="service-feature-list">
+            <li><i class="fa-solid fa-circle-check"></i> AST-Verified SQL Generation</li>
+            <li><i class="fa-solid fa-circle-check"></i> In-Memory DuckDB Analytical Speed</li>
+            <li><i class="fa-solid fa-circle-check"></i> Natural Language Executive Briefings</li>
+          </ul>
+        </div>
+        <!-- Card 3 -->
+        <div class="service-card-clean" data-aos="fade-up" data-aos-delay="200">
+          <div class="service-card-icon"><i class="fa-solid fa-network-wired"></i></div>
+          <h3>Streaming CDC & Lakehouse Engine</h3>
+          <p>Sub-second change data capture across Kafka, Redpanda, Snowflake, BigQuery, and Databricks with zero replication overhead and columnar in-memory caching.</p>
+          <ul class="service-feature-list">
+            <li><i class="fa-solid fa-circle-check"></i> Sub-Second Kafka & Debezium Ingestion</li>
+            <li><i class="fa-solid fa-circle-check"></i> Zero-Copy S3 / Iceberg Lakehouse Queries</li>
+            <li><i class="fa-solid fa-circle-check"></i> Columnar P99 Query Times < 85ms</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ENGAGEMENT FRAMEWORK -->
+    <section class="how-it-works container section-padding" style="padding-top: 0;">
+      <div class="section-header">
+        <span class="subtitle" style="color: var(--primary-green); font-weight: 700; text-transform: uppercase;">HOW WE DELIVER</span>
+        <h2>Our BI Architecture Framework</h2>
+        <p>A proven 3-phase deployment cycle delivering measurable executive ROI</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card" data-aos="fade-up">
+          <div class="step-num">01</div>
+          <div class="step-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+          <h3>Semantic Audit & Discovery</h3>
+          <p>Rapid 14-day discovery mapping all upstream schemas, ETL latency bottlenecks, fragmented metrics, and security governance boundaries.</p>
+        </div>
+        <div class="step-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="step-num">02</div>
+          <div class="step-icon"><i class="fa-solid fa-layer-group"></i></div>
+          <h3>Lakehouse & Copilot Blueprint</h3>
+          <p>Configuring unified semantic models, columnar query caching, real-time CDC sync, and automated board telemetry portals.</p>
+        </div>
+        <div class="step-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="step-num">03</div>
+          <div class="step-icon"><i class="fa-solid fa-rocket"></i></div>
+          <h3>Turnkey Rollout & Telemetry</h3>
+          <p>Production deployment with continuous query performance optimization, SOC2 compliance auditing, and 24/7 dedicated support.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. TRANSPARENT ENGAGEMENT TIERS -->
+    <section class="container section-padding" style="padding-top: 0;">
+      <div class="section-header">
+        <span class="subtitle" style="color: var(--primary-green); font-weight: 700; text-transform: uppercase;">FLEXIBLE DEPLOYMENT</span>
+        <h2>Business Intelligence Engagement Tiers</h2>
+        <p>Scalable solution tiers tailored to your enterprise data maturity and operational speed</p>
+      </div>
+      <div class="values-grid">
+        <div class="value-card" data-aos="fade-up">
+          <div class="icon-circle"><i class="fa-solid fa-bolt"></i></div>
+          <h3>BI Sprint & Audit</h3>
+          <p style="font-size: 1.6rem; font-weight: 800; color: var(--primary-green); margin: 0.5rem 0;">3–4 Weeks</p>
+          <p>Comprehensive data stack diagnostic, semantic layer definition, and benchmark speedrun optimization ahead of C-suite review.</p>
+        </div>
+        <div class="value-card" data-aos="fade-up" data-aos-delay="100" style="border: 2px solid var(--primary-green);">
+          <div class="icon-circle" style="background: var(--primary-green); color: white;"><i class="fa-solid fa-crown"></i></div>
+          <h3>Enterprise Platform Retainer</h3>
+          <p style="font-size: 1.6rem; font-weight: 800; color: var(--primary-green); margin: 0.5rem 0;">Full Deployment</p>
+          <p>Full implementation of streaming CDC pipelines, autonomous NLQ copilots, custom analytics cockpits, and dedicated BI engineering support.</p>
+        </div>
+        <div class="value-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon-circle"><i class="fa-solid fa-cubes"></i></div>
+          <h3>Embedded White-Label SDK</h3>
+          <p style="font-size: 1.6rem; font-weight: 800; color: var(--primary-green); margin: 0.5rem 0;">Continuous Scale</p>
+          <p>White-labeled customer-facing BI dashboards embedded directly into your SaaS or fintech product with sub-second tenant isolation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. REAL-TIME DATA LAKEHOUSE INTEGRATION -->
+    <section class="container section-padding" style="padding-top: 0;">
+      <div class="split-layout">
+        <div class="split-image">
+          <img src="images/blog-data-pipeline.webp" alt="Real-Time Data Pipeline Architecture" style="border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);">
+        </div>
+        <div class="split-content">
+          <span class="subtitle">DATA PIPELINE INTEGRATION</span>
+          <h2>Zero-Copy Columnar Virtualization</h2>
+          <div class="divider"></div>
+          <p>Stop paying exorbitant warehouse compute bills for repetitive analytical slicing. Stackly BI combines in-memory DuckDB engines with Apache Iceberg and Delta Lake metadata to execute analytical queries right where your data sits.</p>
+          <p>Query hundreds of millions of events in under 85 milliseconds while preserving complete data lineage, column-level access controls, and zero storage egress costs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. SECURITY & GOVERNANCE -->
+    <section class="container section-padding" style="padding-top: 0;">
+      <div class="split-layout reverse">
+        <div class="split-image">
+          <img src="images/services-security-shield.webp" alt="SOC2 Zero-Trust BI Security Architecture" style="border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);">
+        </div>
+        <div class="split-content">
+          <span class="subtitle">ENTERPRISE GOVERNANCE</span>
+          <h2>SOC2 Type II & Zero-Trust Telemetry</h2>
+          <div class="divider"></div>
+          <p>Enterprise intelligence requires impenetrable governance. Stackly BI features cryptographic zero-knowledge metadata synchronization, dynamic column-level masking, and granular role-based entitlements.</p>
+          <p>Your raw corporate data never leaves your VPC. Only AST-verified query tokens and summarized aggregates are calculated, guaranteeing complete privacy and regulatory compliance.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. BI SOLUTIONS FAQ -->
+    <section class="faq-section container section-padding" style="padding-top: 0;">
+      <div class="section-header">
+        <span class="subtitle" style="color: var(--primary-green); font-weight: 700; text-transform: uppercase;">FREQUENTLY ASKED QUESTIONS</span>
+        <h2>Business Intelligence Solutions FAQ</h2>
+        <p>Answers to common questions from Chief Data Officers and Enterprise Architects</p>
+      </div>
+      <div class="faq-accordion" style="max-width: 800px; margin: 0 auto;">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How does Stackly BI achieve sub-second query latency on billions of rows?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>We deploy embedded vectorized columnar execution (DuckDB & Arrow) combined with intelligent partition pruning on cloud object stores (S3, GCS, Azure Blob). Analytical queries run locally inside cached memory buffers, bypassing slow remote SQL warehouse queues.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can Stackly BI integrate with our existing Snowflake or Databricks data lake?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. Stackly BI serves as an acceleration and semantic layer atop Snowflake, Databricks, BigQuery, or Amazon Redshift. We query metadata directly via Apache Iceberg, eliminating the need to duplicate or move existing tables.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>How does your autonomous AI Copilot prevent SQL hallucinations?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Our NLQ engine parses natural language queries into an Abstract Syntax Tree (AST), which is validated deterministically against your exact schema dictionary and business logic metrics before execution. Zero hallucinated joins or imaginary tables are permitted.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>What deployment models are supported for enterprise security?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Stackly BI offers complete VPC deployment (AWS, GCP, Azure), on-premise Kubernetes Helm charts, and fully managed SOC2 Type II and HIPAA-compliant sovereign cloud instances.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. BOTTOM CTA BANNER -->
+    <section class="cta-section container" style="margin-bottom: 5rem;">
+      <div class="cta-card text-center" data-aos="zoom-in">
+        <h2>Ready to Transform Your Enterprise Analytics?</h2>
+        <p>Book a private architectural demo with our Principal Business Intelligence Architects.</p>
+        <div class="cta-actions" style="margin-top: 1.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="contact.html" class="btn btn-primary"><i class="fa-solid fa-calendar-check"></i> Schedule BI Architecture Review</a>
+          <a href="login.html" class="btn btn-outline" style="border: 2px solid #000; color: #000;"><i class="fa-solid fa-arrow-right-to-bracket"></i> Access Client Telemetry Portal</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid container">
+      <div class="footer-col">
+        <a href="index.html" class="nav-logo"><img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="nav-logo-img" /></a>
+        <p style="margin-top: 1rem; color: #aaa;">Premier strategic business intelligence platform empowering enterprise leaders with actionable telemetry and sustainable scale.</p>
+        <div class="socials" style="margin-top: 1rem; display: flex; gap: 1rem;">
+          <a href="404.html" style="color: #fff;"><i class="fa-brands fa-facebook"></i></a>
+          <a href="404.html" style="color: #fff;"><i class="fa-brands fa-twitter"></i></a>
+          <a href="404.html" style="color: #fff;"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="service.html">Services</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>BI Practices</h4>
+        <ul>
+          <li><a href="404.html">Enterprise Analytics</a></li>
+          <li><a href="404.html">Autonomous AI Copilots</a></li>
+          <li><a href="404.html">Streaming CDC Lakehouse</a></li>
+          <li><a href="404.html">Zero-Trust Telemetry</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Stackly Salem Headquarters</h4>
+        <ul>
+          <li><i class="fa-solid fa-location-dot"></i> MMR Complex, Periyakollappatty, Chinna Thirupathi (near Chinna Muniyappan Kovil), Salem, TN 636008</li>
+          <li><a href="404.html"><i class="fa-solid fa-phone"></i> +91 70107 92745</a></li>
+          <li><a href="404.html"><i class="fa-solid fa-envelope"></i> info@thestackly.com</a></li>
+          <li><a href="404.html"><i class="fa-solid fa-clock"></i> Mon–Fri: 9:30 AM – 6:30 PM (Sat–Sun Closed)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly Business Intelligence. All rights reserved. SOC2 Type II Certified & ISO 27001 Compliant.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+</body>
+</html>

@@ -1,0 +1,500 @@
+/* ==========================================================================
+   STACKLY BI - ADVANCED ANIMATIONS & MOTION SYSTEM
+   Includes all requested animation styles:
+   - Fade In / Fade Up
+   - Slide In (Left, Right, Down)
+   - Zoom In / Zoom Out
+   - Scale In
+   - Wobble Card Animation
+   - Spring / Springboard Animation
+   - Staggered Animation
+   - Hover Lift
+   - Floating Animation
+   - Parallax Scrolling
+   - Scroll Reveal
+   - Counter Animation
+   - Card Tilt / 3D Tilt
+   - Image Reveal
+   - Text Reveal / Typewriter
+   - Bounce Animation
+   - Rotate Animation
+   - Accordion / Expand-Collapse
+   - Sticky Scroll Animation
+   - Smooth Section Transition
+   ========================================================================== */
+
+/* 1. FADE IN & FADE UP */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 2. SLIDE IN */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-left {
+  animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-right {
+  animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-down {
+  animation: slideInDown 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 3. ZOOM IN / ZOOM OUT */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+}
+
+.animate-zoom-in {
+  animation: zoomIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-zoom-out {
+  animation: zoomOut 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* 4. SCALE IN */
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  70% {
+    transform: scale(1.04);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* 5. WOBBLE CARD ANIMATION */
+@keyframes wobbleCard {
+  0% { transform: translateX(0%) rotate(0deg); }
+  15% { transform: translateX(-4px) rotate(-1.5deg); }
+  30% { transform: translateX(4px) rotate(1.5deg); }
+  45% { transform: translateX(-3px) rotate(-1deg); }
+  60% { transform: translateX(3px) rotate(1deg); }
+  75% { transform: translateX(-1px) rotate(-0.5deg); }
+  100% { transform: translateX(0%) rotate(0deg); }
+}
+
+.wobble-card:hover {
+  animation: wobbleCard 0.75s ease-in-out;
+}
+
+.wobble-trigger {
+  animation: wobbleCard 0.75s ease-in-out;
+}
+
+/* 6. SPRING / SPRINGBOARD ANIMATION */
+@keyframes springboard {
+  0% {
+    transform: scale(0.85);
+  }
+  40% {
+    transform: scale(1.08);
+  }
+  70% {
+    transform: scale(0.96);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.spring-btn {
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+}
+
+.spring-btn:active {
+  transform: scale(0.94);
+}
+
+.spring-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.springboard-card {
+  animation: springboard 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* 7. STAGGERED ANIMATION (Visible by default) */
+.stagger-parent .stagger-item {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* 8. HOVER LIFT */
+.hover-lift {
+  transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.28s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(255, 106, 0, 0.18);
+}
+
+/* 9. FLOATING ANIMATION */
+@keyframes floating {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.8deg);
+  }
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.animate-floating {
+  animation: floating 4s ease-in-out infinite;
+}
+
+.animate-floating-delayed {
+  animation: floating 4.5s ease-in-out 1.2s infinite;
+}
+
+/* 10. PARALLAX SCROLLING */
+.parallax-layer {
+  transition: transform 0.12s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+/* 11. SCROLL REVEAL (Safe: Always 100% visible by default) */
+.reveal-on-scroll {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.reveal-on-scroll.revealed {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.reveal-on-scroll.slide-left {
+  transform: none !important;
+  opacity: 1 !important;
+}
+.reveal-on-scroll.slide-left.revealed {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.reveal-on-scroll.slide-right {
+  transform: none !important;
+  opacity: 1 !important;
+}
+.reveal-on-scroll.slide-right.revealed {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+.reveal-on-scroll.scale-up {
+  transform: none !important;
+  opacity: 1 !important;
+}
+.reveal-on-scroll.scale-up.revealed {
+  transform: none !important;
+  opacity: 1 !important;
+}
+
+/* 12. COUNTER ANIMATION */
+.counter-value {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* 13. CARD TILT / 3D TILT */
+.tilt-card-container {
+  perspective: 1200px;
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: transform 0.15s ease-out, box-shadow 0.25s ease;
+  will-change: transform;
+}
+
+.tilt-inner {
+  transform: translateZ(28px);
+}
+
+/* 14. IMAGE REVEAL */
+.image-reveal-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.image-reveal-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #FF6000, #FF8A00);
+  transform: translateX(-101%);
+  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.image-reveal-wrapper.reveal-curtain::after {
+  animation: imageCurtain 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes imageCurtain {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(0%); }
+  100% { transform: translateX(100%); }
+}
+
+.image-reveal-wrapper img {
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 0.8s ease 0.3s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s;
+}
+
+.image-reveal-wrapper.revealed img {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 15. TEXT REVEAL / TYPEWRITER */
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1.15em;
+  background-color: var(--primary, #FF6000);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blinkCursor 0.9s infinite;
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 16. BOUNCE ANIMATION */
+@keyframes bounceSoft {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-bounce {
+  animation: bounceSoft 2.5s infinite;
+}
+
+/* 17. ROTATE ANIMATION */
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotate {
+  animation: rotateSlow 18s linear infinite;
+}
+
+.animate-spin-fast {
+  animation: rotateSlow 1.5s linear infinite;
+}
+
+/* 18. ACCORDION / EXPAND-COLLAPSE */
+.accordion-item {
+  border-radius: var(--radius-md, 12px);
+  transition: border-color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.accordion-header {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+
+.accordion-icon {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.accordion-item.active .accordion-icon {
+  transform: rotate(180deg);
+}
+
+.accordion-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.accordion-item.active .accordion-content {
+  grid-template-rows: 1fr;
+}
+
+.accordion-inner {
+  min-height: 0;
+  transition: opacity 0.3s ease;
+  opacity: 0;
+}
+
+.accordion-item.active .accordion-inner {
+  opacity: 1;
+}
+
+/* 19. STICKY SCROLL ANIMATION */
+.sticky-nav-bar {
+  position: sticky;
+  top: 74px;
+  z-index: 40;
+  backdrop-filter: blur(16px);
+  transition: all 0.3s ease;
+}
+
+.sticky-nav-bar.scrolled {
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+}
+
+/* 20. SMOOTH SECTION TRANSITION */
+.page-view {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: none;
+}
+
+.page-view.active-page {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* PULSE RADAR */
+@keyframes radarPulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 96, 0, 0.5);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 12px rgba(255, 96, 0, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(255, 96, 0, 0);
+  }
+}
+
+.radar-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--primary, #FF6000);
+  display: inline-block;
+  animation: radarPulse 2s infinite;
+}
+
+/* SHIMMER EFFECT FOR DATA REVEAL */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-bg {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2.2s infinite;
+}

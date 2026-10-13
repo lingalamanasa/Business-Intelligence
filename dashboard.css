@@ -1,0 +1,827 @@
+/* ==========================================================================
+   STACKLY BI - ENTERPRISE DASHBOARD DESIGN SYSTEM (YELLOW / AMBER THEME)
+   High-Fidelity Dashboard System with Top Bar, Sidebar, KPI Cards & Tables
+   ========================================================================== */
+
+:root {
+  --dash-yellow-primary: #eab308;
+  --dash-yellow-dark: #ca8a04;
+  --dash-yellow-deep: #a16207;
+  --dash-yellow-light: #fef08a;
+  --dash-yellow-pale: #fefce8;
+  --dash-header-bg: #ca8a04;
+  --dash-sidebar-bg: #854d0e;
+  --dash-sidebar-active: #eab308;
+  --dash-bg: #f8fafc;
+  --dash-card-bg: #ffffff;
+  --dash-text-dark: #0f172a;
+  --dash-text-muted: #64748b;
+  --dash-border: #e2e8f0;
+  --dash-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --dash-radius: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background-color: var(--dash-bg);
+  color: var(--dash-text-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 1. TOP NAVBAR HEADER (YELLOW THEME IN PLACE OF BLUE) */
+.dash-header {
+  background: linear-gradient(90deg, #ca8a04 0%, #eab308 50%, #d97706 100%);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  color: #000000;
+  box-shadow: 0 2px 10px rgba(202, 138, 4, 0.25);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.dash-logo-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #000000;
+  font-weight: 900;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+
+.dash-logo-box svg {
+  width: 28px;
+  height: 28px;
+}
+
+.dash-logo-box img,
+.dash-logo-img {
+  height: 34px;
+  max-height: 38px;
+  width: auto;
+  max-width: 170px;
+  object-fit: contain;
+  display: block;
+}
+
+.dash-user-nav {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dash-user-email {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #000000;
+}
+
+.dash-user-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #ca8a04;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  cursor: pointer;
+}
+
+/* 2. MAIN LAYOUT: SIDEBAR + CONTENT */
+.dash-layout {
+  display: flex;
+  flex: 1;
+  min-height: calc(100vh - 64px);
+}
+
+/* 3. LEFT SIDEBAR (YELLOW / AMBER THEME IN PLACE OF BLUE) */
+.dash-sidebar {
+  width: 270px;
+  background: linear-gradient(180deg, #a16207 0%, #854d0e 60%, #713f12 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem 1rem;
+  flex-shrink: 0;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.06);
+}
+
+.sidebar-category-title {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fef08a;
+  margin-bottom: 1.2rem;
+  padding-left: 0.8rem;
+  opacity: 0.95;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.sidebar-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 600;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.sidebar-nav-btn i {
+  font-size: 1.1rem;
+  width: 22px;
+  text-align: center;
+  color: #fef08a;
+}
+
+.sidebar-nav-btn:hover {
+  background: rgba(254, 240, 138, 0.15);
+  color: #ffffff;
+  transform: translateX(3px);
+}
+
+.sidebar-nav-btn.active {
+  background: #fde047;
+  color: #000000;
+  font-weight: 800;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.sidebar-nav-btn.active i {
+  color: #000000;
+}
+
+.sidebar-nav-btn.active::after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #000000;
+  position: absolute;
+  right: 14px;
+}
+
+/* User Card in Sidebar (Top) */
+.sidebar-user-card {
+  margin: 0 0 1.25rem 0;
+  padding: 1.1rem;
+  background: rgba(0, 0, 0, 0.22);
+  border-radius: 14px;
+  border: 1px solid rgba(254, 240, 138, 0.15);
+}
+
+.sidebar-user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 0.85rem;
+}
+
+.sidebar-user-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #eab308;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+}
+
+.sidebar-user-details strong {
+  display: block;
+  font-size: 0.86rem;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.sidebar-user-details span {
+  display: block;
+  font-size: 0.72rem;
+  color: #fde047;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.btn-sidebar-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 0.55rem;
+  border-radius: 8px;
+  background: transparent;
+  color: #fef08a;
+  border: 1.5px solid rgba(254, 240, 138, 0.4);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-sidebar-logout:hover {
+  background: #fde047;
+  color: #000000;
+  border-color: #fde047;
+}
+
+/* 4. MAIN CONTENT AREA */
+.dash-content {
+  flex: 1;
+  padding: 2.2rem 2.8rem;
+  overflow-y: auto;
+}
+
+.dash-top-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dash-hero-title h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--dash-text-dark);
+  margin-bottom: 0.35rem;
+}
+
+.dash-hero-title p {
+  color: var(--dash-text-muted);
+  font-size: 0.95rem;
+}
+
+.dash-hero-actions {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.btn-dash-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0.75rem 1.4rem;
+  border-radius: 50px;
+  background: #ca8a04;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 15px rgba(202, 138, 4, 0.3);
+}
+
+.btn-dash-action:hover {
+  background: #a16207;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(202, 138, 4, 0.4);
+}
+
+.btn-dash-secondary {
+  background: #ffffff;
+  color: #ca8a04;
+  border: 1.5px solid #ca8a04;
+  box-shadow: none;
+}
+
+.btn-dash-secondary:hover {
+  background: #fefce8;
+  color: #854d0e;
+}
+
+/* 5 SECTIONS ARCHITECTURE */
+
+/* Section 1: Quick Action Cards (4 Cards) */
+.dash-quick-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+
+.quick-action-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.4rem;
+  border: 1px solid var(--dash-border);
+  box-shadow: var(--dash-shadow);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.quick-action-card:hover {
+  transform: translateY(-4px);
+  border-color: #eab308;
+  box-shadow: 0 10px 25px rgba(234, 179, 8, 0.15);
+}
+
+.quick-action-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: #fef9c3;
+  color: #ca8a04;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  margin: 0 auto 0.8rem;
+}
+
+.quick-action-card h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.quick-action-card p {
+  font-size: 0.76rem;
+  color: var(--dash-text-muted);
+}
+
+/* Section 2: Metric Tiles (4 KPI Cards with Badges) */
+.dash-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.4rem;
+  margin-bottom: 2rem;
+}
+
+.dash-kpi-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.6rem;
+  border: 1px solid var(--dash-border);
+  box-shadow: var(--dash-shadow);
+  position: relative;
+}
+
+.dash-kpi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.dash-kpi-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--dash-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dash-kpi-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+.dash-kpi-badge.today { background: #e0f2fe; color: #0284c7; }
+.dash-kpi-badge.pending { background: #fef3c7; color: #b45309; }
+.dash-kpi-badge.current { background: #dcfce7; color: #15803d; }
+.dash-kpi-badge.due { background: #fee2e2; color: #b91c1c; }
+.dash-kpi-badge.yellow { background: #fef08a; color: #854d0e; }
+
+a.dash-kpi-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+a.dash-kpi-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  filter: brightness(0.96);
+}
+
+
+.dash-kpi-value {
+  font-size: 1.85rem;
+  font-weight: 900;
+  color: var(--dash-text-dark);
+  margin-bottom: 0.35rem;
+}
+
+.dash-kpi-sub {
+  font-size: 0.82rem;
+  color: var(--dash-text-muted);
+}
+
+/* Section 3: Dual Chart / Split Layout */
+.dash-split-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 1.8rem;
+  margin-bottom: 2rem;
+}
+
+.dash-panel-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.8rem;
+  border: 1px solid var(--dash-border);
+  box-shadow: var(--dash-shadow);
+}
+
+.dash-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.4rem;
+}
+
+.dash-panel-header h3 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--dash-text-dark);
+}
+
+/* Mini Status Cards (Matching Screenshot 3 Hospital Status) */
+.dash-mini-card-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.dash-mini-card {
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 14px;
+  padding: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.dash-mini-card:hover {
+  background: #ffffff;
+  border-color: #eab308;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.dash-mini-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.dash-mini-card-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--dash-text-muted);
+  letter-spacing: 0.04em;
+}
+
+.dash-mini-card-val {
+  font-size: 1.65rem;
+  font-weight: 900;
+  color: var(--dash-text-dark);
+  margin-bottom: 0.35rem;
+}
+
+.dash-mini-card-desc {
+  font-size: 0.78rem;
+  color: var(--dash-text-muted);
+  line-height: 1.4;
+}
+
+/* Queue List Items */
+.queue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.queue-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.2rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 1px solid #f1f5f9;
+  transition: all 0.2s ease;
+}
+
+.queue-item:hover {
+  background: #ffffff;
+  border-color: #eab308;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.queue-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.queue-item-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.queue-item-icon.blue { background: #e0f2fe; color: #0284c7; }
+.queue-item-icon.green { background: #dcfce7; color: #16a34a; }
+.queue-item-icon.purple { background: #f3e8ff; color: #9333ea; }
+.queue-item-icon.amber { background: #fef3c7; color: #d97706; }
+
+.queue-item-text strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--dash-text-dark);
+}
+
+.queue-item-text span {
+  font-size: 0.78rem;
+  color: var(--dash-text-muted);
+}
+
+/* Section 4: Data Table */
+.dash-table-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.8rem;
+  border: 1px solid var(--dash-border);
+  box-shadow: var(--dash-shadow);
+  margin-bottom: 2rem;
+}
+
+.dash-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.88rem;
+}
+
+.dash-table th {
+  text-align: left;
+  padding: 0.9rem 1rem;
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--dash-text-muted);
+  border-bottom: 1.5px solid var(--dash-border);
+  background: #f8fafc;
+}
+
+.dash-table td {
+  padding: 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  color: var(--dash-text-dark);
+}
+
+.dash-table tr:hover td {
+  background: #fefce8;
+}
+
+/* Section 5: AI Insights / Intelligence Stream */
+.dash-insights-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.8rem;
+  border: 1px solid var(--dash-border);
+  box-shadow: var(--dash-shadow);
+}
+
+.insight-item {
+  display: flex;
+  gap: 14px;
+  padding: 1.1rem;
+  border-radius: 12px;
+  background: #f8fafc;
+  margin-bottom: 0.8rem;
+  border: 1px solid #f1f5f9;
+}
+
+.insight-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #fef3c7;
+  color: #ca8a04;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.insight-text h5 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.insight-text p {
+  font-size: 0.82rem;
+  color: var(--dash-text-muted);
+  line-height: 1.45;
+}
+
+/* Interactive View Tab System (Each Left-hand button shows its 5-section view) */
+.dash-view-tab {
+  display: none;
+}
+
+.dash-view-tab.active {
+  display: block;
+  animation: fadeInDash 0.3s ease;
+}
+
+@keyframes fadeInDash {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Wobble Card Enter Animation for Dashboard */
+@keyframes dashWobbleEnter {
+  0% {
+    opacity: 0;
+    transform: translateY(22px) scale(0.97) rotate(-1.2deg);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(-3px) scale(1.01) rotate(0.6deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+.dash-quick-card,
+.dash-stat-card,
+.dash-chart-card,
+.dash-table-card,
+.insight-item,
+.dash-insights-box {
+  animation: dashWobbleEnter 0.62s cubic-bezier(0.25, 1, 0.5, 1) both;
+  will-change: transform, opacity;
+}
+
+.dash-table-card {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  .dash-quick-cards, .dash-kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dash-split-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .dash-layout {
+    flex-direction: column;
+  }
+  .dash-sidebar {
+    width: 100%;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .sidebar-category-title {
+    margin-bottom: 0.6rem;
+  }
+  .sidebar-nav {
+    display: flex;
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  .sidebar-nav::-webkit-scrollbar {
+    height: 4px;
+  }
+  .sidebar-nav::-webkit-scrollbar-thumb {
+    background: rgba(254, 240, 138, 0.4);
+    border-radius: 4px;
+  }
+  .sidebar-nav-btn {
+    white-space: nowrap;
+    padding: 0.65rem 0.95rem;
+    font-size: 0.84rem;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .dash-content {
+    padding: 1.25rem 0.85rem;
+  }
+  .dash-quick-cards, .dash-kpi-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .dash-header {
+    padding: 0 1rem;
+    height: 58px;
+  }
+  .dash-logo-box span {
+    font-size: 1.15rem;
+  }
+  .dash-user-email {
+    display: none;
+  }
+  .dash-user-nav {
+    gap: 8px;
+  }
+  .dash-user-avatar {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+  }
+  .dash-section-header h2 {
+    font-size: 1.35rem;
+  }
+  .dash-section-header p {
+    font-size: 0.82rem;
+  }
+  .dash-quick-card {
+    padding: 1.1rem;
+  }
+  .dash-table th, .dash-table td {
+    padding: 0.65rem 0.75rem;
+    font-size: 0.78rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .dash-header {
+    padding: 0 0.65rem;
+  }
+  .dash-content {
+    padding: 1rem 0.5rem;
+  }
+  .sidebar-nav-btn {
+    font-size: 0.78rem;
+    padding: 0.55rem 0.75rem;
+  }
+  .dash-quick-card h3 {
+    font-size: 1.2rem;
+  }
+}

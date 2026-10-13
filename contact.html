@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Briefing - Stackly Business Intelligence</title>
+  <link rel="stylesheet" href="style.css?v=12.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <style>
+    .contact-grid-2 {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 2.5rem;
+      margin-bottom: 3.5rem;
+    }
+    @media (max-width: 992px) {
+      .contact-grid-2 { grid-template-columns: 1fr; }
+    }
+    .contact-col {
+      background: #ffffff;
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      border: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .contact-col h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1.5rem;
+      color: var(--dark-text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .contact-form .form-group {
+      margin-bottom: 1.2rem;
+      position: relative;
+    }
+    .contact-form .form-group i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary-green);
+    }
+    .contact-form .form-group textarea ~ i {
+      top: 22px;
+      transform: none;
+    }
+    .contact-form input, .contact-form textarea, .contact-form select {
+      width: 100%;
+      padding: 0.9rem 1rem 0.9rem 2.8rem;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #fbfbfb;
+      transition: all 0.3s;
+    }
+    .contact-form input:focus, .contact-form textarea:focus, .contact-form select:focus {
+      border-color: var(--primary-green);
+      background: #fff;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(234, 179, 8, 0.2);
+    }
+    .info-item {
+      display: flex;
+      gap: 1.2rem;
+      margin-bottom: 1.6rem;
+    }
+    .info-item i {
+      font-size: 1.4rem;
+      color: var(--primary-green);
+      margin-top: 3px;
+    }
+    .info-item h4 {
+      font-size: 1.05rem;
+      margin-bottom: 0.2rem;
+      color: var(--dark-text);
+    }
+    .info-item p {
+      color: #374151;
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.55;
+      margin: 0;
+    }
+    /* Dedicated Standalone Map Section */
+    .map-section {
+      margin-bottom: 3.5rem;
+    }
+    .map-wrapper {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.5rem;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+    }
+    .map-frame-box {
+      border-radius: 14px;
+      overflow: hidden;
+      height: 420px;
+      width: 100%;
+      border: 1px solid var(--border-color);
+    }
+    .map-frame-box iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+    }
+    .hub-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 992px) {
+      .hub-cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 576px) {
+      .hub-cards-grid { grid-template-columns: 1fr; }
+      .map-frame-box { height: 300px; }
+    }
+    .hub-card {
+      background: #fbfbfb;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.2rem;
+      transition: all 0.3s ease;
+    }
+    .hub-card:hover {
+      background: #fff;
+      border-color: var(--primary-green);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    }
+    .hub-card h4 {
+      font-size: 0.98rem;
+      color: var(--dark-text);
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .hub-card p {
+      font-size: 0.85rem;
+      color: #71717a;
+      margin: 0;
+    }
+
+    /* Full-Width Edge-to-Edge Hero Cover */
+    main {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      margin: 0 !important;
+    }
+
+    .blog-hero {
+      width: 100% !important;
+      max-width: 100% !important;
+      position: relative !important;
+      left: 0 !important;
+      right: auto !important;
+      margin: 0 !important;
+      margin-bottom: 3.5rem !important;
+      background: linear-gradient(to right, rgba(10, 15, 29, 0.94) 0%, rgba(15, 23, 42, 0.82) 48%, rgba(15, 23, 42, 0.3) 100%), url('images/blog_hero_bg.webp') !important;
+      background-size: cover !important;
+      background-position: center center !important;
+      background-repeat: no-repeat !important;
+      border-radius: 0 !important;
+      padding: 6.5rem 0 5.5rem !important;
+      color: #fff !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12) !important;
+    }
+
+    .blog-hero .hero-content-inner {
+      width: 100% !important;
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+      padding: 0 5% !important;
+    }
+
+    .blog-hero .subtitle {
+      color: #eab308 !important;
+      font-weight: 700 !important;
+      margin-bottom: 1rem !important;
+      display: block !important;
+      letter-spacing: 1px !important;
+      font-size: 0.9rem !important;
+    }
+
+    .blog-hero h1 {
+      font-size: 3.5rem !important;
+      margin-bottom: 0.5rem !important;
+      line-height: 1.2 !important;
+      color: #fff !important;
+    }
+
+    .blog-hero .highlight {
+      color: #eab308 !important;
+    }
+
+    .blog-hero p {
+      max-width: 650px !important;
+      font-size: 1.15rem !important;
+      line-height: 1.65 !important;
+      margin-top: 1.5rem !important;
+      color: #e2e8f0 !important;
+    }
+
+    @media (max-width: 768px) {
+      .blog-hero { padding: 4.5rem 0 3.5rem !important; }
+      .blog-hero h1 { font-size: 2.2rem !important; }
+    }
+  </style>
+</head>
+<body class="page-contact">
+
+  <!-- STACKLY ENTERPRISE PRELOADER - CONTACT -->
+  <div class="stackly-preloader" id="stacklyPreloader">
+    <div class="preloader-backdrop-glow"></div>
+    <div class="preloader-content">
+      <div class="preloader-logo-ring">
+        <div class="preloader-orbit-ring"></div>
+        <div class="preloader-orbit-ring-reverse"></div>
+        <div class="preloader-icon-core">
+          <img src="images/stackly-icon.webp?v=3.0" alt="Stackly" />
+        </div>
+      </div>
+      <div class="preloader-brand-title">
+        <span class="preloader-brand-main">STACKLY</span>
+        <span class="preloader-brand-page">CONTACT</span>
+      </div>
+      <div class="preloader-status-text">
+        <span class="status-pulse-dot"></span>
+        <span id="preloaderStatus">INITIALIZING TELEMETRY...</span>
+      </div>
+      <div class="preloader-progress-wrap">
+        <div class="preloader-progress-bar">
+          <div class="preloader-progress-fill" id="preloaderProgress"></div>
+        </div>
+        <div class="preloader-counter" id="preloaderCounter">0%</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var p = document.getElementById('stacklyPreloader');
+      if (!p || p.dataset.inited) return;
+      p.dataset.inited = 'true';
+      var bar = document.getElementById('preloaderProgress');
+      var ctr = document.getElementById('preloaderCounter');
+      var st = document.getElementById('preloaderStatus');
+      var msgs = [
+        { at: 0, text: 'INITIALIZING TELEMETRY...' },
+        { at: 30, text: 'SYNCHRONIZING CDC MESH...' },
+        { at: 65, text: 'CALIBRATING LAKEHOUSE CACHE...' },
+        { at: 90, text: 'SYSTEM ONLINE' }
+      ];
+      var start = Date.now();
+      var dur = 600;
+      function tick() {
+        var elapsed = Date.now() - start;
+        var pct = Math.min(Math.round((elapsed / dur) * 100), 100);
+        if (bar) bar.style.width = pct + '%';
+        if (ctr) ctr.textContent = pct + '%';
+        if (st) {
+          for (var i = msgs.length - 1; i >= 0; i--) {
+            if (pct >= msgs[i].at) { st.textContent = msgs[i].text; break; }
+          }
+        }
+        if (pct < 100) {
+          requestAnimationFrame(tick);
+        } else {
+          setTimeout(function() {
+            p.classList.add('preloader-hidden');
+            setTimeout(function() { p.style.display = 'none'; }, 550);
+          }, 100);
+        }
+      }
+      requestAnimationFrame(tick);
+      setTimeout(function() {
+        if (p && !p.classList.contains('preloader-hidden')) {
+          p.classList.add('preloader-hidden');
+          setTimeout(function() { p.style.display = 'none'; }, 550);
+        }
+      }, 1200);
+    })();
+  </script>
+
+  <!-- HEADER -->
+  <header class="header-static">
+    <a href="index.html" class="nav-logo"><img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="nav-logo-img" /></a>
+    <div class="menu-toggle" id="mobile-menu" aria-label="Toggle navigation"><i class="fa-solid fa-bars"></i></div>
+    <!-- Mobile Drawer Backdrop Overlay -->
+    <div class="nav-overlay" id="nav-overlay"></div>
+    <nav id="nav-links">
+      <div class="drawer-top">
+        <a href="index.html" class="drawer-logo" aria-label="Stackly Home">
+          <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="drawer-logo-img" />
+        </a>
+        <button type="button" class="drawer-close-btn" id="drawer-close-btn" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <ul>
+        <li><a href="index.html"><span>Home</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+        <li><a href="about.html"><span>About</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+        <li><a href="service.html"><span>Service</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+        <li><a href="blog.html"><span>Blog</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+        <li><a href="contact.html" class="active"><span>Contact</span><i class="fa-solid fa-chevron-right nav-drawer-arrow"></i></a></li>
+      </ul>
+      <div class="auth-mobile">
+        <a href="login.html" class="btn-login"><i class="fa-solid fa-arrow-right-to-bracket"></i> Login</a>
+        <a href="register.html" class="btn-signup"><i class="fa-solid fa-user-plus"></i> Signup</a>
+      </div>
+    </nav>
+    <div class="auth-desktop">
+      <a href="login.html" class="btn-login"><i class="fa-regular fa-user"></i> Login</a>
+      <a href="register.html" class="btn-signup"><i class="fa-solid fa-user-plus"></i> Signup</a>
+    </div>
+  </header>
+
+  <main style="padding-top: 75px; width: 100%; max-width: 100%; margin: 0; padding-left: 0; padding-right: 0;">
+    
+    <!-- 1. CONTACT HERO (FULL WIDTH COVER) -->
+    <section class="blog-hero" data-aos="fade-up" style="position: relative; width: 100%; margin: 0 0 3.5rem 0; padding: 6.5rem 0 5.5rem; overflow: hidden; background: linear-gradient(to right, rgba(10, 15, 29, 0.94) 0%, rgba(15, 23, 42, 0.82) 48%, rgba(15, 23, 42, 0.3) 100%), url('images/blog_hero_bg.webp') no-repeat center center / cover; border-radius: 0;">
+      <div class="hero-content-inner" style="width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 5%; position: relative; z-index: 2;">
+        <span class="subtitle" style="text-transform: uppercase;">BUSINESS INTELLIGENCE INQUIRIES</span>
+        <h1>Initiate an Executive <span class="highlight">Business Intelligence Briefing</span></h1>
+        <p>Whether evaluating real-time streaming CDC, Lakehouse virtualization, or deploying autonomous AI Copilots,<br>our Principal BI Architects and Data Engineers stand ready to assist your team.</p>
+      </div>
+    </section>
+
+    <!-- 2. CONTACT GRID (2 Columns: Form & Coordinates) -->
+    <section class="container" style="margin-bottom: 3.5rem;">
+      <div class="contact-grid-2">
+        
+        <!-- Column 1: Consultation Request Form -->
+        <div class="contact-col">
+          <h3><i class="fa-solid fa-file-signature" style="color: var(--primary-green);"></i> Request a Strategic Briefing</h3>
+          <form class="contact-form" action="404.html" method="GET" data-aos="fade-up">
+            <div class="form-row">
+              <div class="form-group">
+                <i class="fa-regular fa-user"></i>
+                <input type="text" placeholder="Full Name" required>
+              </div>
+              <div class="form-group">
+                <i class="fa-regular fa-envelope"></i>
+                <input type="email" placeholder="Corporate Email" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <i class="fa-solid fa-phone"></i>
+              <input type="tel" placeholder="Direct Phone / WhatsApp">
+            </div>
+            <div class="form-group">
+              <i class="fa-solid fa-building"></i>
+              <input type="text" placeholder="Company Name & Title" required>
+            </div>
+            <div class="form-group">
+              <i class="fa-solid fa-compass"></i>
+              <input type="text" placeholder="Primary BI Practice / Data Stack Focus" required>
+            </div>
+            <div class="form-group">
+              <i class="fa-regular fa-comment-dots"></i>
+              <textarea rows="4" placeholder="Brief scope of enterprise data initiative (e.g. Snowflake/DuckDB acceleration, real-time CDC, boardroom copilot)..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="fa-solid fa-lock"></i> Submit Architecture Inquiry</button>
+          </form>
+        </div>
+
+        <!-- Column 2: Partner Coordinates & Direct Channels -->
+        <div class="contact-col">
+          <div>
+            <h3><i class="fa-solid fa-address-book" style="color: var(--primary-green);"></i> Stackly Headquarters Coordinates</h3>
+            
+            <div class="info-item">
+              <i class="fa-solid fa-location-dot" style="color: #ca8a04;"></i>
+              <div>
+                <h4>Main Headquarters / Salem Office</h4>
+                <p>MMR Complex, Periyakollappatty,<br>Chinna Thirupathi (near Chinna Muniyappan Kovil),<br>Salem, Tamil Nadu 636008, India</p>
+                <a href="404.html" style="display:inline-block; margin-top:4px; font-size:0.85rem; color:#ca8a04; font-weight:700; text-decoration:none;">
+                  <i class="fa-solid fa-globe"></i> thestackly.com
+                </a>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <i class="fa-solid fa-phone" style="color: #ca8a04;"></i>
+              <div>
+                <h4>Phone / WhatsApp Direct</h4>
+                <p>
+                  <a href="tel:+917010792745" style="color:#0f172a; text-decoration:none; font-weight:700;">+91 70107 92745</a>
+                </p>
+                <div style="display:flex; gap:10px; margin-top:4px;">
+                  <a href="404.html" style="font-size:0.85rem; color:#16a34a; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                    <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+                  </a>
+                  <a href="404.html" style="font-size:0.85rem; color:#ca8a04; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:4px;">
+                    <i class="fa-solid fa-phone-flip"></i> Direct Call
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <i class="fa-regular fa-envelope" style="color: #ca8a04;"></i>
+              <div>
+                <h4>Official Headquarters Email</h4>
+                <p>
+                  <a href="mailto:info@thestackly.com" style="color:#0f172a; text-decoration:none; font-weight:700;">info@thestackly.com</a>
+                </p>
+                <span style="font-size:0.82rem; color:#64748b;">Enterprise Inquiries & Candidate Support</span>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <i class="fa-solid fa-clock" style="color: #ca8a04;"></i>
+              <div>
+                <h4>Working Operating Hours</h4>
+                <p style="font-weight:600; color:#0f172a;">Monday to Friday: 9:30 AM – 6:30 PM</p>
+                <p style="font-size:0.85rem; color:#dc2626; font-weight:600; margin-top:2px;">Saturday & Sunday: Closed</p>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 1.5rem; padding: 1.2rem; background: rgba(234, 179, 8, 0.08); border-radius: 12px; border: 1px solid rgba(234, 179, 8, 0.25);">
+            <div style="display: flex; align-items: center; gap: 0.6rem; color: #854d0e; font-weight: 700; font-size: 0.95rem;">
+              <i class="fa-solid fa-clock"></i> Executive Response SLA
+            </div>
+            <p style="font-size: 0.88rem; color: #374151; margin-top: 0.4rem; line-height: 1.45; font-weight: 450;">Designated Managing Partners review and respond to institutional inquiries within 12 business hours under non-disclosure protocols.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. DEDICATED SEPARATE REGIONAL HUBS MAP SECTION -->
+    <section class="container map-section" data-aos="fade-up">
+      <div class="section-header" style="text-align: center; margin-bottom: 2rem;">
+        <span class="subtitle" style="text-transform: uppercase;">GLOBAL FOOTPRINT</span>
+        <h2>Regional Engineering Hubs & Telemetry NOCs</h2>
+        <p>Our Principal BI Architects collaborate globally across key cloud telemetry hubs and enterprise centers</p>
+      </div>
+
+      <div class="map-wrapper">
+        <div class="map-frame-box">
+          <iframe 
+            src="https://maps.google.com/maps?q=MMR+Complex,+Periyakollappatty,+Chinna+Thirupathi,+Salem,+Tamil+Nadu+636008&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <div class="hub-cards-grid">
+          <div class="hub-card" style="border: 2px solid #ca8a04; background: #fffbeb;">
+            <h4 style="color: #854d0e;"><i class="fa-solid fa-building-flag" style="color: #ca8a04;"></i> Stackly Salem HQ (Main Office)</h4>
+            <p><strong>MMR Complex</strong>, Periyakollappatty, Chinna Thirupathi (near Chinna Muniyappan Kovil), Salem, Tamil Nadu 636008</p>
+            <p style="margin-top:6px; font-size:0.82rem; font-weight:700; color:#854d0e;">
+              <i class="fa-solid fa-phone"></i> +91 70107 92745 · <i class="fa-solid fa-clock"></i> Mon–Fri 9:30 AM–6:30 PM
+            </p>
+          </div>
+          <div class="hub-card">
+            <h4><i class="fa-solid fa-building" style="color: var(--primary-green);"></i> New York Office</h4>
+            <p>45 Rockefeller Plaza, Suite 2400, New York, NY 10111, United States</p>
+          </div>
+          <div class="hub-card">
+            <h4><i class="fa-solid fa-landmark" style="color: var(--primary-green);"></i> London Desk</h4>
+            <p>30 St Mary Axe (The Gherkin), Level 28, London EC3A 8EP, United Kingdom</p>
+          </div>
+          <div class="hub-card">
+            <h4><i class="fa-solid fa-earth-asia" style="color: var(--primary-green);"></i> Singapore APAC Hub</h4>
+            <p>Marina Bay Financial Centre, Tower 2, Marina Boulevard, Singapore 018983</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. TRUST & SECURITY BANNER -->
+    <section class="container section-padding" style="padding-top: 0;">
+      <div style="background: #ffffff; border-radius: 16px; padding: 2rem; border: 1px solid var(--border-color); display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+          <i class="fa-solid fa-shield-halved" style="font-size: 2rem; color: var(--primary-green);"></i>
+          <div>
+            <strong>Strict Confidentiality</strong>
+            <p style="margin: 0; font-size: 0.85rem; color: #666;">Bilateral Non-Disclosure Guaranteed</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+          <i class="fa-solid fa-lock" style="font-size: 2rem; color: #3498db;"></i>
+          <div>
+            <strong>End-to-End Deal Encryption</strong>
+            <p style="margin: 0; font-size: 0.85rem; color: #666;">SOC-2 Type II & ISO 27001 Aligned</p>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; gap: 0.8rem;">
+          <i class="fa-solid fa-user-tie" style="font-size: 2rem; color: #f39c12;"></i>
+          <div>
+            <strong>Direct Partner Access</strong>
+            <p style="margin: 0; font-size: 0.85rem; color: #666;">No Gatekeepers or Junior Intermediaries</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CONFIDENTIAL ENGAGEMENT FAQ -->
+    <section class="faq-section container section-padding" style="padding-top: 0;">
+      <div class="section-header">
+        <h2>Inquiry & Onboarding FAQ</h2>
+        <p>What to expect after submitting your consultation inquiry</p>
+      </div>
+      <div class="faq-accordion" style="max-width: 800px; margin: 0 auto;">
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can we execute a mutual NDA prior to sharing proprietary data?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. We routinely execute bilateral non-disclosure agreements prior to preliminary scoping calls, ensuring complete legal protection for your board.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            <span>Can Stackly advise on urgent distressed or hostile transaction timelines?</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Yes. Our special situations desk maintains 24/7 on-call readiness for contested tender offers, debt standstills, and urgent proxy contests.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. EXECUTIVE DISPATCH NEWSLETTER -->
+    <section class="newsletter container section-padding">
+      <div class="news-content" data-aos="fade-up">
+        <h2>Stay Connected to Global Business Intelligence Trends</h2>
+        <p>Receive our quarterly boardroom intelligence briefings and macroeconomic commentaries.</p>
+        <form class="news-form" action="404.html">
+          <input type="email" placeholder="Enter your corporate email address" required>
+          <button type="submit" class="btn btn-primary">Subscribe</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 6. BI CAREERS & FELLOWSHIPS -->
+    <section class="container section-padding" style="padding-top: 0;">
+      <div class="split-layout">
+        <div class="split-image">
+          <img src="images/about-team-collab.webp" alt="BI Engineering Team" style="border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.1);">
+        </div>
+        <div class="split-content">
+          <span class="subtitle">JOIN OUR TEAM</span>
+          <h2>BI Engineering Careers & Fellowships</h2>
+          <div class="divider"></div>
+          <p>We are continually seeking exceptional distributed systems engineers, columnar database architects, and AI/NLP research fellows to push the boundaries of real-time intelligence.</p>
+          <p>If you possess deep expertise in DuckDB, Arrow, Kafka, or deterministic LLM code synthesis, explore our active engineering openings.</p>
+          <a href="service.html" class="btn btn-outline" style="margin-top: 1rem;"><i class="fa-solid fa-briefcase"></i> View Engineering Openings</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. GLOBAL SOCIAL MEDIA & DIRECT CHANNELS -->
+    <section class="container section-padding" style="padding-top: 0; text-align: center;">
+      <div class="section-header">
+        <h2>Executive Channels & Direct Feeds</h2>
+        <p>Follow our thought leadership across institutional platforms</p>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;">
+        <a href="404.html" class="cat-ribbon-item" style="min-width: 140px;"><i class="fa-brands fa-linkedin" style="color: #0077b5;"></i> LinkedIn Briefs</a>
+        <a href="404.html" class="cat-ribbon-item" style="min-width: 140px;"><i class="fa-brands fa-twitter" style="color: #1da1f2;"></i> X Dispatch</a>
+        <a href="404.html" class="cat-ribbon-item" style="min-width: 140px;"><i class="fa-solid fa-podcast" style="color: #9b59b6;"></i> Data Intelligence Podcast</a>
+        <a href="404.html" class="cat-ribbon-item" style="min-width: 140px;"><i class="fa-solid fa-newspaper" style="color: #e67e22;"></i> Press Releases</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid container">
+      <div class="footer-col">
+        <a href="index.html" class="nav-logo"><img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="nav-logo-img" /></a>
+        <p style="margin-top: 1rem; color: #aaa;">Premier strategic business intelligence platform empowering enterprise leaders with actionable telemetry and sustainable scale.</p>
+        <div class="socials" style="margin-top: 1rem; display: flex; gap: 1rem;">
+          <a href="404.html" style="color: #fff;"><i class="fa-brands fa-facebook"></i></a>
+          <a href="404.html" style="color: #fff;"><i class="fa-brands fa-twitter"></i></a>
+          <a href="404.html" style="color: #fff;"><i class="fa-brands fa-instagram"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="service.html">Services</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>BI Practices</h4>
+        <ul>
+          <li><a href="404.html">Enterprise Analytics</a></li>
+          <li><a href="404.html">Autonomous AI Copilots</a></li>
+          <li><a href="404.html">Streaming CDC Lakehouse</a></li>
+          <li><a href="404.html">Zero-Trust Telemetry</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Stackly Salem Headquarters</h4>
+        <ul>
+          <li><i class="fa-solid fa-location-dot"></i> MMR Complex, Periyakollappatty, Chinna Thirupathi (near Chinna Muniyappan Kovil), Salem, TN 636008</li>
+          <li><a href="404.html"><i class="fa-solid fa-phone"></i> +91 70107 92745</a></li>
+          <li><a href="404.html"><i class="fa-solid fa-envelope"></i> info@thestackly.com</a></li>
+          <li><a href="404.html"><i class="fa-solid fa-clock"></i> Mon–Fri: 9:30 AM – 6:30 PM (Sat–Sun Closed)</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Stackly Business Intelligence. All rights reserved. SOC2 Type II Certified & ISO 27001 Compliant.</p>
+    </div>
+  </footer>
+
+  <script src="script.js?v=12.0"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        if(typeof AOS !== 'undefined') {
+            AOS.init({ duration: 800, once: true, offset: 100 });
+        }
+    });
+  </script>
+</body>
+</html>

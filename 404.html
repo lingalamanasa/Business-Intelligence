@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found | Stackly Business Intelligence</title>
+  <link rel="stylesheet" href="style.css?v=8.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fafaf9;
+      font-family: var(--font-family, 'Outfit', 'Inter', sans-serif);
+      color: var(--dark-text, #0f172a);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Ambient background blur elements */
+    .ambient-bg-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(234, 179, 8, 0.15) 0%, rgba(234, 179, 8, 0.03) 50%, transparent 70%);
+      border-radius: 50%;
+      z-index: 0;
+      pointer-events: none;
+      animation: pulseGlow 5s ease-in-out infinite alternate;
+    }
+
+    .error-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    /* Logo link */
+    .brand-logo-wrap {
+      margin-bottom: 2rem;
+      display: inline-block;
+      animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    .brand-logo-wrap img {
+      height: 40px;
+      width: auto;
+      transition: transform 0.3s ease;
+    }
+
+    .brand-logo-wrap:hover img {
+      transform: scale(1.05);
+    }
+
+    /* 404 Giant Number with Floating & Shimmer Animation */
+    .error-code {
+      display: inline-block;
+      font-size: clamp(6rem, 15vw, 9.5rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -3px;
+      background: linear-gradient(135deg, #eab308 0%, #ca8a04 50%, #eab308 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.8rem;
+      animation: floatNumber 3.8s ease-in-out infinite, shimmerGradient 6s linear infinite, fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 0s, 0s, 0.1s;
+      filter: drop-shadow(0 12px 24px rgba(234, 179, 8, 0.25));
+    }
+
+    /* Animated Status Badge */
+    .error-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(234, 179, 8, 0.12);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      color: #854d0e;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 0.2s;
+    }
+
+    .error-pill-dot {
+      width: 8px;
+      height: 8px;
+      background: #eab308;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #eab308;
+      animation: blinkDot 1.6s infinite ease-in-out;
+    }
+
+    /* Animated Headline */
+    .error-title {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      color: #0f172a;
+      margin: 0 0 1rem 0;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 0.3s;
+    }
+
+    /* Animated Description */
+    .error-desc {
+      color: #64748b;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.65;
+      margin: 0 auto 2.2rem auto;
+      max-width: 520px;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 0.4s;
+    }
+
+    /* Action Buttons Container */
+    .error-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: 0.5s;
+    }
+
+    .btn-action-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.85rem 1.8rem;
+      background: #eab308;
+      color: #000000;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 20px rgba(234, 179, 8, 0.28);
+      border: 2px solid #eab308;
+    }
+
+    .btn-action-home:hover {
+      background: #ca8a04;
+      border-color: #ca8a04;
+      color: #000000;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(234, 179, 8, 0.38);
+    }
+
+    .btn-action-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.85rem 1.8rem;
+      background: #ffffff;
+      color: #0f172a;
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 12px;
+      text-decoration: none;
+      border: 2px solid #0f172a;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
+    }
+
+    .btn-action-back:hover {
+      background: #0f172a;
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.16);
+    }
+
+    /* Keyframe Animations */
+    @keyframes floatNumber {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes shimmerGradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.7; }
+      100% { transform: translate(-50%, -50%) scale(1.1); opacity: 1; }
+    }
+
+    @keyframes blinkDot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(0.7); }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Backdrop Glow -->
+  <div class="ambient-bg-glow"></div>
+
+  <!-- Main Error Content Box -->
+  <div class="error-wrapper">
+    <!-- Brand Logo -->
+    <a href="index.html" class="brand-logo-wrap" title="Back to Stackly Home">
+      <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Business Intelligence Logo" />
+    </a>
+
+    <div>
+      <span class="error-code">404</span>
+    </div>
+
+    <div class="error-pill">
+      <span class="error-pill-dot"></span>
+      Telemetry Metric Not Found
+    </div>
+
+    <h1 class="error-title">Page or Resource Not Found</h1>
+
+    <p class="error-desc">
+      The analytical endpoint, telemetry dispatch, or consultation page you are seeking has been relocated or is restricted under enterprise column entitlements.
+    </p>
+
+    <!-- Requested Two Buttons: Back to Home & Go Back -->
+    <div class="error-actions">
+      <a href="index.html" class="btn-action-home">
+        <i class="fa-solid fa-house"></i> Back to Home
+      </a>
+      <button type="button" class="btn-action-back" id="btnGoBack" onclick="handleGoBack()" aria-label="Go Back to previous page">
+        <i class="fa-solid fa-arrow-left"></i> Go Back
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Capture referrer on initial arrival if valid
+    (function() {
+      var ref = document.referrer;
+      if (ref && !ref.includes('404.html')) {
+        try {
+          sessionStorage.setItem('stackly_previous_page', ref);
+        } catch (e) {}
+      }
+    })();
+
+    function handleGoBack() {
+      // 1. Check URL parameters (?from= or ?ref=)
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var fromParam = params.get('from') || params.get('ref');
+        if (fromParam && !fromParam.includes('404.html')) {
+          window.location.href = fromParam;
+          return;
+        }
+      } catch (e) {}
+
+      // 2. Direct document.referrer if valid and not the 404 page
+      var ref = document.referrer;
+      if (ref && !ref.includes('404.html')) {
+        try {
+          var refUrl = new URL(ref, window.location.href);
+          if (refUrl.hostname === window.location.hostname || !refUrl.hostname) {
+            window.location.href = ref;
+            return;
+          }
+        } catch (e) {
+          window.location.href = ref;
+          return;
+        }
+      }
+
+      // 3. Stored prior page in sessionStorage
+      try {
+        var prev = sessionStorage.getItem('stackly_previous_page') || sessionStorage.getItem('stackly_last_page');
+        if (prev && !prev.includes('404.html')) {
+          window.location.href = prev;
+          return;
+        }
+      } catch (e) {}
+
+      // 4. Browser history back
+      if (window.history && window.history.length > 1) {
+        window.history.back();
+        setTimeout(function() {
+          if (!document.hidden) {
+            window.location.href = 'index.html';
+          }
+        }, 500);
+        return;
+      }
+
+      // 5. Fallback to homepage
+      window.location.href = 'index.html';
+    }
+  </script>
+
+</body>
+</html>
