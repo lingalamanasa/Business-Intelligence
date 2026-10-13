@@ -193,9 +193,10 @@ body {
   right: 14px;
 }
 
-/* User Card in Sidebar (Top) */
+/* User Card in Sidebar (Bottom) */
 .sidebar-user-card {
-  margin: 0 0 1.25rem 0;
+  margin: 1.5rem 0 0 0;
+  margin-top: auto;
   padding: 1.1rem;
   background: rgba(0, 0, 0, 0.22);
   border-radius: 14px;

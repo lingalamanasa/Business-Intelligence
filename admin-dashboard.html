@@ -29,22 +29,6 @@
   <div class="dash-layout">
     <!-- LEFT SIDEBAR (YELLOW/AMBER THEME IN PLACE OF BLUE) -->
     <aside class="dash-sidebar">
-      <!-- Admin User Profile Card (Moved to Top) -->
-      <div class="sidebar-user-card">
-        <div class="sidebar-user-info">
-          <div class="sidebar-user-avatar">
-            <i class="fa-solid fa-user-shield"></i>
-          </div>
-          <div class="sidebar-user-details">
-            <strong id="sidebarAdminName">Lingalamanasa123</strong>
-            <span id="sidebarAdminEmail">lingalamanasa123@gmail.com</span>
-          </div>
-        </div>
-        <a href="login.html" class="btn-sidebar-logout">
-          <i class="fa-solid fa-arrow-right-from-bracket"></i> LOGOUT
-        </a>
-      </div>
-
       <div class="sidebar-category-title">HOSPITAL & BI MANAGEMENT</div>
       <nav class="sidebar-nav">
         <button class="sidebar-nav-btn active" onclick="showAdminView('overview', this)">
@@ -72,6 +56,22 @@
           <i class="fa-solid fa-chart-column"></i> <span>Reports & Analytics</span>
         </button>
       </nav>
+
+      <!-- Admin User Profile Card (Bottom) -->
+      <div class="sidebar-user-card">
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-avatar">
+            <i class="fa-solid fa-user-shield"></i>
+          </div>
+          <div class="sidebar-user-details">
+            <strong id="sidebarAdminName">Lingalamanasa123</strong>
+            <span id="sidebarAdminEmail">lingalamanasa123@gmail.com</span>
+          </div>
+        </div>
+        <a href="login.html" class="btn-sidebar-logout">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> LOGOUT
+        </a>
+      </div>
     </aside>
 
     <!-- MAIN CONTENT AREA -->
