@@ -795,10 +795,32 @@
       }
 
       // Update active state on sidebar buttons
+      if (!btn) {
+        btn = document.querySelector(`.sidebar-nav-btn[onclick*="'${viewId}'"]`);
+      }
       if (btn) {
         document.querySelectorAll('.sidebar-nav-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
       }
+
+      // Always open view from the first (top), never from middle or bottom (desktop & mobile)
+      const resetScrollToTop = () => {
+        const dashContent = document.querySelector('.dash-content');
+        if (dashContent) {
+          dashContent.scrollTop = 0;
+        }
+        if (target) {
+          target.scrollTop = 0;
+        }
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      };
+
+      resetScrollToTop();
+      requestAnimationFrame(resetScrollToTop);
+      setTimeout(resetScrollToTop, 10);
+      setTimeout(resetScrollToTop, 50);
 
       // Update URL hash without reload
       history.replaceState(null, null, '#' + viewId);
