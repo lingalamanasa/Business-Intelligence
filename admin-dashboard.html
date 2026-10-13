@@ -14,21 +14,35 @@
 
   <!-- TOP HEADER (YELLOW IN PLACE OF BLUE) -->
   <header class="dash-header">
-    <a href="admin-dashboard.html" class="dash-logo-box" aria-label="Stackly Dashboard">
-      <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="dash-logo-img" style="height: 34px; width: auto; object-fit: contain; display: block;" />
-    </a>
+    <div class="dash-header-left">
+      <button class="dash-menu-toggle" id="dashMenuToggle" aria-label="Toggle Navigation Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a href="admin-dashboard.html" class="dash-logo-box" aria-label="Stackly Dashboard">
+        <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="dash-logo-img" style="height: 34px; width: auto; object-fit: contain; display: block;" />
+      </a>
+    </div>
 
     <div class="dash-user-nav">
       <span class="dash-user-email" id="headerAdminEmail">lingalamanasa123@gmail.com</span>
-      <div class="dash-user-avatar" title="Admin Account">
+      <div class="dash-user-avatar" id="dashAvatarBtn" title="Admin Account">
         <i class="fa-solid fa-user-shield"></i>
       </div>
     </div>
   </header>
 
   <div class="dash-layout">
-    <!-- LEFT SIDEBAR (YELLOW/AMBER THEME IN PLACE OF BLUE) -->
-    <aside class="dash-sidebar">
+    <!-- LEFT SIDEBAR / MOBILE HAMBURGER DRAWER -->
+    <aside class="dash-sidebar" id="dashSidebar">
+      <!-- Drawer Top Bar with Stackly Logo & Close button (Mobile only) -->
+      <div class="dash-drawer-header">
+        <a href="admin-dashboard.html" class="dash-drawer-logo" aria-label="Stackly Home">
+          <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="dash-drawer-logo-img" />
+        </a>
+        <button type="button" class="dash-drawer-close" id="dashDrawerClose" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
       <div class="sidebar-category-title">HOSPITAL & BI MANAGEMENT</div>
       <nav class="sidebar-nav">
         <button class="sidebar-nav-btn active" onclick="showAdminView('overview', this)">
@@ -73,6 +87,9 @@
         </a>
       </div>
     </aside>
+
+    <!-- Mobile Drawer Backdrop Overlay -->
+    <div class="dash-nav-overlay" id="dashNavOverlay"></div>
 
     <!-- MAIN CONTENT AREA -->
     <main class="dash-content">
@@ -1830,7 +1847,43 @@
 
       // Update URL hash without reload
       history.replaceState(null, null, '#' + viewId);
+
+      // Close mobile drawer if open
+      closeMobileDrawer();
     }
+
+    // Mobile Hamburger Drawer Toggle
+    function openMobileDrawer() {
+      const sidebar = document.getElementById('dashSidebar');
+      const overlay = document.getElementById('dashNavOverlay');
+      if (sidebar) sidebar.classList.add('open');
+      if (overlay) overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileDrawer() {
+      const sidebar = document.getElementById('dashSidebar');
+      const overlay = document.getElementById('dashNavOverlay');
+      if (sidebar) sidebar.classList.remove('open');
+      if (overlay) overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const menuToggle = document.getElementById('dashMenuToggle');
+      const drawerClose = document.getElementById('dashDrawerClose');
+      const overlay = document.getElementById('dashNavOverlay');
+      const avatarBtn = document.getElementById('dashAvatarBtn');
+
+      if (menuToggle) menuToggle.addEventListener('click', openMobileDrawer);
+      if (drawerClose) drawerClose.addEventListener('click', closeMobileDrawer);
+      if (overlay) overlay.addEventListener('click', closeMobileDrawer);
+      if (avatarBtn) {
+        avatarBtn.addEventListener('click', () => {
+          if (window.innerWidth <= 860) openMobileDrawer();
+        });
+      }
+    });
 
     // Load from URL hash or default to overview
     window.addEventListener('DOMContentLoaded', () => {

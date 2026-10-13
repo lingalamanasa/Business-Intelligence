@@ -51,6 +51,44 @@ body {
   z-index: 100;
 }
 
+.dash-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Dashboard Mobile Hamburger Button (Hidden on Desktop) */
+.dash-menu-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #000000;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.dash-menu-toggle:hover {
+  background: rgba(0, 0, 0, 0.16);
+  transform: scale(1.05);
+}
+
+/* Drawer Header with Stackly Logo & Close button (Hidden on Desktop) */
+.dash-drawer-header {
+  display: none;
+}
+
+/* Drawer Backdrop Overlay (Hidden on Desktop) */
+.dash-nav-overlay {
+  display: none;
+}
+
 .dash-logo-box {
   display: flex;
   align-items: center;
@@ -746,47 +784,139 @@ a.dash-kpi-badge:hover {
 }
 
 @media (max-width: 860px) {
-  .dash-layout {
-    flex-direction: column;
+  .dash-menu-toggle {
+    display: flex;
   }
+
+  .dash-nav-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background: rgba(9, 9, 11, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+  }
+
+  .dash-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  /* Slide-out Mobile Hamburger Drawer: 100% width with Stackly Logo */
   .dash-sidebar {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    background: linear-gradient(180deg, #a16207 0%, #854d0e 60%, #713f12 100%) !important;
+    z-index: 1050 !important;
+    transform: translateX(-105%);
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 10px 0 35px rgba(0, 0, 0, 0.3);
+    overflow-y: auto !important;
+    padding: 1.25rem 1.5rem 2.5rem !important;
+  }
+
+  .dash-sidebar.open {
+    transform: translateX(0);
+  }
+
+  /* Drawer Top Bar with Stackly Logo & Close button */
+  .dash-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 1.2rem;
+    margin-bottom: 1.4rem;
+    border-bottom: 1px solid rgba(254, 240, 138, 0.2);
+  }
+
+  .dash-drawer-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .dash-drawer-logo-img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .dash-drawer-close {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(254, 240, 138, 0.3);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .dash-drawer-close:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #fef08a;
+    transform: rotate(90deg);
+  }
+
+  .dash-layout {
+    display: block;
     width: 100%;
-    padding: 1rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    position: static;
-    height: auto;
-    max-height: none;
-    overflow-y: visible;
   }
+
   .sidebar-category-title {
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.78rem;
   }
+
   .sidebar-nav {
     display: flex;
-    flex-direction: row;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+    flex-direction: column;
+    overflow-x: visible;
     gap: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-bottom: 0;
+    margin-bottom: 1.5rem;
   }
-  .sidebar-nav::-webkit-scrollbar {
-    height: 4px;
-  }
-  .sidebar-nav::-webkit-scrollbar-thumb {
-    background: rgba(254, 240, 138, 0.4);
-    border-radius: 4px;
-  }
+
   .sidebar-nav-btn {
-    white-space: nowrap;
-    padding: 0.65rem 0.95rem;
-    font-size: 0.84rem;
-    flex-shrink: 0;
-    border-radius: 10px;
+    white-space: normal;
+    padding: 0.85rem 1.1rem;
+    font-size: 0.95rem;
+    border-radius: 12px;
     background: rgba(255, 255, 255, 0.08);
   }
+
+  .sidebar-user-card {
+    margin-top: 1.2rem;
+  }
+
   .dash-content {
     padding: 1.25rem 0.85rem;
   }
+
   .dash-quick-cards, .dash-kpi-row {
     grid-template-columns: 1fr;
     gap: 1rem;
