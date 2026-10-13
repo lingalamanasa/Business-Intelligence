@@ -10,10 +10,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary-color: #6366f1;
-      --primary-hover: #4f46e5;
-      --accent-badge-bg: #e0e7ff;
-      --accent-badge-text: #4338ca;
+      --primary-color: #ca8a04;
+      --primary-hover: #a16207;
+      --accent-badge-bg: #fef08a;
+      --accent-badge-text: #854d0e;
       --dark-text: #0f172a;
       --gray-text: #64748b;
       --border-color: #e2e8f0;
@@ -32,8 +32,8 @@
     body {
       background-color: var(--bg-page);
       background-image: 
-        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.04) 0px, transparent 50%),
-        radial-gradient(at 100% 100%, rgba(234, 179, 8, 0.04) 0px, transparent 50%);
+        radial-gradient(at 0% 0%, rgba(202, 138, 4, 0.06) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(234, 179, 8, 0.06) 0px, transparent 50%);
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -65,8 +65,9 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #eef2ff;
-      color: #6366f1;
+      background: #fef9c3;
+      color: #854d0e;
+      border: 1px solid rgba(202, 138, 4, 0.25);
       padding: 6px 14px;
       border-radius: 20px;
       font-size: 0.82rem;
@@ -76,8 +77,8 @@
     }
 
     .btn-back-home:hover {
-      background: #e0e7ff;
-      color: #4f46e5;
+      background: #fef08a;
+      color: #713f12;
       transform: translateX(-2px);
     }
 
@@ -91,7 +92,7 @@
     }
 
     .portal-tag i {
-      color: #6366f1;
+      color: #ca8a04;
     }
 
     /* Visual Banner Image */
@@ -154,7 +155,7 @@
     .brand-icon-svg {
       width: 26px;
       height: 26px;
-      color: #6366f1;
+      color: #eab308;
     }
 
     .brand-title {
@@ -165,8 +166,9 @@
     }
 
     .brand-pill-badge {
-      background: #e0e7ff;
-      color: #4338ca;
+      background: #fef08a;
+      color: #854d0e;
+      border: 1px solid rgba(202, 138, 4, 0.3);
       font-size: 0.68rem;
       font-weight: 800;
       padding: 3px 8px;
@@ -217,9 +219,14 @@
 
     .role-switch-btn.active {
       background: #ffffff;
-      color: #4f46e5;
+      color: #a16207;
       font-weight: 700;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+      box-shadow: 0 2px 8px rgba(202, 138, 4, 0.15);
+      border: 1.5px solid #eab308;
+    }
+
+    .role-switch-btn.active i {
+      color: #ca8a04;
     }
 
     .role-switch-btn i {
@@ -247,14 +254,14 @@
 
     .forgot-link {
       font-size: 0.8rem;
-      color: #6366f1;
+      color: #ca8a04;
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 700;
       transition: color 0.2s;
     }
 
     .forgot-link:hover {
-      color: #4338ca;
+      color: #a16207;
       text-decoration: underline;
     }
 
@@ -272,8 +279,8 @@
     }
 
     .form-input:focus {
-      border-color: #6366f1;
-      box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.12);
+      border-color: #eab308;
+      box-shadow: 0 0 0 4px rgba(234, 179, 8, 0.18);
     }
 
     .form-input::placeholder {
@@ -302,7 +309,7 @@
     .remember-device-label input[type="checkbox"] {
       width: 16px;
       height: 16px;
-      accent-color: #6366f1;
+      accent-color: #ca8a04;
       cursor: pointer;
     }
 
@@ -320,24 +327,25 @@
       width: 100%;
       padding: 0.95rem;
       border-radius: 12px;
-      background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
-      color: #ffffff;
+      background: linear-gradient(135deg, #eab308 0%, #ca8a04 100%);
+      color: #000000;
       border: none;
       font-size: 1rem;
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       transition: all 0.25s ease;
-      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.35);
+      box-shadow: 0 6px 20px rgba(202, 138, 4, 0.35);
     }
 
     .btn-submit-primary:hover {
-      background: linear-gradient(135deg, #4f46e5 0%, #4338ca 100%);
+      background: linear-gradient(135deg, #ca8a04 0%, #a16207 100%);
+      color: #ffffff;
       transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(99, 102, 241, 0.45);
+      box-shadow: 0 10px 25px rgba(202, 138, 4, 0.45);
     }
 
     /* Footer Redirect */
@@ -349,12 +357,13 @@
     }
 
     .auth-footer-redirect a {
-      color: #6366f1;
+      color: #ca8a04;
       font-weight: 700;
       text-decoration: none;
     }
 
     .auth-footer-redirect a:hover {
+      color: #a16207;
       text-decoration: underline;
     }
 
