@@ -4560,22 +4560,39 @@ html.menu-open {
 
 /* Blog Expansion Sections */
 
-.cat-ribbon-grid { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 1rem; }
+.cat-ribbon-grid { 
+  display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+  gap: 1rem; 
+  width: 100%; 
+  max-width: 100%; 
+  overflow: visible; 
+  padding-bottom: 0.5rem; 
+}
 
-.cat-ribbon-grid::-webkit-scrollbar { height: 6px; }
-
-.cat-ribbon-grid::-webkit-scrollbar-thumb { background: #ccc; border-radius: 10px; }
+.cat-ribbon-grid::-webkit-scrollbar { display: none; height: 0; }
 
 .cat-ribbon-item { 
-
-  background: #fff; border: 1px solid var(--border-color); border-radius: 30px; 
-
-  padding: 0.8rem 1.5rem; display: flex; align-items: center; gap: 0.8rem; 
-
-  white-space: nowrap; font-weight: 600; color: var(--dark-text); transition: all 0.3s;
-
+  background: #fff; 
+  border: 1px solid var(--border-color); 
+  border-radius: 14px; 
+  padding: 1rem 0.6rem; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center; 
+  gap: 0.5rem; 
+  white-space: normal; 
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
+  font-weight: 600; 
+  color: var(--dark-text); 
+  transition: all 0.3s;
   text-decoration: none;
-
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
 }
 
 .cat-ribbon-item:hover { border-color: var(--primary-green); color: var(--primary-green); box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
@@ -8165,13 +8182,21 @@ h1, h2, h3, h4, h5, h6, p, span, a, li, button, input, label {
 
   /* Category Ribbon Grid on Blog */
   .cat-ribbon-grid {
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr)) !important;
-    gap: 0.75rem !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.65rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
   }
 
   .cat-ribbon-item {
-    padding: 0.8rem 0.5rem !important;
-    font-size: 0.85rem !important;
+    padding: 0.85rem 0.5rem !important;
+    font-size: 0.82rem !important;
+    line-height: 1.25 !important;
+    white-space: normal !important;
+    min-width: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   /* Contact Hub Cards */
