@@ -120,6 +120,20 @@ body {
   padding: 1.5rem 1rem;
   flex-shrink: 0;
   box-shadow: 4px 0 15px rgba(0,0,0,0.06);
+  position: sticky;
+  top: 64px;
+  height: calc(100vh - 64px);
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+}
+
+.dash-sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.dash-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(254, 240, 138, 0.3);
+  border-radius: 4px;
 }
 
 .sidebar-category-title {
@@ -137,7 +151,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  flex: 1;
 }
 
 .sidebar-nav-btn {
@@ -193,10 +206,9 @@ body {
   right: 14px;
 }
 
-/* User Card in Sidebar (Bottom) */
+/* User Card in Sidebar (Right below Navigation Menu) */
 .sidebar-user-card {
   margin: 1.5rem 0 0 0;
-  margin-top: auto;
   padding: 1.1rem;
   background: rgba(0, 0, 0, 0.22);
   border-radius: 14px;
@@ -741,6 +753,10 @@ a.dash-kpi-badge:hover {
     width: 100%;
     padding: 1rem;
     box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    position: static;
+    height: auto;
+    max-height: none;
+    overflow-y: visible;
   }
   .sidebar-category-title {
     margin-bottom: 0.6rem;
