@@ -12,24 +12,77 @@
 </head>
 <body>
 
-  <!-- TOP HEADER (YELLOW IN PLACE OF BLUE) -->
+  <!-- TOP HEADER (ROYAL BLUE THEME WITH MOBILE HAMBURGER & CENTER LOGO) -->
   <header class="dash-header">
+    <button class="dash-menu-toggle" id="dashMenuToggle" aria-label="Toggle navigation menu">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
     <a href="index.html" class="dash-logo-box" aria-label="Stackly Home">
-      <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="dash-logo-img" style="height: 34px; width: auto; object-fit: contain; display: block;" />
+      <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="dash-logo-img" />
     </a>
 
     <div class="dash-user-nav">
       <span class="dash-user-email" id="headerAdminEmail">lingalamanasa123@gmail.com</span>
-      <div class="dash-user-avatar" title="Admin Account">
+      <div class="dash-user-avatar" id="dashAdminAvatar" title="Admin Account">
         <i class="fa-solid fa-user-shield"></i>
       </div>
     </div>
   </header>
 
   <div class="dash-layout">
-    <!-- LEFT SIDEBAR (YELLOW/AMBER THEME IN PLACE OF BLUE) -->
-    <aside class="dash-sidebar">
-      <!-- Admin User Profile Card (Moved to Top) -->
+    <!-- MOBILE DRAWER BACKDROP -->
+    <div class="dash-sidebar-backdrop" id="dashSidebarBackdrop"></div>
+
+    <!-- LEFT SIDEBAR / MOBILE SLIDE-OUT DRAWER -->
+    <aside class="dash-sidebar" id="dashSidebar">
+      <!-- Drawer Header with Logo & Close Button (Mobile) -->
+      <div class="dash-drawer-header">
+        <a href="index.html" class="dash-logo-box" aria-label="Stackly Home">
+          <img src="images/logo-dark.webp?v=3.0" alt="STACKLY Logo" class="dash-logo-img" />
+        </a>
+        <button class="dash-sidebar-close" id="dashSidebarClose" aria-label="Close menu">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="sidebar-category-title">HOSPITAL MANAGEMENT</div>
+      <nav class="sidebar-nav">
+        <button class="sidebar-nav-btn active" onclick="showAdminView('overview', this)">
+          <i class="fa-solid fa-hospital"></i> <span>Hospital Overview</span>
+          <span class="active-dot"></span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showAdminView('opd', this)">
+          <i class="fa-solid fa-stethoscope"></i> <span>OPD Management</span>
+          <span class="active-dot"></span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showAdminView('ipd', this)">
+          <i class="fa-solid fa-bed-pulse"></i> <span>IPD & Bed Management</span>
+          <span class="active-dot"></span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showAdminView('lims', this)">
+          <i class="fa-solid fa-vial-virus"></i> <span>Laboratory (LIMS)</span>
+          <span class="active-dot"></span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showAdminView('pharmacy', this)">
+          <i class="fa-solid fa-prescription-bottle-medical"></i> <span>Pharmacy ERP</span>
+          <span class="active-dot"></span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showAdminView('staff', this)">
+          <i class="fa-solid fa-user-doctor"></i> <span>Staff & HR</span>
+          <span class="active-dot"></span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showAdminView('billing', this)">
+          <i class="fa-solid fa-file-invoice-dollar"></i> <span>Billing & Finance</span>
+          <span class="active-dot"></span>
+        </button>
+        <button class="sidebar-nav-btn" onclick="showAdminView('reports', this)">
+          <i class="fa-solid fa-chart-column"></i> <span>Reports & Analytics</span>
+          <span class="active-dot"></span>
+        </button>
+      </nav>
+
+      <!-- Admin User Profile Card in Sidebar / Drawer Bottom -->
       <div class="sidebar-user-card">
         <div class="sidebar-user-info">
           <div class="sidebar-user-avatar">
@@ -44,34 +97,6 @@
           <i class="fa-solid fa-arrow-right-from-bracket"></i> LOGOUT
         </a>
       </div>
-
-      <div class="sidebar-category-title">HOSPITAL & BI MANAGEMENT</div>
-      <nav class="sidebar-nav">
-        <button class="sidebar-nav-btn active" onclick="showAdminView('overview', this)">
-          <i class="fa-solid fa-hospital"></i> <span>Hospital Overview</span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showAdminView('opd', this)">
-          <i class="fa-solid fa-stethoscope"></i> <span>OPD Management</span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showAdminView('ipd', this)">
-          <i class="fa-solid fa-bed-pulse"></i> <span>IPD & Bed Management</span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showAdminView('lims', this)">
-          <i class="fa-solid fa-vial-virus"></i> <span>Laboratory (LIMS)</span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showAdminView('pharmacy', this)">
-          <i class="fa-solid fa-prescription-bottle-medical"></i> <span>Pharmacy ERP</span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showAdminView('staff', this)">
-          <i class="fa-solid fa-user-doctor"></i> <span>Staff & HR</span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showAdminView('billing', this)">
-          <i class="fa-solid fa-file-invoice-dollar"></i> <span>Billing & Finance</span>
-        </button>
-        <button class="sidebar-nav-btn" onclick="showAdminView('reports', this)">
-          <i class="fa-solid fa-chart-column"></i> <span>Reports & Analytics</span>
-        </button>
-      </nav>
     </aside>
 
     <!-- MAIN CONTENT AREA -->
@@ -1787,6 +1812,34 @@
   </div>
 
   <script>
+    // Mobile Drawer Toggle Logic
+    const dashSidebar = document.getElementById('dashSidebar');
+    const dashSidebarBackdrop = document.getElementById('dashSidebarBackdrop');
+    const dashMenuToggle = document.getElementById('dashMenuToggle');
+    const dashSidebarClose = document.getElementById('dashSidebarClose');
+
+    function openMobileDrawer() {
+      if (dashSidebar) dashSidebar.classList.add('mobile-open');
+      if (dashSidebarBackdrop) dashSidebarBackdrop.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileDrawer() {
+      if (dashSidebar) dashSidebar.classList.remove('mobile-open');
+      if (dashSidebarBackdrop) dashSidebarBackdrop.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    if (dashMenuToggle) {
+      dashMenuToggle.addEventListener('click', openMobileDrawer);
+    }
+    if (dashSidebarClose) {
+      dashSidebarClose.addEventListener('click', closeMobileDrawer);
+    }
+    if (dashSidebarBackdrop) {
+      dashSidebarBackdrop.addEventListener('click', closeMobileDrawer);
+    }
+
     // Tab View Switcher for Admin Dashboard
     function showAdminView(viewId, btn) {
       // Hide all views
@@ -1805,6 +1858,9 @@
         document.querySelectorAll('.sidebar-nav-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
       }
+
+      // Automatically close drawer on mobile upon selection
+      closeMobileDrawer();
 
       // Update URL hash without reload
       history.replaceState(null, null, '#' + viewId);
@@ -1850,6 +1906,8 @@
       try {
         if (!window.location.href.includes('404.html')) {
           sessionStorage.setItem('stackly_previous_page', window.location.href);
+          sessionStorage.setItem('stackly_last_page', window.location.href);
+          localStorage.setItem('stackly_last_page', window.location.href);
         }
       } catch (e) {}
     });

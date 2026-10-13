@@ -277,15 +277,11 @@
     })();
 
     function handleGoBack() {
-      // 1. Check URL parameters (?from= or ?ref=)
-      try {
-        var params = new URLSearchParams(window.location.search);
-        var fromParam = params.get('from') || params.get('ref');
-        if (fromParam && !fromParam.includes('404.html')) {
-          window.location.href = fromParam;
-          return;
-        }
-      } catch (e) {}
+      // 1. If the user navigated here in this browser tab, browser history back immediately returns to the previous page
+      if (window.history && window.history.length > 1) {
+        window.history.back();
+        return;
+      }
 
       // 2. Direct document.referrer if valid and not the 404 page
       var ref = document.referrer;
@@ -302,27 +298,18 @@
         }
       }
 
-      // 3. Stored prior page in sessionStorage
+      // 3. Stored prior page in sessionStorage or localStorage
       try {
-        var prev = sessionStorage.getItem('stackly_previous_page') || sessionStorage.getItem('stackly_last_page');
+        var prev = sessionStorage.getItem('stackly_previous_page') || 
+                   sessionStorage.getItem('stackly_last_page') || 
+                   localStorage.getItem('stackly_last_page');
         if (prev && !prev.includes('404.html')) {
           window.location.href = prev;
           return;
         }
       } catch (e) {}
 
-      // 4. Browser history back
-      if (window.history && window.history.length > 1) {
-        window.history.back();
-        setTimeout(function() {
-          if (!document.hidden) {
-            window.location.href = 'index.html';
-          }
-        }, 500);
-        return;
-      }
-
-      // 5. Fallback to homepage
+      // 4. Default fallback to homepage
       window.location.href = 'index.html';
     }
   </script>

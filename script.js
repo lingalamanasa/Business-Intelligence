@@ -596,6 +596,8 @@ if (document.readyState === 'loading') {
     if (!curPath.endsWith('404.html') && !curHref.includes('404.html')) {
         try {
             sessionStorage.setItem('stackly_previous_page', curHref);
+            sessionStorage.setItem('stackly_last_page', curHref);
+            localStorage.setItem('stackly_last_page', curHref);
         } catch (e) {}
     }
 
@@ -609,6 +611,8 @@ if (document.readyState === 'loading') {
             if (!curHref.includes('404.html')) {
                 try {
                     sessionStorage.setItem('stackly_previous_page', curHref);
+                    sessionStorage.setItem('stackly_last_page', curHref);
+                    localStorage.setItem('stackly_last_page', curHref);
                 } catch (err) {}
             }
         }
