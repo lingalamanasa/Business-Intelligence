@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Telemetry Dashboard - Stackly Business Intelligence</title>
-  <link rel="stylesheet" href="dashboard.css?v=7.0">
+  <link rel="stylesheet" href="dashboard.css?v=8.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
         max-width: 310px !important;
         height: 100vh !important;
         height: 100dvh !important;
-        background: #0d5ea6 !important;
+        background: linear-gradient(180deg, #ca8a04 0%, #a16207 60%, #854d0e 100%) !important;
         z-index: 9999 !important;
         transform: translateX(-105%) !important;
         transition: transform 0.32s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -72,11 +72,11 @@
     <!-- LEFT SIDEBAR / MOBILE HAMBURGER DRAWER -->
     <aside class="dash-sidebar" id="dashSidebar">
       <!-- Drawer Top Bar with Stackly Logo & Close button (Mobile only) -->
-      <div class="dash-drawer-header" style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 1rem; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(255, 255, 255, 0.15);">
+      <div class="dash-drawer-header" style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 1rem; margin-bottom: 1.25rem; border-bottom: 1px solid rgba(254, 240, 138, 0.25);">
         <a href="user-dashboard.html" class="dash-drawer-logo" style="display: inline-flex; align-items: center; text-decoration: none;">
           <img src="images/logo-dark.webp?v=7.0" alt="STACKLY Logo" class="dash-drawer-logo-img" style="height: 28px; max-height: 28px; width: auto; max-width: 130px; object-fit: contain; display: block; filter: brightness(0) invert(1);" />
         </a>
-        <button type="button" class="dash-drawer-close" id="dashDrawerClose" aria-label="Close menu" style="width: 38px; height: 38px; border-radius: 8px; background: rgba(255, 255, 255, 0.15); border: 1.5px solid rgba(255, 255, 255, 0.4); color: #ffffff; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; cursor: pointer;">
+        <button type="button" class="dash-drawer-close" id="dashDrawerClose" aria-label="Close menu" style="width: 38px; height: 38px; border-radius: 8px; background: rgba(255, 255, 255, 0.15); border: 1.5px solid rgba(254, 240, 138, 0.4); color: #ffffff; display: inline-flex; align-items: center; justify-content: center; font-size: 1.1rem; cursor: pointer;">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
