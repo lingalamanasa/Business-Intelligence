@@ -345,7 +345,7 @@
         <!-- Column 1: Consultation Request Form -->
         <div class="contact-col">
           <h3><i class="fa-solid fa-file-signature" style="color: var(--primary-green);"></i> Request a Strategic Briefing</h3>
-          <form class="contact-form" action="404.html" method="GET" data-aos="fade-up">
+          <form class="contact-form" action="404.html" method="GET" data-aos="fade-up" onsubmit="event.preventDefault(); if (this.checkValidity()) { window.location.href = '404.html'; } else { this.reportValidity(); }">
             <div class="form-row">
               <div class="form-group">
                 <i class="fa-regular fa-user"></i>
@@ -358,7 +358,7 @@
             </div>
             <div class="form-group">
               <i class="fa-solid fa-phone"></i>
-              <input type="tel" placeholder="Direct Phone / WhatsApp">
+              <input type="tel" placeholder="Direct Phone / WhatsApp" required>
             </div>
             <div class="form-group">
               <i class="fa-solid fa-building"></i>
@@ -547,7 +547,7 @@
       <div class="news-content" data-aos="fade-up">
         <h2>Stay Connected to Global Business Intelligence Trends</h2>
         <p>Receive our quarterly boardroom intelligence briefings and macroeconomic commentaries.</p>
-        <form class="news-form" action="404.html">
+        <form class="news-form" action="404.html" onsubmit="event.preventDefault(); if (this.checkValidity()) { window.location.href = '404.html'; } else { this.reportValidity(); }">
           <input type="email" placeholder="Enter your corporate email address" required>
           <button type="submit" class="btn btn-primary">Subscribe</button>
         </form>

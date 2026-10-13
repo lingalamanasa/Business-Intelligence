@@ -925,7 +925,7 @@
 
         <p>Join over 12,000 corporate executives, CFOs, and board chairs who read our weekly strategic analyses.</p>
 
-        <form class="news-form" action="404.html">
+        <form class="news-form" action="404.html" onsubmit="event.preventDefault(); if (this.checkValidity()) { window.location.href = '404.html'; } else { this.reportValidity(); }">
 
           <input type="email" placeholder="Enter your corporate email address" required>
 

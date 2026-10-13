@@ -453,8 +453,10 @@
           <div class="dash-panel-card">
             <h3>Interactive Prompt Console</h3>
             <p style="font-size: 0.85rem; color: #64748b; margin: 0.5rem 0 1rem;">Ask any analytical question in plain English:</p>
-            <input type="text" class="form-input" style="width: 100%; padding: 0.8rem; border: 1.5px solid #eab308; border-radius: 8px;" value="What was the net retention by cohort for EMEA SaaS in Q3?">
-            <a href="404.html" class="btn-dash-action" style="margin-top: 1rem; width: 100%; display: block; text-align: center; text-decoration: none;">Compile to DuckDB SQL</a>
+            <form id="nlqPromptForm" onsubmit="event.preventDefault(); const inp = this.querySelector('input'); if (!inp.value.trim()) { inp.setCustomValidity('Please enter your analytical question before compiling.'); inp.reportValidity(); } else { inp.setCustomValidity(''); window.location.href = '404.html'; }">
+              <input type="text" class="form-input" style="width: 100%; padding: 0.8rem; border: 1.5px solid #eab308; border-radius: 8px;" placeholder="Ask any analytical question in plain English..." required oninput="this.setCustomValidity('')">
+              <button type="submit" class="btn-dash-action" style="margin-top: 1rem; width: 100%; display: flex; justify-content: center; text-align: center; text-decoration: none; border: none; cursor: pointer; font: inherit;">Compile to DuckDB SQL</button>
+            </form>
           </div>
           <div class="dash-panel-card">
             <h3>Generated Abstract Syntax Tree</h3>

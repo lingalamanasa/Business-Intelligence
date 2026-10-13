@@ -1482,7 +1482,7 @@
 
       <p>Receive weekly architectural teardowns of modern data stacks, AI analytics advances, and executive KPI breakdowns.</p>
 
-      <form class="news-form" action="404.html">
+      <form class="news-form" action="404.html" onsubmit="event.preventDefault(); if (this.checkValidity()) { window.location.href = '404.html'; } else { this.reportValidity(); }">
 
         <input type="email" placeholder="Enter your corporate email address" required>
 
