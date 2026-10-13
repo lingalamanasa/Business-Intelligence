@@ -69,10 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
             mobileMenuBtn.setAttribute("aria-expanded", "true");
             document.body.classList.add("menu-open");
             document.documentElement.classList.add("menu-open");
-            if (icon) {
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-xmark");
-            }
         };
 
         const closeMenu = () => {
@@ -83,8 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.classList.remove("menu-open");
             document.documentElement.classList.remove("menu-open");
             if (icon) {
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
+                icon.className = "fa-solid fa-bars";
             }
         };
 
