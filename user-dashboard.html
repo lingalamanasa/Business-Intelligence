@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Telemetry Dashboard - Stackly Business Intelligence</title>
-  <link rel="stylesheet" href="dashboard.css?v=8.0">
+  <link rel="stylesheet" href="dashboard.css?v=9.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -514,7 +514,7 @@
           </div>
           <div class="dash-panel-card">
             <h3>Generated Abstract Syntax Tree</h3>
-            <div style="background: #0f172a; color: #f8fafc; padding: 1rem; border-radius: 10px; font-family: monospace; font-size: 0.8rem;">
+            <div class="dash-code-box" style="margin-top: 0.75rem;">
               SELECT cohort_quarter, SUM(arr_expansion) / SUM(arr_starting) * 100 AS nrr<br>
               FROM telemetry_lakehouse.enterprise_subscriptions<br>
               WHERE region = 'EMEA' GROUP BY 1;
@@ -725,11 +725,11 @@
         <div class="dash-split-grid">
           <div class="dash-panel-card">
             <h3>Live SQL Query Console</h3>
-            <textarea class="form-input" style="height: 120px; font-family: monospace; font-size: 0.85rem; width: 100%; border-color: #eab308; background: #0f172a; color: #4ade80;">SELECT date_trunc('week', event_timestamp) AS week, count(*) AS events, sum(amount) AS gross_volume FROM s3('corp-lake/events/*.parquet') GROUP BY 1 ORDER BY 1 DESC LIMIT 10;</textarea>
+            <textarea class="form-input" style="height: 120px; font-family: monospace; font-size: 0.85rem; width: 100%; border-color: #eab308; background: #0f172a; color: #4ade80; margin-top: 0.75rem; border-radius: 8px; padding: 0.8rem; box-sizing: border-box; max-width: 100%;">SELECT date_trunc('week', event_timestamp) AS week, count(*) AS events, sum(amount) AS gross_volume FROM s3('corp-lake/events/*.parquet') GROUP BY 1 ORDER BY 1 DESC LIMIT 10;</textarea>
           </div>
           <div class="dash-panel-card">
             <h3>Physical Query Plan Execution</h3>
-            <div style="font-family: monospace; font-size: 0.8rem; background: #f8fafc; padding: 1rem; border-radius: 8px; border: 1px solid #e2e8f0;">
+            <div class="dash-code-box" style="margin-top: 0.75rem; background: #f8fafc; color: #0f172a; border: 1px solid #e2e8f0;">
               &rarr; PARQUET_SCAN (12 partitions, 85MB)<br>
               &rarr; HASH_GROUP_BY (in-memory vectorized)<br>
               &rarr; TOP_N_SORT (10 rows)<br>
